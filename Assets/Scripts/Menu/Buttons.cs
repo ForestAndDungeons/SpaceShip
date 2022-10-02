@@ -5,22 +5,23 @@ using UnityEngine.UI;
 
 public class Buttons : MonoBehaviour
 {
-    Button _button;
     [SerializeField] Sprite _downSprite;
     [SerializeField] Sprite _upSprite;
+    AudioSource _myAudioSource;
 
     void Awake()
     {
-        _button = this.GetComponent<Button>();
+        _myAudioSource = GetComponent<AudioSource>();
     }
 
-    public void DownSprite()
+    public void DownSprite(Image button)
     {
-        _button.image.overrideSprite = _downSprite;
+        _myAudioSource.Play();
+        button.overrideSprite = _downSprite;
     }
 
-    public void UpSprite()
+    public void UpSprite(Image button)
     {
-        _button.image.overrideSprite = _upSprite;
+        button.overrideSprite = _upSprite;
     }
 }
