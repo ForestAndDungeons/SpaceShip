@@ -23,6 +23,6 @@ public class Player : MonoBehaviour
 
     public void CheckBounds()
     {
-        this.transform.position = GameManager.Instance.ApplyBounds(this.transform.position);
+        transform.position = GameManager.Instance.ApplyBounds(transform.position);
     }
 }
