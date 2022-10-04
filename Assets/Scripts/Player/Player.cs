@@ -1,28 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
+using UnityEditor;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : PlayerBase
 {
-    [SerializeField] Controller _controller;
-    [SerializeField] float _speed;
-    Animator _myAnimator;
-
     void Awake()
     {
+        _maxHealth = _data.maxHealth;
+        _currentHealth = _data.maxHealth;
+        _maxSpeed = _data.maxSpeed;
         _myAnimator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        CheckBounds();
-        _myAnimator.SetFloat("Horizontal", _controller.GetMovementInput().x);
-        _myAnimator.SetFloat("Vertical", _controller.GetMovementInput().y);
-        transform.position += _controller.GetMovementInput() * _speed * Time.deltaTime;
-    }
-
-    public void CheckBounds()
-    {
-        transform.position = GameManager.Instance.ApplyBounds(transform.position);
+        GameManager.Instance.GetBoundManager().CheckBounds(this);
+        UpdateAnimatorVariables();
+        Movement(transform);
     }
 }

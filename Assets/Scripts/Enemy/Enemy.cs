@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : EnemyBase
 {
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        _currentHealth = _maxHealth;
+        _myAnimator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
