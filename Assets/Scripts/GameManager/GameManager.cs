@@ -96,4 +96,6 @@ public class GameManager : MonoBehaviour
         Gizmos.DrawLine(botRightOffset, botLeftOffset);
         Gizmos.DrawLine(botLeftOffset, topLeftOffset);
     }
+
+    public BoundManager GetBoundManager() { return _boundManager; }
 }
