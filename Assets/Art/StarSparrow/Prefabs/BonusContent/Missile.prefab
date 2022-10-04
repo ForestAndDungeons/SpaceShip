@@ -4931,6 +4931,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6391ea6260ed6974d9a58ff75188dcd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _amplitude: 45
+  _period: 4
+  _displacement: 2
+  _vertical: 1
   _speed: 50
   _maxDistance: 75
   _damage: 1
