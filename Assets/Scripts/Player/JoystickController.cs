@@ -17,7 +17,7 @@ public class JoystickController : Controller, IDragHandler, IEndDragHandler
 
     public override Vector3 GetMovementInput()
     {
-        _moveDirModified = new Vector3(_moveDir.x, 0f, _moveDir.y) / _maxMagnitude;
+        _moveDirModified = new Vector3(_moveDir.x * 2, 0f, _moveDir.y) / _maxMagnitude;
 
         return _moveDirModified;
     }
