@@ -38,8 +38,6 @@ public class Bullet : MonoBehaviour
         _currentAdvance = _linealAdvance;
     }
 
-    
-
     void Update()
     {
         if(_currentAdvance!=null) _currentAdvance.BulletAdvance();
@@ -51,13 +49,14 @@ public class Bullet : MonoBehaviour
             BulletFactory.Instance.ReturnBullet(this);
         }
     }
+
     void OnEnable()
     {
         _myCollider.enabled = true;
         _myMeshRenderer.enabled = true;
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         _currentDistance = 0;
     }

@@ -11,7 +11,7 @@ public class Player : PlayerBase
         _maxHealth = _data.maxHealth;
         _currentHealth = _data.maxHealth;
         _maxSpeed = _data.maxSpeed;
-        _myAnimator = GetComponent<Animator>();
+        _myAnimator = GetComponentInChildren<Animator>();
     }
 
     void Update()
