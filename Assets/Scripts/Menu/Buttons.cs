@@ -24,4 +24,10 @@ public class Buttons : MonoBehaviour
     {
         button.overrideSprite = _upSprite;
     }
+
+    public void ChangeScene(string sceneToLoad) { GameManager.Instance.ChangeScene(sceneToLoad); }
+    public void Pause() { GameManager.Instance.Pause(); }
+    public void UnPause() { GameManager.Instance.UnPause(); }
+    public void ChangeMusic(AudioClip clip) { GameManager.Instance.ChangeMusic(clip); }
+    public void QuitGame() { GameManager.Instance.QuitGame(); }
 }

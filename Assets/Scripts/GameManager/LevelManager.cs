@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class LevelManager 
+public class LevelManager : MonoBehaviour
 {
     public void ChangeScene(string sceneToLoad)
     {

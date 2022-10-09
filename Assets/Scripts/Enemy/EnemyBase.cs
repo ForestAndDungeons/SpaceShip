@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class EnemyBase : CharacterBase
 {
+    public override void onDeath()
+    { 
 
+    }
 }

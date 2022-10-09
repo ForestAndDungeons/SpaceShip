@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -10,10 +11,18 @@ public class GameManager : MonoBehaviour
     public Player playerReference { get { return _player; } }
     public Player _player;
 
+    [Header("Managers")]
     LevelManager _levelManager;
     PauseManager _pauseManager;
     BoundManager _boundManager;
     AsteroidManager _asteroidManager;
+    OptionsManager _optionsManager;
+    AudioManager _audioManager;
+
+    [Header("Audio")]
+    [SerializeField] AudioClip[] _audioClips;
+    [SerializeField] AudioMixer _audioMixer;
+    AudioSource _myAudioSource;
 
     [Header("Bounds")]
     [SerializeField] float _boundWidth;
@@ -43,18 +52,26 @@ public class GameManager : MonoBehaviour
         _pauseManager = new PauseManager();
         _boundManager = new BoundManager(_boundWidth, _boundHeight);
         _asteroidManager = new AsteroidManager(_spawnTimeAsteroid, _boundWidth, _boundHeight, _boundOffset);
+        _optionsManager = new OptionsManager(_audioMixer);
+
+        _myAudioSource = GetComponent<AudioSource>();
+        _audioManager = new AudioManager(_myAudioSource, _audioClips);
     }
 
     void Update()
     {
-        _asteroidManager.ArtificialUpdate();
+        if(_player)
+            _asteroidManager.ArtificialUpdate();
     }
 
     public Vector3 ApplyBounds(Vector3 objectPosition) { return _boundManager.ApplyBounds(objectPosition); }
     void FindPlayer() { _player = FindObjectOfType<Player>(); }
-    void Pause() { _pauseManager.Pause(); }
-    void UnPause() { _pauseManager.UnPause(); }
-    void ChangeScene(string sceneToLoad) { _levelManager.ChangeScene(sceneToLoad); }
+    public void Pause() { _pauseManager.Pause(); }
+    public void UnPause() { _pauseManager.UnPause(); }
+    public void ChangeScene(string sceneToLoad) { _levelManager.ChangeScene(sceneToLoad); }
+    public void QuitGame() { _levelManager.QuitGame(); }
+    public void SetVolume(float volume) { _optionsManager.SetVolume(volume); }
+    public void ChangeMusic(AudioClip clip) { _audioManager.ChangeMusic(clip); }
 
     void OnLevelWasLoaded()
     {
