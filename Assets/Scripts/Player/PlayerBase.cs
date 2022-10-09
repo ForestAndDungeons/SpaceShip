@@ -22,6 +22,11 @@ public abstract class PlayerBase : CharacterBase
         StartCoroutine(FireBurst());
     }
 
+    public override void onDeath()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void UpdateAnimatorVariables()
     {
         _myAnimator.SetFloat("Horizontal", _controller.GetMovementInput().x);
