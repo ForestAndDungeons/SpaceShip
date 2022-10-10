@@ -121,7 +121,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3988678960000726746
 Transform:
   m_ObjectHideFlags: 0
@@ -208,9 +208,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5866240071633003387}
   - component: {fileID: 5866240071633003366}
+  - component: {fileID: 2039881870}
   - component: {fileID: 5866240071633003364}
   - component: {fileID: 5866240071633003365}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,6 +246,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.2955594, y: 4.204359, z: 15.52541}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &2039881870
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5866240071633003386}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &5866240071633003364
 AudioSource:
   m_ObjectHideFlags: 0
@@ -357,7 +374,7 @@ MonoBehaviour:
   _maxHealth: 0
   _currentHealth: 0
   _shield: {fileID: 3006885795863702930}
-  _isShieldUp: 1
+  _isShieldUp: 0
   _data: {fileID: 11400000, guid: a32c1a877d1450d44895a60345619e50, type: 2}
   _controller: {fileID: 0}
   _credits: 0

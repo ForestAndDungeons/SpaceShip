@@ -11,6 +11,7 @@ public abstract class CharacterBase : MonoBehaviour
     [SerializeField] protected GameObject _shield;
     [SerializeField] protected bool _isShieldUp;
 
+    protected AudioSource _myAudioSource;
     protected Animator _myAnimator;
 
     public void onDamage(float damage)
