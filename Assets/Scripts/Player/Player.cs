@@ -15,6 +15,11 @@ public class Player : PlayerBase
         _myAudioSource = GetComponent<AudioSource>();
     }
 
+    private void Start()
+    {
+        EventManager.TriggerEvent(Contants.EVENT_INICIATEHEALTHBAR, _data.maxHealth, _currentHealth);
+    }
+
     void Update()
     {
         GameManager.Instance.GetBoundManager().CheckBounds(this);

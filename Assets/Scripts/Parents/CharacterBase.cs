@@ -21,6 +21,7 @@ public abstract class CharacterBase : MonoBehaviour
             if (!_isShieldUp)
             {
                 _currentHealth -= damage;
+                EventManager.TriggerEvent(Contants.EVENT_PLAYERONDAMAGE, _currentHealth);
             }
             else
                 SetShieldUp(false);
@@ -47,5 +48,5 @@ public abstract class CharacterBase : MonoBehaviour
     public abstract void onDeath();
     public void SetShieldUp(bool value) { _isShieldUp = value; _shield.SetActive(value); }
     public void SetSpeed(float value) { _maxSpeed = value; }
-    
+
 }
