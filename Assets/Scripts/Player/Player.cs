@@ -20,6 +20,10 @@ public class Player : PlayerBase
         GameManager.Instance.GetBoundManager().CheckBounds(this);
         UpdateAnimatorVariables();
         Movement(transform);
+        if (isRandomBullet || isSinuousBullet)
+        {
+            PowerUpTime();
+        }
     }
 
     public void OnTriggerEnter(Collider other)

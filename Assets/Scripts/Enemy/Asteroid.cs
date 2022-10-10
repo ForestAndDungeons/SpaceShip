@@ -10,6 +10,8 @@ public class Asteroid : MonoBehaviour
 
     [SerializeField] float _damage;
 
+    [SerializeField] int _chance;
+
     AudioSource _myAudioSource;
     ParticleSystem _myParticleSystem;
     Collider _myCollider;
@@ -72,6 +74,23 @@ public class Asteroid : MonoBehaviour
 
     void OnDestroy()
     {
+        _chance = Random.Range(0,11);
+
+        if (_chance <=3)
+        {
+            RandomBulletPU r = RandomBulletFactory.Instance.GetRandomBullet();
+
+            r.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+            r.transform.forward = Vector3.forward * -1;
+        }
+        else if (_chance <=5 && _chance > 3)
+        {
+            SinuousBulletPU s = SinuousFactory.Instance.GetSinuous();
+
+            s.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+            s.transform.forward = Vector3.forward * -1;
+        }
+
         _myAudioSource.Play();
         _myParticleSystem.Play();
         _myCollider.enabled = false;
