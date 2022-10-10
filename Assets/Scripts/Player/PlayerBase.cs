@@ -34,8 +34,7 @@ public abstract class PlayerBase : CharacterBase
     }
 
     public void SetCredits(float value) { _credits = value; }
-
-
+    
     public IEnumerator FireBurst()
     {
         float bulletDelay = 60 / _rateOfFire;

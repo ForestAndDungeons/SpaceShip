@@ -46,12 +46,12 @@ public class Asteroid : MonoBehaviour
         _currentDistance = 0;
     }
 
-    public static void TurnOn(Bullet a)
+    public static void TurnOn(Asteroid a)
     {
         a.gameObject.SetActive(true);
     }
 
-    public static void TurnOff(Bullet a)
+    public static void TurnOff(Asteroid a)
     {
         a.gameObject.SetActive(false);
     }

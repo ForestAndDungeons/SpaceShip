@@ -7,6 +7,7 @@ public class ShieldUp : PickUp
 {
     public override void Pick(Player player)
     {
-        player.SetShieldUp(true);
+        player.SetShieldUps(true);
+        OnPickUp();
     }
 }
