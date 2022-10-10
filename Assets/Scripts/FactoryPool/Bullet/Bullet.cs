@@ -87,8 +87,8 @@ public class Bullet : MonoBehaviour
 
     void OnDestroy()
     {
-        //_myAudioSource.Play();
-        //_myParticleSystem.Play();
+        _myAudioSource.Play();
+        _myParticleSystem.Play();
         _myCollider.enabled = false;
         _myMeshRenderer.enabled = false;
 
@@ -97,7 +97,7 @@ public class Bullet : MonoBehaviour
 
     IEnumerator WaitReturn()
     {
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(1f);
         BulletFactory.Instance.ReturnBullet(this);
     }
 }

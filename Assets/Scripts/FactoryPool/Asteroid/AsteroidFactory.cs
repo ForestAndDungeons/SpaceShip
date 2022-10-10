@@ -16,7 +16,7 @@ public class AsteroidFactory : MonoBehaviour
     {
         _instance = this;
 
-        _pool = new ObjectPool<Asteroid>(AsteroidCreator, (b) => { b.gameObject.SetActive(true); }, (b) => { b.gameObject.SetActive(false); }, _initialStock);
+        _pool = new ObjectPool<Asteroid>(AsteroidCreator, (a) => { a.gameObject.SetActive(true); }, (a) => { a.gameObject.SetActive(false); }, _initialStock);
     }
 
     Asteroid AsteroidCreator()

@@ -20,4 +20,13 @@ public class Player : PlayerBase
         UpdateAnimatorVariables();
         Movement(transform);
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        var pickUp = other.GetComponent<PickUp>();
+
+        if (pickUp != null)
+            pickUp.Pick(this);
+    }
+    public void SetShieldUps(bool value) { _isShieldUp = value; _shield.SetActive(value); }
 }

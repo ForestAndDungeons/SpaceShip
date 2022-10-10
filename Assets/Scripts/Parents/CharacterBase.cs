@@ -34,7 +34,8 @@ public abstract class CharacterBase : MonoBehaviour
 
             if (_currentHealth <= 0)
             {
-                //onDeath();
+                onDeath();
+                
                 /*_playerSoundManager.playOnDeath();
                 _animationController.onDeath();
                 _player.DisableThisObject();*/
@@ -43,7 +44,7 @@ public abstract class CharacterBase : MonoBehaviour
     }
 
     public abstract void onDeath();
-
-    public void SetSpeed(float value) { _maxSpeed = value; }
     public void SetShieldUp(bool value) { _isShieldUp = value; _shield.SetActive(value); }
+    public void SetSpeed(float value) { _maxSpeed = value; }
+    
 }
