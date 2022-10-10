@@ -29,18 +29,18 @@ public class SaveJSON : MonoBehaviour
 
     public void SaveGame()
     {
-        Debug.Log("Hola");
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(path, json);
-
         
-        Debug.Log(json);
+        Debug.Log("Saved Game "+ json);
     }
 
     public void LoadGame()
     {
         string json = File.ReadAllText(path);
         JsonUtility.FromJsonOverwrite(json, data);
+
+        Debug.Log("Loaded Game " + json);
 
     }
 }
