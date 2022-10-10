@@ -208,11 +208,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6391ea6260ed6974d9a58ff75188dcd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _amplitude: 0
-  _period: 0
-  _displacement: 0
-  _vertical: 0
-  _speed: 80
+  amplitude: 35
+  period: 6
+  displacement: 2
+  vertical: 1
+  speed: 50
   _maxDistance: 100
   _damage: 1
 --- !u!198 &239990549

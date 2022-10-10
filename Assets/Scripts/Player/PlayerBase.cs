@@ -12,6 +12,19 @@ public abstract class PlayerBase : CharacterBase
     [SerializeField] float _rateOfFire;
     [SerializeField] int _burstSize;
     [SerializeField] bool _canFire = true;
+    [SerializeField] float _startTimeResetBulletAdvance;
+                     float _timeResetBulletAdvance;
+    
+    protected float _amplitude;
+    protected float _period;
+    protected float _displacement;
+    protected float _vertical;
+    public bool isRandomBullet;
+    public bool isSinuousBullet;
+    IBulletAdvance _linealBullet;
+    IBulletAdvance _sinuousBullet;
+    IBulletAdvance _randomBullet;
+    IBulletAdvance _currentBullet;
 
     public void Movement(Transform player)
     {
@@ -47,6 +60,20 @@ public abstract class PlayerBase : CharacterBase
         for (int i = 0; i < _burstSize; i++)
         {
             Bullet b = BulletFactory.Instance.GetBullet();
+            _linealBullet = new LinealAdvance(b.speed, b.transform);
+            _currentBullet = _linealBullet;
+            if (isSinuousBullet)
+            {
+                _sinuousBullet = new SinuousAdvance(b.transform, b.speed,_amplitude, _period, _displacement, _vertical);
+                _currentBullet = _sinuousBullet;
+            }
+            else if (isRandomBullet)
+            {
+                _randomBullet = new SinuousAdvance(b.transform, Random.Range(50, 61), Random.Range(10, 71), Random.Range(0, 9), Random.Range(0, 11), Random.Range(0, 11));
+                _currentBullet = _randomBullet;
+            }
+            b.currentAdvance = _currentBullet;
+            Debug.Log(b.currentAdvance);
             b.transform.position = GameManager.Instance.playerReference.transform.position;
             b.transform.forward = Vector3.forward;
             
@@ -55,8 +82,33 @@ public abstract class PlayerBase : CharacterBase
         _canFire = true;
     }
 
+    public void PowerUpTime()
+    {
+       
+        if (_timeResetBulletAdvance <= 0)
+        {
+            _timeResetBulletAdvance = _startTimeResetBulletAdvance;
+            isRandomBullet = false;
+            isSinuousBullet = false;
+            _currentBullet = _linealBullet;
+            Debug.Log(_timeResetBulletAdvance);
+        }
+        else
+        {
+            _timeResetBulletAdvance -= Time.deltaTime;
+            Debug.Log("else: "+ _timeResetBulletAdvance);
+        }
+    }
+
     public void SetFireRate(int value) { _rateOfFire += value; }
     public void SetFireBurst(int value) { _burstSize += value; }
+    public void SetAmplitude(float value) { _amplitude = value; }
+    public void SetPeriod(float value) { _period = value; }
+    public void SetDisplacement(float value) { _displacement = value; }
+    public void SetVertical(float value) { _vertical = value; }
+
+
+
 
     public IEnumerator End()
     {
