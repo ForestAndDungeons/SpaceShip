@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
 
         _myAudioSource = GetComponent<AudioSource>();
         _audioManager = new AudioManager(_myAudioSource, _audioClips);
+        EventManager.SubscribeToEvent(Contants.EVENT_LOSEGAME,DefeatScene);
     }
 
     void Update()
@@ -73,6 +74,12 @@ public class GameManager : MonoBehaviour
     public void SetVolume(float volume) { _optionsManager.SetVolume(volume); }
     public void ChangeMusic(AudioClip clip) { _audioManager.ChangeMusic(clip); }
 
+
+    public void DefeatScene(params object[] param)
+    {
+        string _levelToChange = (string)param[0];
+        _levelManager.ChangeScene(_levelToChange);
+    }
     void OnLevelWasLoaded()
     {
         FindPlayer();
