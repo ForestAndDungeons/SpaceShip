@@ -11,6 +11,10 @@ public abstract class CharacterBase : MonoBehaviour
     [SerializeField] protected GameObject _shield;
     [SerializeField] protected bool _isShieldUp;
 
+    [SerializeField] protected float _rateOfFire;
+    [SerializeField] protected int _burstSize;
+    [SerializeField] protected bool _canFire;
+
     protected AudioSource _myAudioSource;
     protected Animator _myAnimator;
 
@@ -35,7 +39,7 @@ public abstract class CharacterBase : MonoBehaviour
 
             if (_currentHealth <= 0)
             {
-                onDeath();
+                OnDeath();
                 
                 /*_playerSoundManager.playOnDeath();
                 _animationController.onDeath();
@@ -44,7 +48,9 @@ public abstract class CharacterBase : MonoBehaviour
         }
     }
 
-    public abstract void onDeath();
+    
+
+    public abstract void OnDeath();
     public void SetShieldUp(bool value) { _isShieldUp = value; _shield.SetActive(value); }
     public void SetSpeed(float value) { _maxSpeed = value; }
     

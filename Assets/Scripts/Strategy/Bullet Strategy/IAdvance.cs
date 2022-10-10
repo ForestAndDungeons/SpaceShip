@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IBulletAdvance
+public interface IAdvance
 {
-    void BulletAdvance();
+    void Advance();
 }

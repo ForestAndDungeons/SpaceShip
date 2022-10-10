@@ -11,11 +11,6 @@ public class DestroyTimer : MonoBehaviour
         DestroyOnTime();
     }
 
-    void OnLevelWasLoaded()
-    {
-        DestroyOnTime();
-    }
-
     public void DestroyOnTime()
     {
         Destroy(gameObject, _timer);

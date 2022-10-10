@@ -43,5 +43,4 @@ public class LookUpTable<T1, T2>
             return value;
         }
     }
-
 }

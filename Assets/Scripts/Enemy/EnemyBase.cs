@@ -4,9 +4,54 @@ using UnityEngine;
 
 public class EnemyBase : CharacterBase
 {
-    [SerializeField] int _chance;
+    int _chance;
+    protected IAdvance _linealXAdvance;
+    IAdvance _sinuousAdvance;
+    IAdvance _currentAdvance;
+    public bool isRandomAdvance;
+    public bool isSinuousAdvance;
 
-    public override void onDeath()
+    public void Movement()
+    {
+
+        _linealXAdvance.Advance(); 
+    }
+
+    void SinMovement()
+    {
+        //_sinuousAdvance = new SinuousAdvance(b.transform, b.speed, _amplitude, _period, _displacement, _vertical);
+        //_currentBullet = _sinuousAdvance;
+    }
+
+    void LinearMovement()
+    {
+        _linealXAdvance = new LinealXAdvance(_maxSpeed, transform);
+    }
+
+    public void Shoot()
+    {
+        Debug.Log("Fuera");
+        if (_canFire)
+            StartCoroutine(FireBurst());
+    }
+
+    public  IEnumerator FireBurst()
+    {
+        float bulletDelay = 60 / _rateOfFire;
+        //Rate of fire in weapons is in rounds per minute (RPM), therefore we should calculate how much time passes before firing a new round in the same burst.
+
+        for (int i = 0; i < _burstSize; i++)
+        {
+            Bullet b = EnemyBulletFactory.Instance.GetBullet();
+            b.transform.position = transform.position;
+            b.transform.forward = Vector3.forward * -1;
+
+            yield return new WaitForSeconds(bulletDelay);// wait till the next round
+        }
+        _canFire = true;
+    }
+
+    public override void OnDeath()
     {
         _chance = Random.Range(0, 11);
 

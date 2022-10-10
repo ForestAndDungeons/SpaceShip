@@ -9,9 +9,6 @@ public abstract class PlayerBase : CharacterBase
     [SerializeField] protected Controller _controller;
 
     [SerializeField] protected float _credits;
-    [SerializeField] float _rateOfFire;
-    [SerializeField] int _burstSize;
-    [SerializeField] bool _canFire = true;
     [SerializeField] float _startTimeResetBulletAdvance;
                      float _timeResetBulletAdvance;
     
@@ -21,24 +18,17 @@ public abstract class PlayerBase : CharacterBase
     protected float _vertical;
     public bool isRandomBullet;
     public bool isSinuousBullet;
-    IBulletAdvance _linealBullet;
-    IBulletAdvance _sinuousBullet;
-    IBulletAdvance _randomBullet;
-    IBulletAdvance _currentBullet;
+    IAdvance _linealBullet;
+    IAdvance _sinuousBullet;
+    IAdvance _randomBullet;
+    IAdvance _currentBullet;
 
     public void Movement(Transform player)
     {
         player.transform.position += _controller.GetMovementInput() * _maxSpeed * Time.deltaTime;
     }
 
-    public void Shoot()
-    {
-        if(_canFire)
-            StartCoroutine(FireBurst());
-           
-    }
-
-    public override void onDeath()
+    public override void OnDeath()
     {
         StartCoroutine("End");
     }
@@ -50,17 +40,25 @@ public abstract class PlayerBase : CharacterBase
     }
 
     public void SetCredits(float value) { _credits = value; }
-    
+    public void Shoot()
+    {
+        Debug.Log("Fuera");
+        if (_canFire)
+            StartCoroutine(FireBurst());
+    }
     public IEnumerator FireBurst()
     {
         _canFire = false;
 
         float bulletDelay = 60 / _rateOfFire;
-        // rate of fire in weapons is in rounds per minute (RPM), therefore we should calculate how much time passes before firing a new round in the same burst.
+        //Rate of fire in weapons is in rounds per minute (RPM), therefore we should calculate how much time passes before firing a new round in the same burst.
+        
         for (int i = 0; i < _burstSize; i++)
         {
             Bullet b = BulletFactory.Instance.GetBullet();
-            _linealBullet = new LinealAdvance(b.speed, b.transform);
+            
+            //////////
+            _linealBullet = new LinealZAdvance(b.speed, b.transform);
             _currentBullet = _linealBullet;
             if (isSinuousBullet)
             {
@@ -73,10 +71,10 @@ public abstract class PlayerBase : CharacterBase
                 _currentBullet = _randomBullet;
             }
             b.currentAdvance = _currentBullet;
-            Debug.Log(b.currentAdvance);
+            //////////
             b.transform.position = GameManager.Instance.playerReference.transform.position;
             b.transform.forward = Vector3.forward;
-            
+
             yield return new WaitForSeconds(bulletDelay);// wait till the next round
         }
         _canFire = true;
@@ -84,7 +82,6 @@ public abstract class PlayerBase : CharacterBase
 
     public void PowerUpTime()
     {
-       
         if (_timeResetBulletAdvance <= 0)
         {
             _timeResetBulletAdvance = _startTimeResetBulletAdvance;
@@ -106,9 +103,6 @@ public abstract class PlayerBase : CharacterBase
     public void SetPeriod(float value) { _period = value; }
     public void SetDisplacement(float value) { _displacement = value; }
     public void SetVertical(float value) { _vertical = value; }
-
-
-
 
     public IEnumerator End()
     {

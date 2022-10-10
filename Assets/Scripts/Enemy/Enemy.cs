@@ -9,10 +9,17 @@ public class Enemy : EnemyBase
     {
         _currentHealth = _maxHealth;
         _myAnimator = GetComponent<Animator>();
+        _linealXAdvance = new LinealXAdvance(_maxSpeed, transform);
+        _canFire = true;
     }
 
     void Update()
     {
-        
+        //GameManager.Instance.GetBoundManager().CheckBounds(this);
+        Movement();
+
+
+            Shoot();
+   
     }
 }

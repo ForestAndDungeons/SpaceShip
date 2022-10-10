@@ -28,6 +28,7 @@ public class BoundManager
 
         return objectPosition;
     }
+
     public void CheckBounds(Player player)
     {
         player.transform.position = GameManager.Instance.ApplyBounds(player.transform.position);
