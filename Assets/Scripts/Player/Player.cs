@@ -12,6 +12,7 @@ public class Player : PlayerBase
         _currentHealth = _data.maxHealth;
         _maxSpeed = _data.maxSpeed;
         _myAnimator = GetComponentInChildren<Animator>();
+        _myAudioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -19,5 +20,18 @@ public class Player : PlayerBase
         GameManager.Instance.GetBoundManager().CheckBounds(this);
         UpdateAnimatorVariables();
         Movement(transform);
+        if (isRandomBullet || isSinuousBullet)
+        {
+            PowerUpTime();
+        }
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        var pickUp = other.GetComponent<PickUp>();
+
+        if (pickUp != null)
+            pickUp.Pick(this);
+    }
+    public void SetShieldUps(bool value) { _isShieldUp = value; _shield.SetActive(value); }
 }

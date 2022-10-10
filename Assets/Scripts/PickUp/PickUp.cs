@@ -5,37 +5,48 @@ using static UnityEditor.Progress;
 
 public abstract class PickUp : MonoBehaviour
 {
+    [SerializeField] protected float _currentDistance;
+    [SerializeField] protected float _speed;
+    [SerializeField] protected float _maxDistance;
     AudioSource _audioSource;
-    [SerializeField] AudioClip _audioClip;
-
-    protected Renderer _renderer;
-    protected Collider _collider;
-    protected ParticleSystem _particleSystem;
+    Renderer _renderer;
+    Collider _collider;
+    ParticleSystem _particleSystem;
 
     public abstract void Pick(Player player);
 
     private void Awake()
     {
+        _renderer = GetComponent<MeshRenderer>();
+        _collider = GetComponent<Collider>();
         _audioSource = GetComponent<AudioSource>();
+        _particleSystem = GetComponent<ParticleSystem>();
     }
 
-    public void OnPickUp(Player player)
+    public void OnPickUp()
     {
-        _audioSource.PlayOneShot(_audioClip);
         Activate();
     }
 
     public void Activate()
     {
-        _renderer = GetComponent<MeshRenderer>();
-        _collider = GetComponent<Collider>();
-        _particleSystem = GetComponent<ParticleSystem>();
-
+        _audioSource.Play();
         _particleSystem.Play();
-
         _renderer.enabled = false;
         _collider.enabled = false;
 
         Destroy(this.gameObject, 1f);
+    }
+
+    public void Movement()
+    {
+        transform.position += -transform.forward * _speed * Time.deltaTime;
+
+        _currentDistance += _speed * Time.deltaTime;
+
+        if (_currentDistance > _maxDistance)
+        {
+            Destroy(gameObject);
+        }
     }
 }
