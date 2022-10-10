@@ -212,7 +212,7 @@ MonoBehaviour:
   _period: 0
   _displacement: 0
   _vertical: 0
-  _speed: 40
+  _speed: 80
   _maxDistance: 100
   _damage: 1
 --- !u!198 &239990549

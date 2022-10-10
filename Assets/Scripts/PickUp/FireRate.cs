@@ -2,12 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shield : PickUp
+public class FireRate : PickUp
 {
-    [Header("Shield Parameters")]
-    [SerializeField] float _speed;
-    [SerializeField] float _maxDistance;
-    float _currentDistance;
+    [SerializeField] int _value;
 
     AudioSource _myAudioSource;
     ParticleSystem _myParticleSystem;
@@ -30,13 +27,13 @@ public class Shield : PickUp
 
         if (_currentDistance > _maxDistance)
         {
-            ShieldFactory.Instance.ReturnShield(this);
+            FireRateFactory.Instance.ReturnFireRate(this);
         }
     }
 
     public override void Pick(Player player)
     {
-        player.SetShieldUps(true);
+        player.SetFireRate(_value);
         //OnPickUp();
     }
 
@@ -51,14 +48,14 @@ public class Shield : PickUp
         _currentDistance = 0;
     }
 
-    public static void TurnOn(Shield s)
+    public static void TurnOn(FireRate r)
     {
-        s.gameObject.SetActive(true);
+        r.gameObject.SetActive(true);
     }
 
-    public static void TurnOff(Shield s)
+    public static void TurnOff(FireRate r)
     {
-        s.gameObject.SetActive(false);
+        r.gameObject.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
@@ -79,6 +76,6 @@ public class Shield : PickUp
     IEnumerator WaitReturn()
     {
         yield return new WaitForSeconds(1f);
-        ShieldFactory.Instance.ReturnShield(this);
+        FireRateFactory.Instance.ReturnFireRate(this);
     }
 }

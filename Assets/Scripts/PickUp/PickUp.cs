@@ -5,6 +5,9 @@ using static UnityEditor.Progress;
 
 public abstract class PickUp : MonoBehaviour
 {
+    [SerializeField] protected float _currentDistance;
+    [SerializeField] protected float _speed;
+    [SerializeField] protected float _maxDistance;
     AudioSource _audioSource;
     Renderer _renderer;
     Collider _collider;
@@ -33,5 +36,17 @@ public abstract class PickUp : MonoBehaviour
         _collider.enabled = false;
 
         Destroy(this.gameObject, 1f);
+    }
+
+    public void Movement()
+    {
+        transform.position += -transform.forward * _speed * Time.deltaTime;
+
+        _currentDistance += _speed * Time.deltaTime;
+
+        if (_currentDistance > _maxDistance)
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -97,7 +97,7 @@ public class Bullet : MonoBehaviour
 
     IEnumerator WaitReturn()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         BulletFactory.Instance.ReturnBullet(this);
     }
 }
