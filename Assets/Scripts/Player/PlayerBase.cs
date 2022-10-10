@@ -96,7 +96,6 @@ public abstract class PlayerBase : CharacterBase
         else
         {
             _timeResetBulletAdvance -= Time.deltaTime;
-            Debug.Log("else: "+ _timeResetBulletAdvance);
         }
     }
 
@@ -112,7 +111,8 @@ public abstract class PlayerBase : CharacterBase
 
     public IEnumerator End()
     {
-        GameManager.Instance.ChangeScene("Defeat");
+
+        EventManager.TriggerEvent(Contants.EVENT_LOSEGAME, "Defeat");
         yield return new WaitForSeconds(2f);
     }
 }
