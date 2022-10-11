@@ -42,4 +42,5 @@ public class EnemyManager
     }
 
     public float GetCounter() { return _count; }
+    public void SetCounter(float value) { _count = value; }
 }
