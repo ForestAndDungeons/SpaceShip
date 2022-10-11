@@ -82,6 +82,8 @@ public class EnemyBase : CharacterBase
             b.transform.forward = Vector3.forward * -1;
         }
 
+        GameManager.Instance.SetCountDeadEnemies(1);
+
         Destroy(gameObject, 0.5f);
     }
 }
