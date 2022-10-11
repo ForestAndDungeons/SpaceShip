@@ -104,7 +104,8 @@ public class GameManager : MonoBehaviour
     public Vector3 ApplyBounds(Vector3 objectPosition) { return _boundManager.ApplyBounds(objectPosition); }
     void FindPlayer() { _player = FindObjectOfType<Player>(); }
     
-    public void ChangeScene(string sceneToLoad) { _levelManager.ChangeScene(sceneToLoad); _countDeadEnemies = 0; }
+    public void ChangeScene(string sceneToLoad) { _levelManager.ChangeScene(sceneToLoad); ResetEnemyCounters(); }
+    public void ResetEnemyCounters() { _countDeadEnemies = 0; _enemyManager.SetCounter(1); }
     public void ChangeMusic(AudioClip clip) { _audioManager.ChangeMusic(clip); }
     public void SetVolume(float volume) { _optionsManager.SetVolume(volume); }
     public void Pause() { _pauseManager.Pause(); }
@@ -113,11 +114,7 @@ public class GameManager : MonoBehaviour
     public void SaveGame() { _jsonManager.SaveGame(); }
     public void LoadGame() { _jsonManager.LoadGame(); }
     public void Mute() { _optionsManager.Mute(_soundOnIcon, _soundOffIcon); }
-    public void SetSoundIcons(Image soundOn, Image soundOff)
-    {
-        _soundOnIcon = soundOn;
-        _soundOffIcon = soundOff;
-    }
+    public void SetSoundIcons(Image soundOn, Image soundOff) { _soundOnIcon = soundOn; _soundOffIcon = soundOff; }
 
 
     public void DefeatScene(params object[] param)

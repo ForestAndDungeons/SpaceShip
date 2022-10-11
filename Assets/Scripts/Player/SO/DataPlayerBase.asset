@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DataPlayerBase
   m_EditorClassIdentifier: 
   maxHealth: 10
-  maxSpeed: 25
+  maxSpeed: 30
