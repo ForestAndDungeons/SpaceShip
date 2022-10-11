@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SinuousAdvance : IBulletAdvance
+public class SinuousAdvance : IAdvance
 {
     Transform _transform;
     float _speed;
@@ -21,7 +21,7 @@ public class SinuousAdvance : IBulletAdvance
         _displacement = displacement;
         _vertical = vertical;
     }
-    public void BulletAdvance()
+    public void Advance()
     {
         _transform.position = _transform.position + new Vector3(_amplitude * Mathf.Sin(Time.time * _period + _displacement) + _vertical, 0, _speed) * Time.deltaTime;
     }

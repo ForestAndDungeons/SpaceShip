@@ -5,42 +5,24 @@ using System.IO;
 
 public class SaveJSON : MonoBehaviour
 {
-    [SerializeField] SaveData data = new SaveData();
+    public SaveData _data;
+    string _path;
 
-    string path;
-
-    private void Awake()
+    void Awake()
     {
-        path = Application.persistentDataPath + "/data.save";
-        Debug.Log(path);
-    }
-
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            SaveGame();
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            LoadGame();
-        }
+        _data = new SaveData();
+        _path = Application.persistentDataPath + "/data.save";
     }
 
     public void SaveGame()
     {
-        string json = JsonUtility.ToJson(data);
-        File.WriteAllText(path, json);
-        
-        Debug.Log("Saved Game "+ json);
+        string json = JsonUtility.ToJson(_data);
+        File.WriteAllText(_path, json);
     }
 
     public void LoadGame()
     {
-        string json = File.ReadAllText(path);
-        JsonUtility.FromJsonOverwrite(json, data);
-
-        Debug.Log("Loaded Game " + json);
-
+        string json = File.ReadAllText(_path);
+        JsonUtility.FromJsonOverwrite(json, _data);
     }
 }

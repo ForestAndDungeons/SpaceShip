@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
     ParticleSystem _myParticleSystem;
     Collider _myCollider;
     MeshRenderer _myMeshRenderer;
-    public IBulletAdvance currentAdvance;
+    public IAdvance currentAdvance;
 
     void Awake()
     {
@@ -33,7 +33,7 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        if(currentAdvance!=null) currentAdvance.BulletAdvance();
+        if(currentAdvance!=null) currentAdvance.Advance();
 
         _currentDistance += speed * Time.deltaTime;
         

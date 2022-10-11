@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[Serializable]
 public class SaveData
 {
-    //Variables que nosotros querramos guardar
-    public List<string> weapons;
-
+    //Save variables.
+    public float credits;
 }
