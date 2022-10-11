@@ -7,6 +7,10 @@ public class Buttons : MonoBehaviour
 {
     [SerializeField] Sprite _downSprite;
     [SerializeField] Sprite _upSprite;
+
+    [SerializeField] Image _soundOnIcon;
+    [SerializeField] Image _soundOffIcon;
+
     AudioSource _myAudioSource;
 
     void Awake()
@@ -32,4 +36,6 @@ public class Buttons : MonoBehaviour
     public void QuitGame() { GameManager.Instance.QuitGame(); }
     public void SaveGame() { GameManager.Instance.SaveGame(); }
     public void LoadGame() { GameManager.Instance.LoadGame(); }
+    public void SetSoundIcons() { GameManager.Instance.SetSoundIcons(_soundOnIcon, _soundOffIcon); }
+    public void Mute() { GameManager.Instance.Mute(); }
 }

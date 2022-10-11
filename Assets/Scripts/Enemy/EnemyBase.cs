@@ -60,7 +60,7 @@ public class EnemyBase : CharacterBase
     {
         _chance = Random.Range(0, 11);
 
-        if (_chance <= 3)
+        /*if (_chance <= 0)
         {
             Shield s = ShieldFactory.Instance.GetShield();
 
@@ -80,7 +80,13 @@ public class EnemyBase : CharacterBase
 
             b.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             b.transform.forward = Vector3.forward * -1;
-        }
+        }*/
+        
+            Credits c = CreditsFactory.Instance.GetCredits();
+
+            c.transform.position = new Vector3(transform.position.x, 1, transform.position.z);
+            c.transform.forward = Vector3.forward * -1;
+        
 
         GameManager.Instance.SetCountDeadEnemies(1);
 
