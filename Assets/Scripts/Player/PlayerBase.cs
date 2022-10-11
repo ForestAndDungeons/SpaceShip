@@ -85,7 +85,6 @@ public abstract class PlayerBase : CharacterBase
             isRandomBullet = false;
             isSinuousBullet = false;
             _currentBullet = _linealBullet;
-            Debug.Log(_timeResetBulletAdvance);
         }
         else
         {
@@ -106,7 +105,6 @@ public abstract class PlayerBase : CharacterBase
 
     public IEnumerator End()
     {
-
         EventManager.TriggerEvent(Contants.EVENT_LOSEGAME, "Defeat");
         yield return new WaitForSeconds(2f);
     }

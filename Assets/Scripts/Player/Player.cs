@@ -25,7 +25,6 @@ public class Player : PlayerBase
     void Update()
     {
         GameManager.Instance.GetJSONManager()._data.credits = _credits;
-        Debug.Log(GetCredits());
         GameManager.Instance.GetBoundManager().CheckBounds(this);
         UpdateAnimatorVariables();
         Movement(transform);

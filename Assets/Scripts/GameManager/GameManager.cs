@@ -17,11 +17,12 @@ public class GameManager : MonoBehaviour
     PauseManager _pauseManager;
     BoundManager _boundManager;
     AsteroidManager _asteroidManager;
+    EnemyManager _enemyManager;
     OptionsManager _optionsManager;
     AudioManager _audioManager;
 
     [Header("Audio")]
-    [SerializeField] AudioClip[] _audioClips;
+    public AudioClip[] _audioClips;
     [SerializeField] AudioMixer _audioMixer;
     AudioSource _myAudioSource;
 
@@ -29,11 +30,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] float _boundWidth;
     [SerializeField] float _boundHeight;
     [SerializeField] Color _colorBounds;
+    [SerializeField] float _boundOffset;
+    [SerializeField] Color _colorSpawner;
 
     [Header("Asteroids")]
-    [SerializeField] float _boundOffset;
     [SerializeField] float _spawnTimeAsteroid;
-    [SerializeField] Color _colorAsteroid;
+    
+    [Header("Enemy")]
+    [SerializeField] float _spawnTimeEnemy;
+    [SerializeField] int _maxEnemies;
+    [SerializeField] int _countDeadEnemies;
 
     void Awake()
     {
@@ -53,6 +59,7 @@ public class GameManager : MonoBehaviour
         _pauseManager = new PauseManager();
         _boundManager = new BoundManager(_boundWidth, _boundHeight);
         _asteroidManager = new AsteroidManager(_spawnTimeAsteroid, _boundWidth, _boundHeight, _boundOffset);
+        _enemyManager = new EnemyManager(_spawnTimeEnemy, _boundWidth, _boundHeight, _boundOffset);
         _optionsManager = new OptionsManager(_audioMixer);
 
         _myAudioSource = GetComponent<AudioSource>();
@@ -63,7 +70,16 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if(_player)
+        {
             _asteroidManager.ArtificialUpdate();
+
+            if(_enemyManager.GetCounter() <= _maxEnemies)
+                _enemyManager.ArtificialUpdate();
+            if (_countDeadEnemies >= _enemyManager.GetCounter())
+            {
+                ChangeScene("Victory");
+            }
+        }
     }
 
     public Vector3 ApplyBounds(Vector3 objectPosition) { return _boundManager.ApplyBounds(objectPosition); }
@@ -113,7 +129,7 @@ public class GameManager : MonoBehaviour
 
     void GizmoAsteroids()
     {
-        Gizmos.color = _colorAsteroid;
+        Gizmos.color = _colorSpawner;
 
         Vector3 topLeftOffset = new Vector3(-_boundWidth, 0, _boundHeight + _boundOffset);
         Vector3 topRightOffset = new Vector3(_boundWidth, 0, _boundHeight + _boundOffset);
@@ -128,4 +144,5 @@ public class GameManager : MonoBehaviour
 
     public BoundManager GetBoundManager() { return _boundManager; }
     public SaveJSON GetJSONManager() { return _jsonManager; }
+    public void SetCountDeadEnemies(int value) { _countDeadEnemies += value; }
 }
