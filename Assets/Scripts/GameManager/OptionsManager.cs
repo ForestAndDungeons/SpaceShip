@@ -6,13 +6,15 @@ using UnityEngine.UI;
 
 public class OptionsManager
 {
-    [SerializeField] AudioMixer _audioMixer;
+    public bool _onMuted = false;
+
+    //[SerializeField] AudioMixer _audioMixer;
     //Resolution[] _resolutions;
     //[SerializeField] Dropdown _resoulutionDropdown;
 
-    public OptionsManager(AudioMixer audioMixer)
+    public OptionsManager()
     {
-        _audioMixer = audioMixer;
+        //_audioMixer = audioMixer;
     }
 
     /* void Start()
@@ -40,9 +42,41 @@ public class OptionsManager
         _resoulutionDropdown.RefreshShownValue();
     }*/
 
+    public void Mute(Image soundOn, Image soundOff)
+    {
+        _onMuted = !_onMuted;
+        AudioListener.pause = _onMuted;
+        Save();
+        UpdateButtonIncon(soundOn, soundOff);
+    }
+
+    public void Save()
+    {
+        PlayerPrefs.SetInt("_onMuted", _onMuted ? 1 : 0);
+    }
+
+    public void Load()
+    {
+        _onMuted = PlayerPrefs.GetInt("_onMuted") == 1;
+    }
+
+    public void UpdateButtonIncon(Image soundOn, Image soundOff)
+    {
+        if (_onMuted == false)
+        {
+            soundOn.enabled = true;
+            soundOff.enabled = false;
+        }
+        else if (_onMuted == true)
+        {
+            soundOn.enabled = false;
+            soundOff.enabled = true;
+        }
+    }
+
     public void SetVolume(float volume)
     {
-        _audioMixer.SetFloat("volume", Mathf.Log10(volume) * 20);
+        //_audioMixer.SetFloat("volume", Mathf.Log10(volume) * 20);
     }
     
     /*public void SetQuality(int qualityIndex)

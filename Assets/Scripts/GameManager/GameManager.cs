@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -35,11 +36,15 @@ public class GameManager : MonoBehaviour
 
     [Header("Asteroids")]
     [SerializeField] float _spawnTimeAsteroid;
-    
+
     [Header("Enemy")]
     [SerializeField] float _spawnTimeEnemy;
     [SerializeField] int _maxEnemies;
     [SerializeField] int _countDeadEnemies;
+
+    [Header("Options")]
+    [SerializeField] Image _soundOnIcon;
+    [SerializeField] Image _soundOffIcon;
 
     void Awake()
     {
@@ -60,11 +65,25 @@ public class GameManager : MonoBehaviour
         _boundManager = new BoundManager(_boundWidth, _boundHeight);
         _asteroidManager = new AsteroidManager(_spawnTimeAsteroid, _boundWidth, _boundHeight, _boundOffset);
         _enemyManager = new EnemyManager(_spawnTimeEnemy, _boundWidth, _boundHeight, _boundOffset);
-        _optionsManager = new OptionsManager(_audioMixer);
+        _optionsManager = new OptionsManager();
 
         _myAudioSource = GetComponent<AudioSource>();
         _audioManager = new AudioManager(_myAudioSource, _audioClips);
         EventManager.SubscribeToEvent(Contants.EVENT_LOSEGAME,DefeatScene);
+    }
+
+    void Start()
+    {
+        if(!PlayerPrefs.HasKey("_onMuted"))
+        {
+            PlayerPrefs.SetInt("_onMuted", 0);
+            _optionsManager.Load();
+        }
+        else
+            _optionsManager.Load();
+
+        _optionsManager.UpdateButtonIncon(_soundOnIcon, _soundOffIcon);
+        AudioListener.pause = _optionsManager._onMuted;
     }
 
     void Update()
@@ -93,6 +112,12 @@ public class GameManager : MonoBehaviour
     public void QuitGame() { _levelManager.QuitGame(); }
     public void SaveGame() { _jsonManager.SaveGame(); }
     public void LoadGame() { _jsonManager.LoadGame(); }
+    public void Mute() { _optionsManager.Mute(_soundOnIcon, _soundOffIcon); }
+    public void SetSoundIcons(Image soundOn, Image soundOff)
+    {
+        _soundOnIcon = soundOn;
+        _soundOffIcon = soundOff;
+    }
 
 
     public void DefeatScene(params object[] param)
