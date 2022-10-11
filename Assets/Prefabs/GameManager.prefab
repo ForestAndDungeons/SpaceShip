@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1003183416795780586}
-  - component: {fileID: 1003183416795780584}
   - component: {fileID: 1003183416795780585}
+  - component: {fileID: 1003183416795780584}
+  - component: {fileID: 7367318221605223068}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -32,28 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1003183416795780584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003183416795780591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d599e76662001fb4fb0ef7d9b3827545, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 0}
-  _audioClips:
-  - {fileID: 8300000, guid: 9d2a47f6db5b59945aa1b85ae34f8af9, type: 3}
-  - {fileID: 8300000, guid: 80848685bc489c749a9d3aeaa2ccc04b, type: 3}
-  _boundWidth: 100
-  _boundHeight: 50
-  _colorBounds: {r: 0.9803922, g: 1, b: 0, a: 1}
-  _boundOffset: 10
-  _spawnTimeAsteroid: 2
-  _colorAsteroid: {r: 1, g: 0, b: 0, a: 1}
 --- !u!82 &1003183416795780585
 AudioSource:
   m_ObjectHideFlags: 0
@@ -66,7 +45,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 1d5d03c212beacd448d4ca10bf8ad656, type: 2}
   m_audioClip: {fileID: 8300000, guid: c53e8e6f7b0aeeb46a9d1728fe5c9447, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -150,3 +129,39 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1003183416795780584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003183416795780591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d599e76662001fb4fb0ef7d9b3827545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 0}
+  _jsonManager: {fileID: 7367318221605223068}
+  _audioClips:
+  - {fileID: 8300000, guid: 9d2a47f6db5b59945aa1b85ae34f8af9, type: 3}
+  - {fileID: 8300000, guid: 80848685bc489c749a9d3aeaa2ccc04b, type: 3}
+  _audioMixer: {fileID: 24100000, guid: 1d5d03c212beacd448d4ca10bf8ad656, type: 2}
+  _boundWidth: 85
+  _boundHeight: 40
+  _colorBounds: {r: 0.9803922, g: 1, b: 0, a: 1}
+  _boundOffset: 10
+  _spawnTimeAsteroid: 2
+  _colorAsteroid: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &7367318221605223068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003183416795780591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb419fea527d694e9f434e53b020d2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public Player _player;
 
     [Header("Managers")]
+    [SerializeField] SaveJSON _jsonManager;
     LevelManager _levelManager;
     PauseManager _pauseManager;
     BoundManager _boundManager;
@@ -67,12 +68,15 @@ public class GameManager : MonoBehaviour
 
     public Vector3 ApplyBounds(Vector3 objectPosition) { return _boundManager.ApplyBounds(objectPosition); }
     void FindPlayer() { _player = FindObjectOfType<Player>(); }
+    
+    public void ChangeScene(string sceneToLoad) { _levelManager.ChangeScene(sceneToLoad); }
+    public void ChangeMusic(AudioClip clip) { _audioManager.ChangeMusic(clip); }
+    public void SetVolume(float volume) { _optionsManager.SetVolume(volume); }
     public void Pause() { _pauseManager.Pause(); }
     public void UnPause() { _pauseManager.UnPause(); }
-    public void ChangeScene(string sceneToLoad) { _levelManager.ChangeScene(sceneToLoad); }
     public void QuitGame() { _levelManager.QuitGame(); }
-    public void SetVolume(float volume) { _optionsManager.SetVolume(volume); }
-    public void ChangeMusic(AudioClip clip) { _audioManager.ChangeMusic(clip); }
+    public void SaveGame() { _jsonManager.SaveGame(); }
+    public void LoadGame() { _jsonManager.LoadGame(); }
 
 
     public void DefeatScene(params object[] param)
@@ -80,6 +84,7 @@ public class GameManager : MonoBehaviour
         string _levelToChange = (string)param[0];
         _levelManager.ChangeScene(_levelToChange);
     }
+
     void OnLevelWasLoaded()
     {
         FindPlayer();
@@ -122,4 +127,5 @@ public class GameManager : MonoBehaviour
     }
 
     public BoundManager GetBoundManager() { return _boundManager; }
+    public SaveJSON GetJSONManager() { return _jsonManager; }
 }

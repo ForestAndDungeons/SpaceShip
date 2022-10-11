@@ -22,7 +22,6 @@ public class LinealXAdvance : IAdvance
     {
         _transform.position += new Vector3(_speed * Time.deltaTime, 0, 0);
         ApplyBounds();
-        Debug.Log(_speed);
     }
 
     public void ApplyBounds()

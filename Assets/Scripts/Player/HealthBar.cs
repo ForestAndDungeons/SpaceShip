@@ -23,7 +23,6 @@ public class HealthBar : MonoBehaviour
         _healthBar.value = _maxHeath;
     }
 
-
     public void PlayedDamaged(params object[] param)
     {
         _currentHeath = (float)param[0];

@@ -13,6 +13,8 @@ public class Player : PlayerBase
         _maxSpeed = _data.maxSpeed;
         _myAnimator = GetComponentInChildren<Animator>();
         _myAudioSource = GetComponent<AudioSource>();
+        _myParticleSystem = GetComponentInChildren<ParticleSystem>();
+        _credits = GameManager.Instance.GetJSONManager()._data.credits;
     }
 
     private void Start()
@@ -22,6 +24,8 @@ public class Player : PlayerBase
 
     void Update()
     {
+        GameManager.Instance.GetJSONManager()._data.credits = _credits;
+        Debug.Log(GetCredits());
         GameManager.Instance.GetBoundManager().CheckBounds(this);
         UpdateAnimatorVariables();
         Movement(transform);

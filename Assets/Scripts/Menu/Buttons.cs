@@ -26,8 +26,10 @@ public class Buttons : MonoBehaviour
     }
 
     public void ChangeScene(string sceneToLoad) { GameManager.Instance.ChangeScene(sceneToLoad); }
+    public void ChangeMusic(AudioClip clip) { GameManager.Instance.ChangeMusic(clip); }
     public void Pause() { GameManager.Instance.Pause(); }
     public void UnPause() { GameManager.Instance.UnPause(); }
-    public void ChangeMusic(AudioClip clip) { GameManager.Instance.ChangeMusic(clip); }
     public void QuitGame() { GameManager.Instance.QuitGame(); }
+    public void SaveGame() { GameManager.Instance.SaveGame(); }
+    public void LoadGame() { GameManager.Instance.LoadGame(); }
 }

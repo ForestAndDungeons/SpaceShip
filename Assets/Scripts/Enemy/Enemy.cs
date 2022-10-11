@@ -9,6 +9,9 @@ public class Enemy : EnemyBase
     {
         _currentHealth = _maxHealth;
         _myAnimator = GetComponent<Animator>();
+        _myAudioSource = GetComponent<AudioSource>();
+        _myParticleSystem = GetComponent<ParticleSystem>();
+        
         _linealXAdvance = new LinealXAdvance(_maxSpeed, transform);
         _canFire = true;
     }
@@ -17,9 +20,7 @@ public class Enemy : EnemyBase
     {
         //GameManager.Instance.GetBoundManager().CheckBounds(this);
         Movement();
-
-
+        if(_canFire)
             Shoot();
-   
     }
 }

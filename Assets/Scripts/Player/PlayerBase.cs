@@ -1,6 +1,4 @@
-using Newtonsoft.Json.Linq;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class PlayerBase : CharacterBase
@@ -10,7 +8,7 @@ public abstract class PlayerBase : CharacterBase
 
     [SerializeField] protected float _credits;
     [SerializeField] float _startTimeResetBulletAdvance;
-                     float _timeResetBulletAdvance;
+    float _timeResetBulletAdvance;
     
     protected float _amplitude;
     protected float _period;
@@ -39,10 +37,8 @@ public abstract class PlayerBase : CharacterBase
         _myAnimator.SetFloat("Vertical", _controller.GetMovementInput().y);
     }
 
-    public void SetCredits(float value) { _credits = value; }
     public void Shoot()
     {
-        Debug.Log("Fuera");
         if (_canFire)
             StartCoroutine(FireBurst());
     }
@@ -72,6 +68,7 @@ public abstract class PlayerBase : CharacterBase
             }
             b.currentAdvance = _currentBullet;
             //////////
+            
             b.transform.position = GameManager.Instance.playerReference.transform.position;
             b.transform.forward = Vector3.forward;
 
@@ -102,6 +99,8 @@ public abstract class PlayerBase : CharacterBase
     public void SetPeriod(float value) { _period = value; }
     public void SetDisplacement(float value) { _displacement = value; }
     public void SetVertical(float value) { _vertical = value; }
+    public void SetCredits(float value) { _credits = value; }
+    public float GetCredits() { return _credits; }
 
     public IEnumerator End()
     {

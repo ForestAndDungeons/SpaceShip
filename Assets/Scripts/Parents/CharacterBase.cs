@@ -16,6 +16,7 @@ public abstract class CharacterBase : MonoBehaviour
     [SerializeField] protected bool _canFire;
 
     protected AudioSource _myAudioSource;
+    protected ParticleSystem _myParticleSystem;
     protected Animator _myAnimator;
 
     public void onDamage(float damage)
@@ -41,18 +42,18 @@ public abstract class CharacterBase : MonoBehaviour
             if (_currentHealth <= 0)
             {
                 OnDeath();
-                
-                /*_playerSoundManager.playOnDeath();
+
+                _myAudioSource.Play();
+                _myParticleSystem.Play();
+
+                /*_myAudioSource.playOnDeath();
                 _animationController.onDeath();
                 _player.DisableThisObject();*/
             }
         }
     }
 
-    
-
     public abstract void OnDeath();
     public void SetShieldUp(bool value) { _isShieldUp = value; _shield.SetActive(value); }
     public void SetSpeed(float value) { _maxSpeed = value; }
-
 }

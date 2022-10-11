@@ -10,6 +10,7 @@ public class EnemyBase : CharacterBase
     IAdvance _currentAdvance;
     public bool isRandomAdvance;
     public bool isSinuousAdvance;
+    IAdvance _linealBullet;
 
     public void Movement()
     {
@@ -30,19 +31,23 @@ public class EnemyBase : CharacterBase
 
     public void Shoot()
     {
-        Debug.Log("Fuera");
-        if (_canFire)
-            StartCoroutine(FireBurst());
+        StartCoroutine(FireBurst());
     }
 
     public  IEnumerator FireBurst()
     {
+        _canFire = false;
+
         float bulletDelay = 60 / _rateOfFire;
         //Rate of fire in weapons is in rounds per minute (RPM), therefore we should calculate how much time passes before firing a new round in the same burst.
 
         for (int i = 0; i < _burstSize; i++)
         {
-            Bullet b = EnemyBulletFactory.Instance.GetBullet();
+            EnemyBullet b = EnemyBulletFactory.Instance.GetBullet();
+            _linealBullet = new LinealZAdvance(b.speed, b.transform);
+            b.currentAdvance = _linealBullet;
+
+            b.transform.forward = Vector3.forward;
             b.transform.position = transform.position;
             b.transform.forward = Vector3.forward * -1;
 
