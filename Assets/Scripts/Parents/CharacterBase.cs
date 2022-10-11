@@ -19,14 +19,14 @@ public abstract class CharacterBase : MonoBehaviour
     protected ParticleSystem _myParticleSystem;
     protected Animator _myAnimator;
 
-    public void onDamage(float damage)
+    public void OnDamage(float damage)
     {
         if (_currentHealth > 0)
         {
             if (!_isShieldUp)
             {
                 _currentHealth -= damage;
-                EventManager.TriggerEvent(Contants.EVENT_PLAYERONDAMAGE, _currentHealth);
+                OnDamageEvent();
             }
             else
                 SetShieldUp(false);
@@ -54,6 +54,7 @@ public abstract class CharacterBase : MonoBehaviour
     }
 
     public abstract void OnDeath();
+    public virtual void OnDamageEvent(){}
     public void SetShieldUp(bool value) { _isShieldUp = value; _shield.SetActive(value); }
     public void SetSpeed(float value) { _maxSpeed = value; }
 }

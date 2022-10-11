@@ -93,6 +93,8 @@ public abstract class PlayerBase : CharacterBase
         }
     }
 
+    public override void OnDamageEvent() { EventManager.TriggerEvent(Contants.EVENT_PLAYERONDAMAGE, _currentHealth); }
+
     public void SetFireRate(int value) { _rateOfFire += value; }
     public void SetFireBurst(int value) { _burstSize += value; }
     public void SetAmplitude(float value) { _amplitude = value; }

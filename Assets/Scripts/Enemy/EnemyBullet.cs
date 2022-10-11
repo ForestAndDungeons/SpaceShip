@@ -69,7 +69,7 @@ public class EnemyBullet : MonoBehaviour
         var entity = other.GetComponent<CharacterBase>();
 
         if (entity != null)
-            entity.onDamage(_damage);
+            entity.OnDamage(_damage);
     }
 
     void OnDestroy()
