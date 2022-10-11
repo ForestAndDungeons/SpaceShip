@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
     public Vector3 ApplyBounds(Vector3 objectPosition) { return _boundManager.ApplyBounds(objectPosition); }
     void FindPlayer() { _player = FindObjectOfType<Player>(); }
     
-    public void ChangeScene(string sceneToLoad) { _levelManager.ChangeScene(sceneToLoad); }
+    public void ChangeScene(string sceneToLoad) { _levelManager.ChangeScene(sceneToLoad); _countDeadEnemies = 0; }
     public void ChangeMusic(AudioClip clip) { _audioManager.ChangeMusic(clip); }
     public void SetVolume(float volume) { _optionsManager.SetVolume(volume); }
     public void Pause() { _pauseManager.Pause(); }
