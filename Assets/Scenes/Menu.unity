@@ -4881,7 +4881,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1003183416795780584, guid: 97ad900c6cc5a2549a7ca551dfcfbf6f, type: 3}
       propertyPath: _maxEnemies
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1003183416795780584, guid: 97ad900c6cc5a2549a7ca551dfcfbf6f, type: 3}
       propertyPath: _boundOffset
