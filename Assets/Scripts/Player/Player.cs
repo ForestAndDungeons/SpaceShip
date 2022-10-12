@@ -20,6 +20,7 @@ public class Player : PlayerBase
     private void Start()
     {
         EventManager.TriggerEvent(Contants.EVENT_INICIATEHEALTHBAR, _data.maxHealth, _currentHealth);
+        EventManager.TriggerEvent(Contants.EVENT_INICIATECREDITS, _credits);
     }
 
     void Update()
