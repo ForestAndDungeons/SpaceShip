@@ -6,5 +6,5 @@ using System;
 public class SaveData
 {
     //Save variables.
-    public float credits;
+    public int credits;
 }
