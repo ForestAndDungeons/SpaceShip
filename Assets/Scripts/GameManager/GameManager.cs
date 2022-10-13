@@ -9,9 +9,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get { return _instance; } }
     static GameManager _instance;
+
+    [Header("Player")]
+    [SerializeField] int _credits;
     public Player playerReference { get { return _player; } }
     public Player _player;
-
+    
     [Header("Managers")]
     [SerializeField] SaveJSON _jsonManager;
     LevelManager _levelManager;
@@ -70,6 +73,8 @@ public class GameManager : MonoBehaviour
         _myAudioSource = GetComponent<AudioSource>();
         _audioManager = new AudioManager(_myAudioSource, _audioClips);
         EventManager.SubscribeToEvent(Contants.EVENT_LOSEGAME,DefeatScene);
+
+        _credits = GetJSONManager()._data.credits;
     }
 
     void Start()
@@ -115,6 +120,9 @@ public class GameManager : MonoBehaviour
     public void LoadGame() { _jsonManager.LoadGame(); }
     public void Mute() { _optionsManager.Mute(_soundOnIcon, _soundOffIcon); }
     public void SetSoundIcons(Image soundOn, Image soundOff) { _soundOnIcon = soundOn; _soundOffIcon = soundOff; }
+    public void SetCredits(int value) { _credits = value; }
+    public void AddCredits(int value) { _credits += value; GetJSONManager()._data.credits = _credits; ; EventManager.TriggerEvent(Contants.EVENT_ADDCREDITUI, _credits); }
+    public int GetCredits() { return _credits; }
 
 
     public void DefeatScene(params object[] param)

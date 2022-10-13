@@ -33,7 +33,7 @@ public class Credits : PickUp
 
     public override void Pick(Player player)
     {
-        player.SetCredits(_value);
+        GameManager.Instance.AddCredits(_value);
         //OnPickUp();
     }
 

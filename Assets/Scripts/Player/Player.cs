@@ -14,18 +14,17 @@ public class Player : PlayerBase
         _myAnimator = GetComponentInChildren<Animator>();
         _myAudioSource = GetComponent<AudioSource>();
         _myParticleSystem = GetComponentInChildren<ParticleSystem>();
-        _credits = GameManager.Instance.GetJSONManager()._data.credits;
     }
 
     private void Start()
     {
         EventManager.TriggerEvent(Contants.EVENT_INICIATEHEALTHBAR, _data.maxHealth, _currentHealth);
-        EventManager.TriggerEvent(Contants.EVENT_INICIATECREDITS, _credits);
+        GameManager.Instance.SetCredits(GameManager.Instance.GetJSONManager()._data.credits);
+        EventManager.TriggerEvent(Contants.EVENT_INICIATECREDITS, GameManager.Instance.GetCredits());
     }
 
     void Update()
     {
-        GameManager.Instance.GetJSONManager()._data.credits = _credits;
         GameManager.Instance.GetBoundManager().CheckBounds(this);
         UpdateAnimatorVariables();
         Movement(transform);

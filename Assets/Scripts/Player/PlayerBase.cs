@@ -6,7 +6,6 @@ public abstract class PlayerBase : CharacterBase
     [SerializeField] protected PlayerBaseSO _data;
     [SerializeField] protected Controller _controller;
 
-    [SerializeField] protected int _credits;
     [SerializeField] float _startTimeResetBulletAdvance;
     float _timeResetBulletAdvance;
     
@@ -100,8 +99,6 @@ public abstract class PlayerBase : CharacterBase
     public void SetPeriod(float value) { _period = value; }
     public void SetDisplacement(float value) { _displacement = value; }
     public void SetVertical(float value) { _vertical = value; }
-    public void SetCredits(int value) { _credits += value; EventManager.TriggerEvent(Contants.EVENT_ADDCREDITUI, _credits); }
-    public float GetCredits() { return _credits; }
 
     public IEnumerator End()
     {
