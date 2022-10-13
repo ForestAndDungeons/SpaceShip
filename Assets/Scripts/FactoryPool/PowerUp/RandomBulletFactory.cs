@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class RandomBulletFactory : MonoBehaviour
 {
-    public static RandomBulletFactory Instance { get { return _instance; } }
-    static RandomBulletFactory _instance;
+    public RandomBulletFactory Instance { get { return _instance; } }
+    RandomBulletFactory _instance;
 
     [SerializeField] RandomBulletPU _prefab;
     [SerializeField] int _initialStock;
@@ -15,7 +15,7 @@ public class RandomBulletFactory : MonoBehaviour
     void Awake()
     {
         _instance = this;
-
+        GameManager.Instance.randomBulletFactory = Instance;
         _pool = new ObjectPool<RandomBulletPU>(RandomBulletCreator, (r) => { r.gameObject.SetActive(true); }, (r) => { r.gameObject.SetActive(false); }, _initialStock);
     }
 

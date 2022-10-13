@@ -19,7 +19,6 @@ public class Player : PlayerBase
     private void Start()
     {
         EventManager.TriggerEvent(Contants.EVENT_INICIATEHEALTHBAR, _data.maxHealth, _currentHealth);
-        GameManager.Instance.SetCredits(GameManager.Instance.GetJSONManager()._data.credits);
         EventManager.TriggerEvent(Contants.EVENT_INICIATECREDITS, GameManager.Instance.GetCredits());
     }
 
@@ -28,18 +27,10 @@ public class Player : PlayerBase
         GameManager.Instance.GetBoundManager().CheckBounds(this);
         UpdateAnimatorVariables();
         Movement(transform);
-        if (isRandomBullet || isSinuousBullet)
-        {
-            PowerUpTime();
-        }
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        var pickUp = other.GetComponent<PickUp>();
-
-        if (pickUp != null)
-            pickUp.Pick(this);
+        Interact(other);
     }
-    public void SetShieldUps(bool value) { _isShieldUp = value; _shield.SetActive(value); }
 }

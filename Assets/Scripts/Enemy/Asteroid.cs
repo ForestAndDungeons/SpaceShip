@@ -1,46 +1,47 @@
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Asteroid : MonoBehaviour
+public class Asteroid : Interactive 
 {
-    [SerializeField] float _speed;
-    [SerializeField] float _maxDistance;
-    float _currentDistance;
-
     [SerializeField] float _damage;
-
-    [SerializeField] int _chance;
-
-    AudioSource _myAudioSource;
-    ParticleSystem _myParticleSystem;
-    Collider _myCollider;
-    MeshRenderer _myMeshRenderer;
-
-    void Awake()
-    {
-        _myAudioSource = GetComponent<AudioSource>();
-        _myParticleSystem = GetComponent<ParticleSystem>();
-        _myCollider = GetComponent<Collider>();
-        _myMeshRenderer = GetComponent<MeshRenderer>();
-    }
+    int _chance;
 
     void Update()
     {
-        transform.position += transform.forward * _speed * Time.deltaTime;
+        Movement();
+    }
 
-        _currentDistance += _speed * Time.deltaTime;
+    public override void Interact(CharacterBase entity)
+    {
+        if(entity != null)
+            entity.OnDamage(_damage);
 
-        if (_currentDistance > _maxDistance)
+        _chance = Random.Range(0, 11);
+
+        if (_chance <= 3)
         {
-            AsteroidFactory.Instance.ReturnAsteroid(this);
+            RandomBulletPU r = GameManager.Instance.randomBulletFactory.GetRandomBullet();
+
+            r.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+            r.transform.forward = Vector3.forward * -1;
         }
+        else if (_chance <= 5 && _chance > 3)
+        {
+            SinuousBulletPU s = GameManager.Instance.sinuousBulletFactory.GetSinuous();
+
+            s.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+            s.transform.forward = Vector3.forward * -1;
+        }
+
+        OnInteraction();
     }
 
     void OnEnable()
     {
-        _myCollider.enabled = true;
-        _myMeshRenderer.enabled = true;
+        _collider.enabled = true;
+        _renderer.enabled = true;
     }
 
     void OnDisable()
@@ -48,60 +49,29 @@ public class Asteroid : MonoBehaviour
         _currentDistance = 0;
     }
 
-    public static void TurnOn(Asteroid a)
+    public static void TurnOn(Shield s)
     {
-        a.gameObject.SetActive(true);
+        s.gameObject.SetActive(true);
     }
 
-    public static void TurnOff(Asteroid a)
+    public static void TurnOff(Shield s)
     {
-        a.gameObject.SetActive(false);
+        s.gameObject.SetActive(false);
+    }
+
+    public override void ReturnToPool()
+    {
+        GameManager.Instance.asteroidFactory.ReturnAsteroid(this);
+    }
+
+    public override IEnumerator WaitReturn()
+    {
+        yield return new WaitForSeconds(1f);
+        ReturnToPool();
     }
 
     void OnTriggerEnter(Collider other)
     {
-        Damage(other);
-        OnDestroy();
-    }
-
-    void Damage(Collider other)
-    {
-        var entity = other.GetComponent<CharacterBase>();
-
-        if (entity != null)
-            entity.OnDamage(_damage);
-    }
-
-    void OnDestroy()
-    {
-        _chance = Random.Range(0,11);
-
-        if (_chance <=3)
-        {
-            RandomBulletPU r = RandomBulletFactory.Instance.GetRandomBullet();
-
-            r.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-            r.transform.forward = Vector3.forward * -1;
-        }
-        else if (_chance <=5 && _chance > 3)
-        {
-            SinuousBulletPU s = SinuousFactory.Instance.GetSinuous();
-
-            s.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-            s.transform.forward = Vector3.forward * -1;
-        }
-
-        _myAudioSource.Play();
-        _myParticleSystem.Play();
-        _myCollider.enabled = false;
-        _myMeshRenderer.enabled = false;
-
-        StartCoroutine("WaitReturn");
-    }
-
-    IEnumerator WaitReturn()
-    {
-        yield return new WaitForSeconds(1f);
-        AsteroidFactory.Instance.ReturnAsteroid(this);
+        Interact(null);
     }
 }

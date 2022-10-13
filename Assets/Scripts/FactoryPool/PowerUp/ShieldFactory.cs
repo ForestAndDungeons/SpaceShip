@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ShieldFactory : MonoBehaviour
 {
-    public static ShieldFactory Instance { get { return _instance; } }
-    static ShieldFactory _instance;
+    public ShieldFactory Instance { get { return _instance; } }
+    ShieldFactory _instance;
 
     [SerializeField] Shield _prefab;
     [SerializeField] int _initialStock;
@@ -15,7 +15,7 @@ public class ShieldFactory : MonoBehaviour
     void Awake()
     {
         _instance = this;
-
+        GameManager.Instance.shieldFactory = Instance;
         _pool = new ObjectPool<Shield>(ShieldCreator, (s) => { s.gameObject.SetActive(true); }, (s) => { s.gameObject.SetActive(false); }, _initialStock);
     }
 

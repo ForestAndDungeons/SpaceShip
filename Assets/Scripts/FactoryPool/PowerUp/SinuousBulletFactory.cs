@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SinuousFactory : MonoBehaviour
+public class SinuousBulletFactory : MonoBehaviour
 {
-    public static SinuousFactory Instance { get { return _instance; } }
-    static SinuousFactory _instance;
+    public SinuousBulletFactory Instance { get { return _instance; } }
+    SinuousBulletFactory _instance;
 
     [SerializeField] SinuousBulletPU _prefab;
     [SerializeField] int _initialStock;
@@ -15,7 +15,7 @@ public class SinuousFactory : MonoBehaviour
     void Awake()
     {
         _instance = this;
-
+        GameManager.Instance.sinuousBulletFactory = Instance;
         _pool = new ObjectPool<SinuousBulletPU>(SinuousCreator, (s) => { s.gameObject.SetActive(true); }, (s) => { s.gameObject.SetActive(false); }, _initialStock);
     }
 

@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBullet : Interactive 
+public class Shield : Interactive 
 {
-    [SerializeField] float _damage;
-    public IAdvance currentAdvance;
-
     void Update()
     {
         Movement();
@@ -14,7 +11,7 @@ public class EnemyBullet : Interactive
 
     public override void Interact(CharacterBase entity)
     {
-        entity.OnDamage(_damage);
+        entity.SetShieldUps(true);
         OnInteraction();
     }
 
@@ -29,24 +26,24 @@ public class EnemyBullet : Interactive
         _currentDistance = 0;
     }
 
-    public static void TurnOn(Bullet b)
+    public static void TurnOn(Shield s)
     {
-        b.gameObject.SetActive(true);
+        s.gameObject.SetActive(true);
     }
 
-    public static void TurnOff(Bullet b)
+    public static void TurnOff(Shield s)
     {
-        b.gameObject.SetActive(false);
+        s.gameObject.SetActive(false);
     }
 
     public override void ReturnToPool()
     {
-        GameManager.Instance.enemyBulletFactory.ReturnBullet(this);
+        GameManager.Instance.shieldFactory.ReturnShield(this);
     }
 
     public override IEnumerator WaitReturn()
     {
-        yield return new WaitForSeconds(1.5f);
-        GameManager.Instance.enemyBulletFactory.ReturnBullet(this);
+        yield return new WaitForSeconds(1f);
+        ReturnToPool();
     }
 }

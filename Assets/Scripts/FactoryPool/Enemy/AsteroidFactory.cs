@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AsteroidFactory : MonoBehaviour
 {
-    public static AsteroidFactory Instance { get { return _instance; } }
-    static AsteroidFactory _instance;
+    public AsteroidFactory Instance { get { return _instance; } }
+    AsteroidFactory _instance;
 
     [SerializeField] Asteroid _prefab;
     [SerializeField] int _initialStock;
@@ -15,7 +15,7 @@ public class AsteroidFactory : MonoBehaviour
     void Awake()
     {
         _instance = this;
-
+        GameManager.Instance.asteroidFactory = Instance;
         _pool = new ObjectPool<Asteroid>(AsteroidCreator, (a) => { a.gameObject.SetActive(true); }, (a) => { a.gameObject.SetActive(false); }, _initialStock);
     }
 

@@ -43,8 +43,9 @@ public class EnemyBase : CharacterBase
 
         for (int i = 0; i < _burstSize; i++)
         {
-            EnemyBullet b = EnemyBulletFactory.Instance.GetBullet();
-            _linealBullet = new LinealZAdvance(b.speed, b.transform);
+            EnemyBullet b = GameManager.Instance.enemyBulletFactory.GetBullet();
+
+            _linealBullet = new LinealZAdvance(b.GetSpeed(), b.transform);
             b.currentAdvance = _linealBullet;
 
             b.transform.forward = Vector3.forward;
@@ -62,28 +63,28 @@ public class EnemyBase : CharacterBase
 
         if (_chance <= 3)
         {
-            Shield s = ShieldFactory.Instance.GetShield();
+            Shield s = GameManager.Instance.shieldFactory.GetShield();
 
             s.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             s.transform.forward = Vector3.forward * -1;
         }
         else if (_chance == 4)
         {
-            FireRate r = FireRateFactory.Instance.GetFireRate();
+            FireRate r = GameManager.Instance.fireRateFactory.GetFireRate();
 
             r.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             r.transform.forward = Vector3.forward * -1;
         }
         else if (_chance == 5)
         {
-            FireBurst b = FireBurstFactory.Instance.GetFireBurst();
+            FireBurst b = GameManager.Instance.fireBurstFactory.GetFireBurst();
 
             b.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             b.transform.forward = Vector3.forward * -1;
         }
         else if (_chance >= 7)
         {
-            Credits c = CreditsFactory.Instance.GetCredits();
+            Credits c = GameManager.Instance.creditsFactory.GetCredits();
 
             c.transform.position = new Vector3(transform.position.x, 1, transform.position.z);
             c.transform.forward = Vector3.forward * -1;

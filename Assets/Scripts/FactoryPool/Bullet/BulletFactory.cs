@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BulletFactory : MonoBehaviour
 {
-    public static BulletFactory Instance { get { return _instance; } }
-    static BulletFactory _instance;
+    public BulletFactory Instance { get { return _instance; } }
+    BulletFactory _instance;
 
     [SerializeField] Bullet _prefab;
     [SerializeField] int _initialStock;
@@ -15,6 +15,7 @@ public class BulletFactory : MonoBehaviour
     void Awake()
     {
         _instance = this;
+        GameManager.Instance.bulletFactory = Instance;
 
         //Creo un nuevo pool pasandole:
         //1.- La funcion que contiene la logica de instanciar el objeto (factoryMethod)

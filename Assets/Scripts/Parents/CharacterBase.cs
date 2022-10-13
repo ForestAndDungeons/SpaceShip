@@ -31,30 +31,29 @@ public abstract class CharacterBase : MonoBehaviour
             else
                 SetShieldUp(false);
 
-            /*_animationController.onHit();
-            _playerSoundManager.playOnCollision(_audioSource, _audioClip[0]);
-            _particleSystem.Play();
-            _player._uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth, _armor);
-            SetIsImmune(true);
-            _playerSoundManager.playOnHit();
-            _player.StartCoroutine(_player.TimeOfImmune());*/
-
             if (_currentHealth <= 0)
             {
                 OnDeath();
 
                 _myAudioSource.Play();
                 _myParticleSystem.Play();
-
-                /*_myAudioSource.playOnDeath();
-                _animationController.onDeath();
-                _player.DisableThisObject();*/
             }
         }
+    }
+
+    public void Interact(Collider other)
+    {
+        var interactuable = other.GetComponent<Interactive >();
+
+        if (interactuable != null)
+            interactuable.Interact(this);
     }
 
     public abstract void OnDeath();
     public virtual void OnDamageEvent(){}
     public void SetShieldUp(bool value) { _isShieldUp = value; _shield.SetActive(value); }
     public void SetSpeed(float value) { _maxSpeed = value; }
+    public void SetFireRate(int value) { _rateOfFire += value; }
+    public void SetFireBurst(int value) { _burstSize += value; }
+    public void SetShieldUps(bool value) { _isShieldUp = value; _shield.SetActive(value); }
 }

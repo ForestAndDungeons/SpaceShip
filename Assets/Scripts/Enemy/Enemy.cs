@@ -23,4 +23,9 @@ public class Enemy : EnemyBase
         if(_canFire)
             Shoot();
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        Interact(other);
+    }
 }

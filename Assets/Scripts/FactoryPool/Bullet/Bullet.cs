@@ -2,51 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : Interactive 
 {
-   /* [Header("Sinuous Bullet")]
-    public float amplitude;
-    public float period;
-    public float displacement;
-    public float vertical;*/
-
-    [Header("Bullet Parameters")]
-    public float speed;
-    [SerializeField] float _maxDistance;
-    float _currentDistance;
-
     [SerializeField] float _damage;
-
-    AudioSource _myAudioSource;
-    ParticleSystem _myParticleSystem;
-    Collider _myCollider;
-    MeshRenderer _myMeshRenderer;
     public IAdvance currentAdvance;
-
-    void Awake()
-    {
-        _myAudioSource = GetComponent<AudioSource>();
-        _myParticleSystem = GetComponent<ParticleSystem>();
-        _myCollider = GetComponent<Collider>();
-        _myMeshRenderer = GetComponent<MeshRenderer>();
-    }
 
     void Update()
     {
-        if(currentAdvance!=null) currentAdvance.Advance();
+        if (currentAdvance != null) currentAdvance.Advance();
+    }
 
-        _currentDistance += speed * Time.deltaTime;
-        
-        if (_currentDistance > _maxDistance)
-        {
-            BulletFactory.Instance.ReturnBullet(this);
-        }
+    public override void Interact(CharacterBase entity)
+    {
+        entity.OnDamage(_damage);
+        OnInteraction();
     }
 
     void OnEnable()
     {
-        _myCollider.enabled = true;
-        _myMeshRenderer.enabled = true;
+        _collider.enabled = true;
+        _renderer.enabled = true;
     }
 
     void OnDisable()
@@ -64,33 +39,14 @@ public class Bullet : MonoBehaviour
         b.gameObject.SetActive(false);
     }
 
-    void OnTriggerEnter(Collider other)
+    public override void ReturnToPool()
     {
-        Damage(other);
-        OnDestroy();
+        GameManager.Instance.bulletFactory.Instance.ReturnBullet(this);
     }
 
-    void Damage(Collider other)
-    {
-        var entity = other.GetComponent<CharacterBase>();
-
-        if (entity != null)
-            entity.OnDamage(_damage);
-    }
-
-    void OnDestroy()
-    {
-        _myAudioSource.Play();
-        _myParticleSystem.Play();
-        _myCollider.enabled = false;
-        _myMeshRenderer.enabled = false;
-
-        StartCoroutine("WaitReturn");
-    }
-
-    IEnumerator WaitReturn()
+    public override IEnumerator WaitReturn()
     {
         yield return new WaitForSeconds(1.5f);
-        BulletFactory.Instance.ReturnBullet(this);
+        GameManager.Instance.bulletFactory.Instance.ReturnBullet(this);
     }
 }

@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBullet : Interactive 
+public class Credits : Interactive 
 {
-    [SerializeField] float _damage;
-    public IAdvance currentAdvance;
+    [SerializeField] int _value;
 
     void Update()
     {
@@ -14,7 +13,7 @@ public class EnemyBullet : Interactive
 
     public override void Interact(CharacterBase entity)
     {
-        entity.OnDamage(_damage);
+        GameManager.Instance.AddCredits(_value);
         OnInteraction();
     }
 
@@ -29,24 +28,24 @@ public class EnemyBullet : Interactive
         _currentDistance = 0;
     }
 
-    public static void TurnOn(Bullet b)
+    public static void TurnOn(Credits s)
     {
-        b.gameObject.SetActive(true);
+        s.gameObject.SetActive(true);
     }
 
-    public static void TurnOff(Bullet b)
+    public static void TurnOff(Credits s)
     {
-        b.gameObject.SetActive(false);
+        s.gameObject.SetActive(false);
     }
 
     public override void ReturnToPool()
     {
-        GameManager.Instance.enemyBulletFactory.ReturnBullet(this);
+        GameManager.Instance.creditsFactory.ReturnCredits(this);
     }
 
     public override IEnumerator WaitReturn()
     {
-        yield return new WaitForSeconds(1.5f);
-        GameManager.Instance.enemyBulletFactory.ReturnBullet(this);
+        yield return new WaitForSeconds(1f);
+        ReturnToPool();
     }
 }

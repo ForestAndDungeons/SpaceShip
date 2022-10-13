@@ -35,7 +35,7 @@ public class EnemyManager
 
     void SpawnEnemy()
     {
-        Enemy e = EnemyFactory.Instance.GetAsteroid();
+        Enemy e = GameManager.Instance.enemyFactory.GetEnemy();
 
         e.transform.position = new Vector3(Random.Range(-_boundWidth, _boundWidth), 3, Random.Range(_boundHeight + _boundOffset / 2, _boundHeight + _boundOffset));
         e.transform.forward = Vector3.forward * -1;

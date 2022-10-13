@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PickUp : MonoBehaviour
+public abstract class Interactive  : MonoBehaviour
 {
-    [SerializeField] protected float _currentDistance;
     [SerializeField] protected float _speed;
     [SerializeField] protected float _maxDistance;
-    AudioSource _audioSource;
-    Renderer _renderer;
-    Collider _collider;
-    ParticleSystem _particleSystem;
+    protected float _currentDistance;
+    protected AudioSource _audioSource;
+    protected Renderer _renderer;
+    protected Collider _collider;
+    protected ParticleSystem _particleSystem;
 
-    public abstract void Pick(Player player);
+    public abstract void Interact(CharacterBase entity);
 
     private void Awake()
     {
@@ -22,7 +22,7 @@ public abstract class PickUp : MonoBehaviour
         _particleSystem = GetComponent<ParticleSystem>();
     }
 
-    public void OnPickUp()
+    public void OnInteraction()
     {
         Activate();
     }
@@ -34,18 +34,23 @@ public abstract class PickUp : MonoBehaviour
         _renderer.enabled = false;
         _collider.enabled = false;
 
-        Destroy(this.gameObject, 1f);
+        StartCoroutine(WaitReturn());
     }
 
     public void Movement()
     {
-        transform.position += -transform.forward * _speed * Time.deltaTime;
+        transform.position += transform.forward * _speed * Time.deltaTime;
 
         _currentDistance += _speed * Time.deltaTime;
 
         if (_currentDistance > _maxDistance)
         {
-            Destroy(gameObject);
+            ReturnToPool();
         }
     }
+
+    public abstract void ReturnToPool();
+    public abstract IEnumerator WaitReturn();
+
+    public float GetSpeed() { return _speed; }
 }
