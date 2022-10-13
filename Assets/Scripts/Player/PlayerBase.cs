@@ -9,6 +9,7 @@ public abstract class PlayerBase : CharacterBase
     [SerializeField] float _startTimeResetBulletAdvance;
     float _timeResetBulletAdvance;
     
+    //Temporal
     protected float _amplitude;
     protected float _period;
     protected float _displacement;
@@ -50,14 +51,12 @@ public abstract class PlayerBase : CharacterBase
         
         for (int i = 0; i < _burstSize; i++)
         {
-            Bullet b = BulletFactory.Instance.GetBullet();
+            Bullet b = GameManager.Instance.bulletFactory.GetBullet();
             
-            //////////
-            _linealBullet = new LinealZAdvance(b.speed, b.transform);
-            _currentBullet = _linealBullet;
+            //Temporal//
             if (isSinuousBullet)
             {
-                _sinuousBullet = new SinuousAdvance(b.transform, b.speed,_amplitude, _period, _displacement, _vertical);
+                _sinuousBullet = new SinuousAdvance(b.transform, b.GetSpeed(),_amplitude, _period, _displacement, _vertical);
                 _currentBullet = _sinuousBullet;
             }
             else if (isRandomBullet)
@@ -65,13 +64,18 @@ public abstract class PlayerBase : CharacterBase
                 _randomBullet = new SinuousAdvance(b.transform, Random.Range(50, 61), Random.Range(10, 71), Random.Range(0, 9), Random.Range(0, 11), Random.Range(0, 11));
                 _currentBullet = _randomBullet;
             }
+            else
+            {
+                _linealBullet = new LinealZAdvance(b.GetSpeed(), b.transform);
+                _currentBullet = _linealBullet;
+            }
             b.currentAdvance = _currentBullet;
             //////////
             
             b.transform.position = GameManager.Instance.playerReference.transform.position;
             b.transform.forward = Vector3.forward;
 
-            yield return new WaitForSeconds(bulletDelay);// wait till the next round
+            yield return new WaitForSeconds(bulletDelay); //Wait till the next round
         }
         _canFire = true;
     }
@@ -93,16 +97,15 @@ public abstract class PlayerBase : CharacterBase
 
     public override void OnDamageEvent() { EventManager.TriggerEvent(Contants.EVENT_PLAYERONDAMAGE, _currentHealth); }
 
-    public void SetFireRate(int value) { _rateOfFire += value; }
-    public void SetFireBurst(int value) { _burstSize += value; }
-    public void SetAmplitude(float value) { _amplitude = value; }
-    public void SetPeriod(float value) { _period = value; }
-    public void SetDisplacement(float value) { _displacement = value; }
-    public void SetVertical(float value) { _vertical = value; }
-
     public IEnumerator End()
     {
         EventManager.TriggerEvent(Contants.EVENT_LOSEGAME, "Defeat");
         yield return new WaitForSeconds(2f);
     }
+
+    //Temporal
+    public void SetAmplitude(float value) { _amplitude = value; }
+    public void SetPeriod(float value) { _period = value; }
+    public void SetDisplacement(float value) { _displacement = value; }
+    public void SetVertical(float value) { _vertical = value; }
 }

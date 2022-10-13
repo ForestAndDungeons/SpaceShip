@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FireRateFactory : MonoBehaviour
 {
-    public static FireRateFactory Instance { get { return _instance; } }
-    static FireRateFactory _instance;
+    public FireRateFactory Instance { get { return _instance; } }
+    FireRateFactory _instance;
 
     [SerializeField] FireRate _prefab;
     [SerializeField] int _initialStock;
@@ -15,7 +15,7 @@ public class FireRateFactory : MonoBehaviour
     void Awake()
     {
         _instance = this;
-
+        GameManager.Instance.fireRateFactory = Instance;
         _pool = new ObjectPool<FireRate>(FireRateCreator, (r) => { r.gameObject.SetActive(true); }, (r) => { r.gameObject.SetActive(false); }, _initialStock);
     }
 

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyBulletFactory : MonoBehaviour
 {
-    public static EnemyBulletFactory Instance { get { return _instance; } }
-    static EnemyBulletFactory _instance;
+    public EnemyBulletFactory Instance { get { return _instance; } }
+    EnemyBulletFactory _instance;
 
     [SerializeField] EnemyBullet _prefab;
     [SerializeField] int _initialStock;
@@ -15,6 +15,7 @@ public class EnemyBulletFactory : MonoBehaviour
     void Awake()
     {
         _instance = this;
+        GameManager.Instance.enemyBulletFactory = Instance;
         _pool = new ObjectPool<EnemyBullet>(BulletCreator, (b) => { b.gameObject.SetActive(true); }, (b) => { b.gameObject.SetActive(false); }, _initialStock);
     }
 

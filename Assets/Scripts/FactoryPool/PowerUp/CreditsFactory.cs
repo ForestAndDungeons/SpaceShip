@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CreditsFactory : MonoBehaviour
 {
-    public static CreditsFactory Instance { get { return _instance; } }
-    static CreditsFactory _instance;
+    public CreditsFactory Instance { get { return _instance; } }
+    CreditsFactory _instance;
 
     [SerializeField] Credits _prefab;
     [SerializeField] int _initialStock;
@@ -15,7 +15,7 @@ public class CreditsFactory : MonoBehaviour
     void Awake()
     {
         _instance = this;
-
+        GameManager.Instance.creditsFactory = Instance;
         _pool = new ObjectPool<Credits>(CreditsCreator, (c) => { c.gameObject.SetActive(true); }, (c) => { c.gameObject.SetActive(false); }, _initialStock);
     }
 

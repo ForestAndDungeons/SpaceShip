@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyFactory : MonoBehaviour
 {
-    public static EnemyFactory Instance { get { return _instance; } }
-    static EnemyFactory _instance;
+    public EnemyFactory Instance { get { return _instance; } }
+    EnemyFactory _instance;
 
     [SerializeField] Enemy _prefab;
     [SerializeField] int _initialStock;
@@ -15,21 +15,21 @@ public class EnemyFactory : MonoBehaviour
     void Awake()
     {
         _instance = this;
-
-        _pool = new ObjectPool<Enemy>(AsteroidCreator, (e) => { e.gameObject.SetActive(true); }, (e) => { e.gameObject.SetActive(false); }, _initialStock);
+        GameManager.Instance.enemyFactory = Instance;
+        _pool = new ObjectPool<Enemy>(EnemyCreator, (e) => { e.gameObject.SetActive(true); }, (e) => { e.gameObject.SetActive(false); }, _initialStock);
     }
 
-    Enemy AsteroidCreator()
+    Enemy EnemyCreator()
     {
         return Instantiate(_prefab);
     }
 
-    public Enemy GetAsteroid()
+    public Enemy GetEnemy()
     {
         return _pool.GetObject();
     }
 
-    public void ReturnAsteroid(Enemy e)
+    public void ReturnEnemy(Enemy e)
     {
         _pool.ReturnObject(e);
     }

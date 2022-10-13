@@ -49,6 +49,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image _soundOnIcon;
     [SerializeField] Image _soundOffIcon;
 
+    [Header("Factories")]
+    public BulletFactory bulletFactory;
+    public AsteroidFactory asteroidFactory;
+    public CreditsFactory creditsFactory;
+    public EnemyBulletFactory enemyBulletFactory;
+    public EnemyFactory enemyFactory;
+    public FireBurstFactory fireBurstFactory;
+    public FireRateFactory fireRateFactory;
+    public ShieldFactory shieldFactory;
+    public SinuousBulletFactory sinuousBulletFactory;
+    public RandomBulletFactory randomBulletFactory;
+
     void Awake()
     {
         Time.timeScale = 1f;
@@ -63,18 +75,23 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        //Managers
         _levelManager = new LevelManager();
         _pauseManager = new PauseManager();
         _boundManager = new BoundManager(_boundWidth, _boundHeight);
         _asteroidManager = new AsteroidManager(_spawnTimeAsteroid, _boundWidth, _boundHeight, _boundOffset);
         _enemyManager = new EnemyManager(_spawnTimeEnemy, _boundWidth, _boundHeight, _boundOffset);
         _optionsManager = new OptionsManager();
-
         _myAudioSource = GetComponent<AudioSource>();
         _audioManager = new AudioManager(_myAudioSource, _audioClips);
+
         EventManager.SubscribeToEvent(Contants.EVENT_LOSEGAME,DefeatScene);
 
-        _credits = GetJSONManager()._data.credits;
+        //Credits
+        _jsonManager.LoadGame();
+        _credits = _jsonManager._data.credits;
+
+
     }
 
     void Start()
@@ -99,17 +116,15 @@ public class GameManager : MonoBehaviour
 
             if(_enemyManager.GetCounter() <= _maxEnemies)
                 _enemyManager.ArtificialUpdate();
-            if (_countDeadEnemies >= _enemyManager.GetCounter())
-            {
+            else if (_countDeadEnemies >= _enemyManager.GetCounter())
                 ChangeScene("Victory");
-            }
         }
     }
 
     public Vector3 ApplyBounds(Vector3 objectPosition) { return _boundManager.ApplyBounds(objectPosition); }
     void FindPlayer() { _player = FindObjectOfType<Player>(); }
     
-    public void ChangeScene(string sceneToLoad) { _levelManager.ChangeScene(sceneToLoad); ResetEnemyCounters(); }
+    public void ChangeScene(string sceneToLoad) { _levelManager.ChangeScene(sceneToLoad); ResetEnemyCounters();}
     public void ResetEnemyCounters() { _countDeadEnemies = 0; _enemyManager.SetCounter(1); }
     public void ChangeMusic(AudioClip clip) { _audioManager.ChangeMusic(clip); }
     public void SetVolume(float volume) { _optionsManager.SetVolume(volume); }
@@ -121,9 +136,8 @@ public class GameManager : MonoBehaviour
     public void Mute() { _optionsManager.Mute(_soundOnIcon, _soundOffIcon); }
     public void SetSoundIcons(Image soundOn, Image soundOff) { _soundOnIcon = soundOn; _soundOffIcon = soundOff; }
     public void SetCredits(int value) { _credits = value; }
-    public void AddCredits(int value) { _credits += value; GetJSONManager()._data.credits = _credits; ; EventManager.TriggerEvent(Contants.EVENT_ADDCREDITUI, _credits); }
+    public void AddCredits(int value) { _credits += value; _jsonManager._data.credits = _credits; ; EventManager.TriggerEvent(Contants.EVENT_ADDCREDITUI, _credits); }
     public int GetCredits() { return _credits; }
-
 
     public void DefeatScene(params object[] param)
     {

@@ -32,7 +32,7 @@ public class AsteroidManager
 
     void SpawnAsteroid()
     {
-        Asteroid a = AsteroidFactory.Instance.GetAsteroid();
+        Asteroid a = GameManager.Instance.asteroidFactory.GetAsteroid();
 
         a.transform.position = new Vector3(Random.Range(-_boundWidth, _boundWidth), 0, Random.Range(_boundHeight + _boundOffset / 2, _boundHeight + _boundOffset));
         a.transform.forward = Vector3.forward * -1;
