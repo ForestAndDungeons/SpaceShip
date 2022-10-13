@@ -17,22 +17,20 @@ public class CreditsUI : MonoBehaviour
 
     public void CreditsAwake(params object[] param)
     {
-        if (_creditsText!=null)
+        if (_creditsText != null)
         {
             _credits = (int)param[0];
-            _creditsText.text = ""+_credits.ToString();    
+            _creditsText.text = "" + _credits.ToString();
         }
     }
 
-
     public void AddCredits(params object[] param)
     {
-        if (_creditsText!=null)
+        if (_creditsText != null)
         {
             _credits = (int)param[0];
             _creditsText.text =""+ _credits.ToString();
         }
       
     }
-
 }
