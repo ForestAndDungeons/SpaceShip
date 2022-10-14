@@ -5,7 +5,6 @@ using UnityEngine;
 public class AsteroidBig : Interactive
 {
     [SerializeField] float _damage;
-    
     [SerializeField] Asteroid _asteroidPrefab;
 
     void Update()
@@ -19,6 +18,9 @@ public class AsteroidBig : Interactive
             entity.OnDamage(_damage);
 
         OnInteraction();
+
+        AsteroidBuilder();
+        AsteroidBuilder();
     }
 
     void OnEnable()
@@ -32,24 +34,21 @@ public class AsteroidBig : Interactive
         _currentDistance = 0;
     }
 
-    public static void TurnOn(Shield s)
+    public static void TurnOn(AsteroidBig a)
     {
-        s.gameObject.SetActive(true);
+        a.gameObject.SetActive(true);
     }
 
-    public static void TurnOff(Shield s)
+    public static void TurnOff(AsteroidBig a)
     {
-        s.gameObject.SetActive(false);
+        a.gameObject.SetActive(false);
     }
 
     public override void ReturnToPool()
     {
-        Asteroid myAsteroid = new AsteroidBuilder(_asteroidPrefab).SetColor(Color.green)
-                                                          .SetPosition(0, 0, 0)
-                                                          .SetScale(Vector3.one * 5)
-                                                          .Done();
+        
 
-        GameManager.Instance.asteroidFactory.ReturnAsteroid(this);
+        GameManager.Instance.asteroidBigFactory.ReturnAsteroidBig(this);
     }
 
     public override IEnumerator WaitReturn()
@@ -61,5 +60,15 @@ public class AsteroidBig : Interactive
     void OnTriggerEnter(Collider other)
     {
         Interact(null);
+    }
+
+    void AsteroidBuilder()
+    {
+        Vector3 offset = new Vector3 (Random.Range(-10f, 10f), 0f, Random.Range(-10f, 10f));
+
+        Asteroid myAsteroid = new AsteroidBuilder(_asteroidPrefab).SetColor(Color.white)
+                                                          .SetPosition(transform.position + offset)
+                                                          .SetScale(Vector3.one * 2)
+                                                          .Done();
     }
 }

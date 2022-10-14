@@ -48,9 +48,8 @@ public class EnemyBase : CharacterBase
             _linealBullet = new LinealZAdvance(b.GetSpeed(), b.transform);
             b.currentAdvance = _linealBullet;
 
-            b.transform.forward = Vector3.forward;
             b.transform.position = transform.position;
-            b.transform.forward = Vector3.forward * -1;
+            //b.transform.forward = Vector3.forward;
 
             yield return new WaitForSeconds(bulletDelay);// wait till the next round
         }
@@ -66,28 +65,28 @@ public class EnemyBase : CharacterBase
             Shield s = GameManager.Instance.shieldFactory.GetShield();
 
             s.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-            s.transform.forward = Vector3.forward * -1;
+            s.transform.forward = Vector3.forward;
         }
         else if (_chance == 4)
         {
             FireRate r = GameManager.Instance.fireRateFactory.GetFireRate();
 
             r.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-            r.transform.forward = Vector3.forward * -1;
+            r.transform.forward = Vector3.forward;
         }
         else if (_chance == 5)
         {
             FireBurst b = GameManager.Instance.fireBurstFactory.GetFireBurst();
 
             b.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-            b.transform.forward = Vector3.forward * -1;
+            b.transform.forward = Vector3.forward;
         }
         else if (_chance >= 7)
         {
             Credits c = GameManager.Instance.creditsFactory.GetCredits();
 
             c.transform.position = new Vector3(transform.position.x, 1, transform.position.z);
-            c.transform.forward = Vector3.forward * -1;
+            c.transform.forward = Vector3.forward;
         }
 
         GameManager.Instance.SetCountDeadEnemies(1);

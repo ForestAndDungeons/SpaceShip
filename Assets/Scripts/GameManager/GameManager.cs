@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     public ShieldFactory shieldFactory;
     public SinuousBulletFactory sinuousBulletFactory;
     public RandomBulletFactory randomBulletFactory;
+    public AsteroidBigFactory asteroidBigFactory;
 
     void Awake()
     {
@@ -75,6 +76,8 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        _myAudioSource = GetComponent<AudioSource>();
+
         //Managers
         _levelManager = new LevelManager();
         _pauseManager = new PauseManager();
@@ -82,7 +85,6 @@ public class GameManager : MonoBehaviour
         _asteroidManager = new AsteroidManager(_spawnTimeAsteroid, _boundWidth, _boundHeight, _boundOffset);
         _enemyManager = new EnemyManager(_spawnTimeEnemy, _boundWidth, _boundHeight, _boundOffset);
         _optionsManager = new OptionsManager();
-        _myAudioSource = GetComponent<AudioSource>();
         _audioManager = new AudioManager(_myAudioSource, _audioClips);
 
         EventManager.SubscribeToEvent(Contants.EVENT_LOSEGAME,DefeatScene);
@@ -153,7 +155,7 @@ public class GameManager : MonoBehaviour
     void OnDrawGizmos()
     {
         GizmoBounds();
-        GizmoAsteroids();
+        GizmoSpawner();
     }
 
     void GizmoBounds()
@@ -171,7 +173,7 @@ public class GameManager : MonoBehaviour
         Gizmos.DrawLine(botLeft, topLeft);
     }
 
-    void GizmoAsteroids()
+    void GizmoSpawner()
     {
         Gizmos.color = _colorSpawner;
 

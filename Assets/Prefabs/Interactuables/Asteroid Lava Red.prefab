@@ -5003,7 +5003,7 @@ MonoBehaviour:
   _speed: 30
   _maxDistance: 120
   _damage: 1
-  _chance: 0
+  health: 5
 --- !u!199 &945702776
 ParticleSystemRenderer:
   serializedVersion: 6
