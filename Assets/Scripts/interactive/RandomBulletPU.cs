@@ -5,7 +5,7 @@ using UnityEngine;
 public class RandomBulletPU : Interactive 
 {
     //Temporal
-    Player player;
+    //Player player;
 
     void Update()
     {
@@ -14,19 +14,21 @@ public class RandomBulletPU : Interactive
 
     public override void Interact(CharacterBase entity)
     {
-        //OnInteraction();
+        entity.SetIsSinuousBullet(false);
+        entity.SetIsRandomBullet(true);
+        OnInteraction();
 
         //Temporal
-        player = entity.GetComponent<Player>();
-        TemporalInteract(player);
+        /*player = entity.GetComponent<Player>();
+        TemporalInteract(player);*/
     }
 
-    public void TemporalInteract(Player player)
+ /*   public void TemporalInteract(Player player)
     {
         player.isSinuousBullet = false;
         player.isRandomBullet = true;
         OnInteraction();
-    }
+    }*/
 
     void OnEnable()
     {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class CharacterBase : MonoBehaviour
+public abstract class CharacterBase : MonoBehaviour , IObservable
 {
     [SerializeField] protected float _maxSpeed;
     [SerializeField] protected float _maxHealth;
@@ -14,6 +14,10 @@ public abstract class CharacterBase : MonoBehaviour
     [SerializeField] protected float _rateOfFire;
     [SerializeField] protected int _burstSize;
     [SerializeField] protected bool _canFire;
+    [SerializeField] protected bool _isRandomBullet;
+    [SerializeField] protected bool _isSinuousBullet;
+    protected List<IObserver> _allObservers;
+
 
     protected AudioSource _myAudioSource;
     protected ParticleSystem _myParticleSystem;
@@ -34,7 +38,6 @@ public abstract class CharacterBase : MonoBehaviour
             if (_currentHealth <= 0)
             {
                 OnDeath();
-
                 _myAudioSource.Play();
                 _myParticleSystem.Play();
             }
@@ -43,7 +46,7 @@ public abstract class CharacterBase : MonoBehaviour
 
     public void Interact(Collider other)
     {
-        var interactuable = other.GetComponent<Interactive >();
+        var interactuable = other.GetComponent<Interactive>();
 
         if (interactuable != null)
             interactuable.Interact(this);
@@ -56,4 +59,31 @@ public abstract class CharacterBase : MonoBehaviour
     public void SetFireRate(int value) { _rateOfFire += value; }
     public void SetFireBurst(int value) { _burstSize += value; }
     public void SetShieldUps(bool value) { _isShieldUp = value; _shield.SetActive(value); }
+    public void SetIsRandomBullet(bool value) { _isRandomBullet = value;}
+    public void SetIsSinuousBullet(bool value) { _isSinuousBullet = value;}
+
+    public void Subscribe(IObserver obs)
+    {
+        if (!_allObservers.Contains(obs))
+        {
+            _allObservers.Add(obs);
+        }
+    }
+
+    public void NotifyToObservers(string notif)
+    {
+        for (int i = _allObservers.Count - 1; i >= 0; i--)
+        {
+            _allObservers[i].Notify(notif);
+        }
+    }
+
+    public void Unsuscribe(IObserver obs)
+    {
+        if (_allObservers.Contains(obs))
+        {
+            _allObservers.Remove(obs);
+        }
+    }
+
 }

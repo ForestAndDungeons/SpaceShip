@@ -14,6 +14,7 @@ public class Player : PlayerBase
         _myAnimator = GetComponentInChildren<Animator>();
         _myAudioSource = GetComponent<AudioSource>();
         _myParticleSystem = GetComponentInChildren<ParticleSystem>();
+        _allObservers = new List<IObserver>();
     }
 
     private void Start()
