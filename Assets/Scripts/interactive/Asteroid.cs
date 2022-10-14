@@ -7,7 +7,7 @@ public class Asteroid : Interactive
 {
     [SerializeField] float _damage;
     int _chance;
-
+    
     void Update()
     {
         Movement();
@@ -20,19 +20,19 @@ public class Asteroid : Interactive
 
         _chance = Random.Range(0, 11);
 
-        if (_chance <= 3)
+        if (_chance <= 2)
         {
             RandomBulletPU r = GameManager.Instance.randomBulletFactory.GetRandomBullet();
 
             r.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-            r.transform.forward = Vector3.forward * -1;
+            r.transform.forward = Vector3.forward;
         }
-        else if (_chance <= 5 && _chance > 3)
+        else if (_chance >= 8)
         {
             SinuousBulletPU s = GameManager.Instance.sinuousBulletFactory.GetSinuous();
 
             s.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-            s.transform.forward = Vector3.forward * -1;
+            s.transform.forward = Vector3.forward;
         }
 
         OnInteraction();
@@ -49,14 +49,14 @@ public class Asteroid : Interactive
         _currentDistance = 0;
     }
 
-    public static void TurnOn(Shield s)
+    public static void TurnOn(Asteroid a)
     {
-        s.gameObject.SetActive(true);
+        a.gameObject.SetActive(true);
     }
 
-    public static void TurnOff(Shield s)
+    public static void TurnOff(Asteroid a)
     {
-        s.gameObject.SetActive(false);
+        a.gameObject.SetActive(false);
     }
 
     public override void ReturnToPool()

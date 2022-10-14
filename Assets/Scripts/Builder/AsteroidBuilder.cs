@@ -17,9 +17,9 @@ public class AsteroidBuilder
         return this;
     }
 
-    public AsteroidBuilder SetPosition(float x, float y, float z)
+    public AsteroidBuilder SetPosition(Vector3 vector)
     {
-        _asteroidCreated.transform.position = new Vector3(x, y, z);
+        _asteroidCreated.transform.position = vector;
         return this;
     }
 

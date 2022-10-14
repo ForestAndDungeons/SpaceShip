@@ -39,6 +39,7 @@ public abstract class Interactive  : MonoBehaviour
 
     public void Movement()
     {
+        transform.forward = Vector3.forward * -1;
         transform.position += transform.forward * _speed * Time.deltaTime;
 
         _currentDistance += _speed * Time.deltaTime;
