@@ -8,18 +8,9 @@ public abstract class PlayerBase : CharacterBase
 
     [SerializeField] float _startTimeResetBulletAdvance;
     float _timeResetBulletAdvance;
-    
-    //Temporal
-    protected float _amplitude;
-    protected float _period;
-    protected float _displacement;
-    protected float _vertical;
-    public bool isRandomBullet;
-    public bool isSinuousBullet;
-    IAdvance _linealBullet;
-    IAdvance _sinuousBullet;
-    IAdvance _randomBullet;
-    IAdvance _currentBullet;
+
+    /*public bool isRandomBullet;
+    public bool isSinuousBullet;*/
 
     public void Movement(Transform player)
     {
@@ -52,25 +43,21 @@ public abstract class PlayerBase : CharacterBase
         for (int i = 0; i < _burstSize; i++)
         {
             Bullet b = GameManager.Instance.bulletFactory.GetBullet();
-            
+
             //Temporal//
-            if (isSinuousBullet)
+            if (_isSinuousBullet)
             {
-                _sinuousBullet = new SinuousAdvance(b.transform, b.GetSpeed(),_amplitude, _period, _displacement, _vertical);
-                _currentBullet = _sinuousBullet;
+                NotifyToObservers(Contants.OBS_SINUOUSADVANCE);
             }
-            else if (isRandomBullet)
+            else if (_isRandomBullet)
             {
-                _randomBullet = new SinuousAdvance(b.transform, Random.Range(50, 61), Random.Range(10, 71), Random.Range(0, 9), Random.Range(0, 11), Random.Range(0, 11));
-                _currentBullet = _randomBullet;
+                NotifyToObservers(Contants.OBS_RANDOMADVANCE);
             }
             else
             {
-                _linealBullet = new LinealZAdvance(b.GetSpeed(), b.transform);
-                _currentBullet = _linealBullet;
+                NotifyToObservers(Contants.OBS_LINEALADVANCE);
             }
-            b.currentAdvance = _currentBullet;
-            //////////
+
             
             b.transform.position = GameManager.Instance.playerReference.transform.position;
             b.transform.forward = Vector3.forward;
@@ -78,21 +65,6 @@ public abstract class PlayerBase : CharacterBase
             yield return new WaitForSeconds(bulletDelay); //Wait till the next round
         }
         _canFire = true;
-    }
-
-    public void PowerUpTime()
-    {
-        if (_timeResetBulletAdvance <= 0)
-        {
-            _timeResetBulletAdvance = _startTimeResetBulletAdvance;
-            isRandomBullet = false;
-            isSinuousBullet = false;
-            _currentBullet = _linealBullet;
-        }
-        else
-        {
-            _timeResetBulletAdvance -= Time.deltaTime;
-        }
     }
 
     public override void OnDamageEvent() { EventManager.TriggerEvent(Contants.EVENT_PLAYERONDAMAGE, _currentHealth); }
@@ -103,9 +75,4 @@ public abstract class PlayerBase : CharacterBase
         yield return new WaitForSeconds(2f);
     }
 
-    //Temporal
-    public void SetAmplitude(float value) { _amplitude = value; }
-    public void SetPeriod(float value) { _period = value; }
-    public void SetDisplacement(float value) { _displacement = value; }
-    public void SetVertical(float value) { _vertical = value; }
 }

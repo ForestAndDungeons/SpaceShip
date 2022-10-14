@@ -37,7 +37,7 @@ public abstract class Interactive  : MonoBehaviour
         StartCoroutine(WaitReturn());
     }
 
-    public void Movement()
+    public virtual void Movement()
     {
         transform.forward = Vector3.forward * -1;
         transform.position += transform.forward * _speed * Time.deltaTime;

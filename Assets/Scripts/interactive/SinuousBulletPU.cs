@@ -6,13 +6,13 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class SinuousBulletPU : Interactive 
 {
-    [SerializeField] float _amplitude;
+    /*[SerializeField] float _amplitude;
     [SerializeField] float _period;
     [SerializeField] float _displacement;
-    [SerializeField] float _vertical;
+    [SerializeField] float _vertical;*/
 
     //Temporal
-    Player player;
+   // Player player;
 
     void Update()
     {
@@ -21,21 +21,23 @@ public class SinuousBulletPU : Interactive
 
     public override void Interact(CharacterBase entity)
     {
-        //OnInteraction();
+        entity.SetIsRandomBullet(false);
+        entity.SetIsSinuousBullet(true);
+        OnInteraction();
 
         //Temporal
-        player = entity.GetComponent<Player>();
-        TemporalInteract(player);
+        //player = entity.GetComponent<Player>();
+       //TemporalInteract(player);
     }
 
     public void TemporalInteract(Player player)
     {
-        player.isRandomBullet = false;
-        player.SetAmplitude(_amplitude);
+      //  player.isRandomBullet = false;
+        /*player.SetAmplitude(_amplitude);
         player.SetPeriod(_period);
         player.SetDisplacement(_displacement);
-        player.SetVertical(_vertical);
-        player.isSinuousBullet = true;
+        player.SetVertical(_vertical);*/
+        //player.isSinuousBullet = true;
         OnInteraction();
     }
 
