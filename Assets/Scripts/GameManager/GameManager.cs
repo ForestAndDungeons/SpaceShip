@@ -14,9 +14,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] int _credits;
     public Player playerReference { get { return _player; } }
     public Player _player;
-    
+
     [Header("Managers")]
-    [SerializeField] SaveJSON _jsonManager;
+    SaveJSON _jsonManager;
     LevelManager _levelManager;
     PauseManager _pauseManager;
     BoundManager _boundManager;
@@ -45,22 +45,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] int _maxEnemies;
     [SerializeField] int _countDeadEnemies;
 
-    [Header("Options")]
-    [SerializeField] Image _soundOnIcon;
-    [SerializeField] Image _soundOffIcon;
-
     [Header("Factories")]
-    public BulletFactory bulletFactory;
-    public AsteroidFactory asteroidFactory;
-    public CreditsFactory creditsFactory;
-    public EnemyBulletFactory enemyBulletFactory;
-    public EnemyFactory enemyFactory;
-    public FireBurstFactory fireBurstFactory;
-    public FireRateFactory fireRateFactory;
-    public ShieldFactory shieldFactory;
-    public SinuousBulletFactory sinuousBulletFactory;
-    public RandomBulletFactory randomBulletFactory;
-    public AsteroidBigFactory asteroidBigFactory;
+    [HideInInspector] public BulletFactory bulletFactory;
+    [HideInInspector] public AsteroidFactory asteroidFactory;
+    [HideInInspector] public CreditsFactory creditsFactory;
+    [HideInInspector] public EnemyBulletFactory enemyBulletFactory;
+    [HideInInspector] public EnemyFactory enemyFactory;
+    [HideInInspector] public FireBurstFactory fireBurstFactory;
+    [HideInInspector] public FireRateFactory fireRateFactory;
+    [HideInInspector] public FireTimeFactory fireTimeFactory;
+    [HideInInspector] public ShieldFactory shieldFactory;
+    [HideInInspector] public SinuousBulletFactory sinuousBulletFactory;
+    [HideInInspector] public RandomBulletFactory randomBulletFactory;
+    [HideInInspector] public AsteroidBigFactory asteroidBigFactory;
 
     void Awake()
     {
@@ -79,6 +76,7 @@ public class GameManager : MonoBehaviour
         _myAudioSource = GetComponent<AudioSource>();
 
         //Managers
+        _jsonManager = new SaveJSON();
         _levelManager = new LevelManager();
         _pauseManager = new PauseManager();
         _boundManager = new BoundManager(_boundWidth, _boundHeight);
@@ -106,7 +104,6 @@ public class GameManager : MonoBehaviour
         else
             _optionsManager.Load();
 
-        _optionsManager.UpdateButtonIncon(_soundOnIcon, _soundOffIcon);
         AudioListener.pause = _optionsManager._onMuted;
     }
 
@@ -127,16 +124,23 @@ public class GameManager : MonoBehaviour
     void FindPlayer() { _player = FindObjectOfType<Player>(); }
     
     public void ChangeScene(string sceneToLoad) { _levelManager.ChangeScene(sceneToLoad); ResetEnemyCounters();}
+    public void QuitGame() { _levelManager.QuitGame(); }
+
     public void ResetEnemyCounters() { _countDeadEnemies = 0; _enemyManager.SetCounter(1); }
+
     public void ChangeMusic(AudioClip clip) { _audioManager.ChangeMusic(clip); }
-    public void SetVolume(float volume) { _optionsManager.SetVolume(volume); }
+
+    public void Mute(Image soundOnIcon, Image soundOffIcon) { _optionsManager.Mute(soundOnIcon, soundOffIcon); }
+    public void UpdateButtonIcon(Image soundOnIcon, Image soundOffIcon) { _optionsManager.UpdateButtonIcon(soundOnIcon, soundOffIcon); }
+
     public void Pause() { _pauseManager.Pause(); }
     public void UnPause() { _pauseManager.UnPause(); }
-    public void QuitGame() { _levelManager.QuitGame(); }
+    
+
     public void SaveGame() { _jsonManager.SaveGame(); }
     public void LoadGame() { _jsonManager.LoadGame(); }
-    public void Mute() { _optionsManager.Mute(_soundOnIcon, _soundOffIcon); }
-    public void SetSoundIcons(Image soundOn, Image soundOff) { _soundOnIcon = soundOn; _soundOffIcon = soundOff; }
+    
+    
     public void SetCredits(int value) { _credits = value; }
     public void AddCredits(int value) { _credits += value; _jsonManager._data.credits = _credits; ; EventManager.TriggerEvent(Contants.EVENT_ADDCREDITUI, _credits); }
     public int GetCredits() { return _credits; }

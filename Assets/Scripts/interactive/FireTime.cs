@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireRate : Interactive 
+public class FireTime : Interactive
 {
     [SerializeField] int _value;
 
@@ -13,7 +13,7 @@ public class FireRate : Interactive
 
     public override void Interact(CharacterBase entity)
     {
-        entity.AddFireRate(_value);
+        entity.ReduceShootTime(_value);
         OnInteraction();
     }
 
@@ -40,7 +40,7 @@ public class FireRate : Interactive
 
     public override void ReturnToPool()
     {
-        GameManager.Instance.fireRateFactory.ReturnFireRate(this);
+        GameManager.Instance.fireTimeFactory.ReturnFireTime(this);
     }
 
     public override IEnumerator WaitReturn()

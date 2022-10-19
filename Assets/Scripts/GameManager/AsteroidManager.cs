@@ -5,6 +5,7 @@ using UnityEngine;
 public class AsteroidManager
 {
     float _timer;
+    float _timerBig;
     float _spawnTime;
     float _spawnBigTime;
     float _boundWidth;
@@ -14,8 +15,9 @@ public class AsteroidManager
     public AsteroidManager(float timer, float boundWidth, float boundHeight, float boundOffset)
     {
         _timer = timer;
+        _timerBig = timer * 3;
         _spawnTime = timer;
-        _spawnBigTime = timer * 3;
+        _spawnBigTime = _timerBig;
         _boundWidth = boundWidth;
         _boundHeight = boundHeight;
         _boundOffset = boundOffset;
@@ -34,7 +36,7 @@ public class AsteroidManager
 
         if (_spawnBigTime <= 0.0f)
         {
-            _spawnBigTime = _timer;
+            _spawnBigTime = _timerBig;
             SpawnAsteroidBig();
         }
     }

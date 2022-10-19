@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1003183416795780586}
   - component: {fileID: 1003183416795780585}
   - component: {fileID: 1003183416795780584}
-  - component: {fileID: 7367318221605223068}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -141,8 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d599e76662001fb4fb0ef7d9b3827545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _credits: 0
   _player: {fileID: 0}
-  _jsonManager: {fileID: 7367318221605223068}
   _audioClips:
   - {fileID: 8300000, guid: 9d2a47f6db5b59945aa1b85ae34f8af9, type: 3}
   - {fileID: 8300000, guid: 80848685bc489c749a9d3aeaa2ccc04b, type: 3}
@@ -150,18 +149,22 @@ MonoBehaviour:
   _boundWidth: 85
   _boundHeight: 40
   _colorBounds: {r: 0.9803922, g: 1, b: 0, a: 1}
-  _boundOffset: 10
+  _boundOffset: -2
+  _colorSpawner: {r: 1, g: 0, b: 0, a: 1}
   _spawnTimeAsteroid: 2
-  _colorAsteroid: {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &7367318221605223068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003183416795780591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adb419fea527d694e9f434e53b020d2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _spawnTimeEnemy: 5
+  _maxEnemies: 10
+  _countDeadEnemies: 0
+  _soundOnIcon: {fileID: 0}
+  _soundOffIcon: {fileID: 0}
+  bulletFactory: {fileID: 0}
+  asteroidFactory: {fileID: 0}
+  creditsFactory: {fileID: 0}
+  enemyBulletFactory: {fileID: 0}
+  enemyFactory: {fileID: 0}
+  fireBurstFactory: {fileID: 0}
+  fireRateFactory: {fileID: 0}
+  shieldFactory: {fileID: 0}
+  sinuousBulletFactory: {fileID: 0}
+  randomBulletFactory: {fileID: 0}
+  asteroidBigFactory: {fileID: 0}

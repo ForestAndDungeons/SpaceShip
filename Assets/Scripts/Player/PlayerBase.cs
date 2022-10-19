@@ -5,12 +5,8 @@ public abstract class PlayerBase : CharacterBase
 {
     [SerializeField] protected PlayerBaseSO _data;
     [SerializeField] protected Controller _controller;
-
     [SerializeField] float _startTimeResetBulletAdvance;
     float _timeResetBulletAdvance;
-
-    /*public bool isRandomBullet;
-    public bool isSinuousBullet;*/
 
     public void Movement(Transform player)
     {
@@ -31,8 +27,19 @@ public abstract class PlayerBase : CharacterBase
     public void Shoot()
     {
         if (_canFire)
-            StartCoroutine(FireBurst());
+        {
+            _shootTimer -= Time.deltaTime;
+
+            if (_shootTimer <= 0.0f)
+            {
+                _shootTimer = _shootTime;
+                StartCoroutine(FireBurst());
+            }
+        }
     }
+
+    public void SetShooting() { _shooting = !_shooting; }
+
     public IEnumerator FireBurst()
     {
         _canFire = false;

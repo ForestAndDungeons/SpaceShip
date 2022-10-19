@@ -13,7 +13,7 @@ public class FireBurst : Interactive
 
     public override void Interact(CharacterBase entity)
     {
-        entity.SetFireBurst(_value);
+        entity.AddFireBurst(_value);
         OnInteraction();
     }
 
