@@ -36,6 +36,6 @@ public class Buttons : MonoBehaviour
     public void QuitGame() { GameManager.Instance.QuitGame(); }
     public void SaveGame() { GameManager.Instance.SaveGame(); }
     public void LoadGame() { GameManager.Instance.LoadGame(); }
-    public void SetSoundIcons() { GameManager.Instance.SetSoundIcons(_soundOnIcon, _soundOffIcon); }
-    public void Mute() { GameManager.Instance.Mute(); }
+    public void Mute() { GameManager.Instance.Mute(_soundOnIcon, _soundOffIcon); }
+    public void UpdateButtonIcon() { GameManager.Instance.UpdateButtonIcon(_soundOnIcon, _soundOffIcon); }
 }

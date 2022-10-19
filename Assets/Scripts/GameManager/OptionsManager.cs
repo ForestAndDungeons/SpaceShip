@@ -7,47 +7,15 @@ using UnityEngine.UI;
 public class OptionsManager
 {
     public bool _onMuted = false;
+    Image _soundOnIcon;
+    Image _soundOffIcon;
 
-    //[SerializeField] AudioMixer _audioMixer;
-    //Resolution[] _resolutions;
-    //[SerializeField] Dropdown _resoulutionDropdown;
-
-    public OptionsManager()
-    {
-        //_audioMixer = audioMixer;
-    }
-
-    /* void Start()
-    {
-        _resolutions = Screen.resolutions;
-        _resoulutionDropdown.ClearOptions();
-
-        List<string> options = new List<string>();
-
-        int currentResolutionIndex = 0;
-
-        for (int i = 0; i < _resolutions.Length; i++)
-        {
-            string option = _resolutions[i].width + "x" + _resolutions[i].height;
-            options.Add(option);
-
-            if (_resolutions[i].width == Screen.currentResolution.width && _resolutions[i].height == Screen.currentResolution.height)
-            {
-                currentResolutionIndex = i;
-            }
-        }
-
-        _resoulutionDropdown.AddOptions(options);
-        _resoulutionDropdown.value = currentResolutionIndex;
-        _resoulutionDropdown.RefreshShownValue();
-    }*/
-
-    public void Mute(Image soundOn, Image soundOff)
+    public void Mute(Image soundOnIcon, Image soundOffIcon)
     {
         _onMuted = !_onMuted;
         AudioListener.pause = _onMuted;
         Save();
-        UpdateButtonIncon(soundOn, soundOff);
+        UpdateButtonIcon(soundOnIcon, soundOffIcon);
     }
 
     public void Save()
@@ -60,17 +28,17 @@ public class OptionsManager
         _onMuted = PlayerPrefs.GetInt("_onMuted") == 1;
     }
 
-    public void UpdateButtonIncon(Image soundOn, Image soundOff)
+    public void UpdateButtonIcon(Image soundOnIcon, Image soundOffIcon)
     {
         if (_onMuted == false)
         {
-            soundOn.enabled = true;
-            soundOff.enabled = false;
+            soundOnIcon.enabled = true;
+            soundOffIcon.enabled = false;
         }
         else if (_onMuted == true)
         {
-            soundOn.enabled = false;
-            soundOff.enabled = true;
+            soundOnIcon.enabled = false;
+            soundOffIcon.enabled = true;
         }
     }
 
@@ -78,9 +46,4 @@ public class OptionsManager
     {
         //_audioMixer.SetFloat("volume", Mathf.Log10(volume) * 20);
     }
-    
-    /*public void SetQuality(int qualityIndex)
-    {
-        QualitySettings.SetQualityLevel(qualityIndex);
-    }*/
 }

@@ -14,6 +14,9 @@ public abstract class CharacterBase : MonoBehaviour , IObservable
     [SerializeField] protected float _rateOfFire;
     [SerializeField] protected int _burstSize;
     [SerializeField] protected bool _canFire;
+    [SerializeField] protected float _shootTime;
+    protected float _shootTimer;
+    protected bool _shooting;
     [SerializeField] protected bool _isRandomBullet;
     [SerializeField] protected bool _isSinuousBullet;
     protected List<IObserver> _allObservers;
@@ -52,16 +55,6 @@ public abstract class CharacterBase : MonoBehaviour , IObservable
             interactuable.Interact(this);
     }
 
-    public abstract void OnDeath();
-    public virtual void OnDamageEvent(){}
-    public void SetShieldUp(bool value) { _isShieldUp = value; _shield.SetActive(value); }
-    public void SetSpeed(float value) { _maxSpeed = value; }
-    public void SetFireRate(int value) { _rateOfFire += value; }
-    public void SetFireBurst(int value) { _burstSize += value; }
-    public void SetShieldUps(bool value) { _isShieldUp = value; _shield.SetActive(value); }
-    public void SetIsRandomBullet(bool value) { _isRandomBullet = value;}
-    public void SetIsSinuousBullet(bool value) { _isSinuousBullet = value;}
-
     public void Subscribe(IObserver obs)
     {
         if (!_allObservers.Contains(obs))
@@ -86,4 +79,14 @@ public abstract class CharacterBase : MonoBehaviour , IObservable
         }
     }
 
+    public abstract void OnDeath();
+    public virtual void OnDamageEvent(){}
+    public void SetShieldUp(bool value) { _isShieldUp = value; _shield.SetActive(value); }
+    public void SetSpeed(float value) { _maxSpeed = value; }
+    public void AddFireRate(int value) { _rateOfFire += value; }
+    public void AddFireBurst(int value) { _burstSize += value; }
+    public void ReduceShootTime(float value) { _shootTime -= value; }
+    public void SetShieldUps(bool value) { _isShieldUp = value; _shield.SetActive(value); }
+    public void SetIsRandomBullet(bool value) { _isRandomBullet = value;}
+    public void SetIsSinuousBullet(bool value) { _isSinuousBullet = value;}
 }

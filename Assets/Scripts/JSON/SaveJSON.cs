@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class SaveJSON : MonoBehaviour
+public class SaveJSON
 {
     public SaveData _data;
     string _path;
 
-    void Awake()
+    public SaveJSON()
     {
         _data = new SaveData();
         _path = Application.persistentDataPath + "/data.save";

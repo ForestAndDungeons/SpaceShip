@@ -15,6 +15,9 @@ public class Player : PlayerBase
         _myAudioSource = GetComponent<AudioSource>();
         _myParticleSystem = GetComponentInChildren<ParticleSystem>();
         _allObservers = new List<IObserver>();
+        _shootTimer = _shootTime;
+        _canFire = true;
+        _shooting = false;
     }
 
     private void Start()
@@ -28,6 +31,9 @@ public class Player : PlayerBase
         GameManager.Instance.GetBoundManager().CheckBounds(this);
         UpdateAnimatorVariables();
         Movement(transform);
+
+        if(_shooting)
+            Shoot();
     }
 
     public void OnTriggerEnter(Collider other)
