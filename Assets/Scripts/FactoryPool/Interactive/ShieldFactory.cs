@@ -12,7 +12,7 @@ public class ShieldFactory : MonoBehaviour
 
     ObjectPool<Shield> _pool;
 
-    void Awake()
+    void Start()
     {
         _instance = this;
         GameManager.Instance.shieldFactory = Instance;

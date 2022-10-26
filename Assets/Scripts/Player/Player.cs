@@ -15,7 +15,7 @@ public class Player : PlayerBase
         _myAudioSource = GetComponent<AudioSource>();
         _myParticleSystem = GetComponentInChildren<ParticleSystem>();
         _allObservers = new List<IObserver>();
-        _shootTimer = _shootTime;
+        //_shootTimer = _shootTime;
         _canFire = true;
         _shooting = false;
     }

@@ -21,7 +21,7 @@ public abstract class CharacterBase : MonoBehaviour , IObservable
     [SerializeField] protected bool _isSinuousBullet;
     protected List<IObserver> _allObservers;
 
-
+    [SerializeField] protected AudioClip[] _audioClips;
     protected AudioSource _myAudioSource;
     protected ParticleSystem _myParticleSystem;
     protected Animator _myAnimator;

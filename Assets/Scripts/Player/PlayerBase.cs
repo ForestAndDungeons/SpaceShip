@@ -33,6 +33,7 @@ public abstract class PlayerBase : CharacterBase
             if (_shootTimer <= 0.0f)
             {
                 _shootTimer = _shootTime;
+                _myAudioSource.PlayOneShot(_audioClips[0]);
                 StartCoroutine(FireBurst());
             }
         }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,7 +36,7 @@ public class Buttons : MonoBehaviour
     public void UnPause() { GameManager.Instance.UnPause(); }
     public void QuitGame() { GameManager.Instance.QuitGame(); }
     public void SaveGame() { GameManager.Instance.SaveGame(); }
-    public void LoadGame() { GameManager.Instance.LoadGame(); }
+    public void LoadGame() { GameManager.Instance.LoadGame(); GameManager.Instance.SetCredits(GameManager.Instance.GetJSONManager()._data.credits); }
     public void Mute() { GameManager.Instance.Mute(_soundOnIcon, _soundOffIcon); }
     public void UpdateButtonIcon() { GameManager.Instance.UpdateButtonIcon(_soundOnIcon, _soundOffIcon); }
 }

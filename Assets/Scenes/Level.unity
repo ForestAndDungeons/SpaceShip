@@ -286,18 +286,6 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 729968}
-          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-          m_MethodName: Play
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 405341233}
           m_TargetAssemblyTypeName: PlayerBase, Assembly-CSharp
           m_MethodName: SetShooting
@@ -1613,7 +1601,7 @@ RectTransform:
   m_Children:
   - {fileID: 647652254}
   m_Father: {fileID: 1508483744}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -1733,7 +1721,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1508483744}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1890,7 +1878,7 @@ RectTransform:
   - {fileID: 2033699768}
   - {fileID: 1252372272}
   m_Father: {fileID: 1508483744}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2028,7 +2016,7 @@ RectTransform:
   - {fileID: 1826889384}
   - {fileID: 1666418119}
   m_Father: {fileID: 1508483744}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2081,7 +2069,7 @@ RectTransform:
   - {fileID: 729961}
   - {fileID: 1972715233}
   m_Father: {fileID: 1508483744}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3493,12 +3481,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 942266553}
   - {fileID: 861619575}
-  - {fileID: 1044818519}
   - {fileID: 987652511}
   - {fileID: 8095043848776634359}
   - {fileID: 804480171}
+  - {fileID: 1044818519}
+  - {fileID: 942266553}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4329,6 +4317,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1252372273}
+          m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
+          m_MethodName: LoadGame
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &1882280541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4830,6 +4830,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5866240071633003365, guid: eaae3fdc1d141364580f493e3a7c5a57, type: 3}
+      propertyPath: _audioClips.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866240071633003365, guid: eaae3fdc1d141364580f493e3a7c5a57, type: 3}
+      propertyPath: _audioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0d77198c1f091ef4bbc75cb08634c107, type: 3}
+    - target: {fileID: 5866240071633003365, guid: eaae3fdc1d141364580f493e3a7c5a57, type: 3}
       propertyPath: _startTimeResetBulletAdvance
       value: 0
       objectReference: {fileID: 0}
@@ -5003,7 +5011,7 @@ RectTransform:
   - {fileID: 8095043848479051559}
   - {fileID: 8095043849073244978}
   m_Father: {fileID: 1508483744}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}

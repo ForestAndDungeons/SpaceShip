@@ -12,7 +12,7 @@ public class FireBurstFactory : MonoBehaviour
 
     ObjectPool<FireBurst> _pool;
 
-    void Awake()
+    void Start()
     {
         _instance = this;
         GameManager.Instance.fireBurstFactory = Instance;

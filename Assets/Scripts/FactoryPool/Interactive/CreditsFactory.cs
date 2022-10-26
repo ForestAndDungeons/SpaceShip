@@ -12,7 +12,7 @@ public class CreditsFactory : MonoBehaviour
 
     ObjectPool<Credits> _pool;
 
-    void Awake()
+    void Start()
     {
         _instance = this;
         GameManager.Instance.creditsFactory = Instance;

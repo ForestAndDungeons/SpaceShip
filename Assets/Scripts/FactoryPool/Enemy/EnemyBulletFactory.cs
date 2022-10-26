@@ -12,7 +12,7 @@ public class EnemyBulletFactory : MonoBehaviour
 
     ObjectPool<EnemyBullet> _pool;
 
-    void Awake()
+    void Start()
     {
         _instance = this;
         GameManager.Instance.enemyBulletFactory = Instance;

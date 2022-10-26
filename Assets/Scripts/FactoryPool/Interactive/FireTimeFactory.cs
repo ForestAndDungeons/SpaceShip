@@ -12,7 +12,7 @@ public class FireTimeFactory : MonoBehaviour
 
     ObjectPool<FireTime> _pool;
 
-    void Awake()
+    void Start()
     {
         _instance = this;
         GameManager.Instance.fireTimeFactory = Instance;

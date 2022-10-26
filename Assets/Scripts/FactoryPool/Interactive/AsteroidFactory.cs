@@ -12,7 +12,7 @@ public class AsteroidFactory : MonoBehaviour
 
     ObjectPool<Asteroid> _pool;
 
-    void Awake()
+    void Start()
     {
         _instance = this;
         GameManager.Instance.asteroidFactory = Instance;

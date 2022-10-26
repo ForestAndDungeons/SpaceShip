@@ -12,7 +12,7 @@ public class RandomBulletFactory : MonoBehaviour
 
     ObjectPool<RandomBulletPU> _pool;
 
-    void Awake()
+    void Start()
     {
         _instance = this;
         GameManager.Instance.randomBulletFactory = Instance;
