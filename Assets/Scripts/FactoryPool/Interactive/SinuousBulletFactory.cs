@@ -12,7 +12,7 @@ public class SinuousBulletFactory : MonoBehaviour
 
     ObjectPool<SinuousBulletPU> _pool;
 
-    void Awake()
+    void Start()
     {
         _instance = this;
         GameManager.Instance.sinuousBulletFactory = Instance;

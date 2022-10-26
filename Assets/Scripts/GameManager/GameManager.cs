@@ -87,16 +87,7 @@ public class GameManager : MonoBehaviour
 
         EventManager.SubscribeToEvent(Contants.EVENT_LOSEGAME,DefeatScene);
 
-        //Credits
-        _jsonManager.LoadGame();
-        _credits = _jsonManager._data.credits;
-
-
-    }
-
-    void Start()
-    {
-        if(!PlayerPrefs.HasKey("_onMuted"))
+        if (!PlayerPrefs.HasKey("_onMuted"))
         {
             PlayerPrefs.SetInt("_onMuted", 0);
             _optionsManager.Load();

@@ -12,7 +12,7 @@ public class FireRateFactory : MonoBehaviour
 
     ObjectPool<FireRate> _pool;
 
-    void Awake()
+    void Start()
     {
         _instance = this;
         GameManager.Instance.fireRateFactory = Instance;
