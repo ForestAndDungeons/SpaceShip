@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class EnemyBase : CharacterBase
 {
@@ -14,7 +15,6 @@ public class EnemyBase : CharacterBase
 
     public void Movement()
     {
-
         _linealXAdvance.Advance(); 
     }
 
@@ -90,6 +90,11 @@ public class EnemyBase : CharacterBase
         }
 
         GameManager.Instance.SetCountDeadEnemies(1);
+
+        if (GameManager.Instance.GetCountDeadEnemies() == GameManager.Instance.GetEnemyManager().GetCounter())
+            Instantiate(GameManager.Instance.GetPrefabBoss(), new Vector3(50, 3, 30), Quaternion.identity);
+        else if (GameManager.Instance.GetCountDeadEnemies() > GameManager.Instance.GetEnemyManager().GetCounter())
+            GameManager.Instance.ChangeScene("Victory");
 
         Destroy(gameObject, 0.5f);
     }

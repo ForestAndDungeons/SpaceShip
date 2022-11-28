@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float _spawnTimeEnemy;
     [SerializeField] int _maxEnemies;
     [SerializeField] int _countDeadEnemies;
+    [SerializeField] Enemy _prefabBoss;
 
     [Header("Factories")]
     [HideInInspector] public BulletFactory bulletFactory;
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public RandomBulletFactory randomBulletFactory;
     [HideInInspector] public AsteroidBigFactory asteroidBigFactory;
 
+    bool flag = false;
     void Awake()
     {
         Time.timeScale = 1f;
@@ -106,8 +108,16 @@ public class GameManager : MonoBehaviour
 
             if(_enemyManager.GetCounter() <= _maxEnemies)
                 _enemyManager.ArtificialUpdate();
-            else if (_countDeadEnemies >= _enemyManager.GetCounter())
-                ChangeScene("Victory");
+            /*else if (_countDeadEnemies >= _enemyManager.GetCounter())
+                ChangeScene("Victory");*/
+
+            if (flag == false && _countDeadEnemies == _maxEnemies)
+            {
+                flag = true;
+                Instantiate(_prefabBoss, new Vector3(50, 3, 30), Quaternion.identity);
+            }
+            else if (_countDeadEnemies > _maxEnemies)
+                GameManager.Instance.ChangeScene("Victory");
         }
     }
 
@@ -135,6 +145,16 @@ public class GameManager : MonoBehaviour
     public void SetCredits(int value) { _credits = value; }
     public void AddCredits(int value) { _credits += value; _jsonManager._data.credits = _credits; ; EventManager.TriggerEvent(Contants.EVENT_ADDCREDITUI, _credits); }
     public int GetCredits() { return _credits; }
+
+    public int GetCountDeadEnemies() { return _countDeadEnemies; }
+    public int GetMaxEnemies() { return _maxEnemies; }
+    public Enemy GetPrefabBoss() { return _prefabBoss; }
+
+    public BoundManager GetBoundManager() { return _boundManager; }
+    public EnemyManager GetEnemyManager() { return _enemyManager; }
+    public AsteroidManager GetAsteroidManager() { return _asteroidManager; }
+    public SaveJSON GetJSONManager() { return _jsonManager; }
+    public void SetCountDeadEnemies(int value) { _countDeadEnemies += value; }
 
     public void DefeatScene(params object[] param)
     {
@@ -182,8 +202,4 @@ public class GameManager : MonoBehaviour
         Gizmos.DrawLine(botRightOffset, botLeftOffset);
         Gizmos.DrawLine(botLeftOffset, topLeftOffset);
     }
-
-    public BoundManager GetBoundManager() { return _boundManager; }
-    public SaveJSON GetJSONManager() { return _jsonManager; }
-    public void SetCountDeadEnemies(int value) { _countDeadEnemies += value; }
 }
