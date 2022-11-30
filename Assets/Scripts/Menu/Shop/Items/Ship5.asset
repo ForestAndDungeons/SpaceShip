@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13fcb1504d62df04c968074882b86af2, type: 3}
-  m_Name: Ship2
+  m_Name: Ship5
   m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 1405876428854690, guid: ed63b527d9a12d241ba6c89257a78eb4, type: 3}
-  id: 2
-  itemName: Ship 2
+  itemPrefab: {fileID: 2358195761363016792, guid: 65401e7b4ba0eb647b7d7a21768a3ac1, type: 3}
+  id: 5
+  itemName: Ship 5
   cost: 10
   isPowerUP: 0
   isBought: 0
-  mesh: {fileID: 3970065785520323010, guid: 15e01a88075383240a48bc4527c69658, type: 3}
-  material: {fileID: 2100000, guid: 2bd34ca215750fc48902c734d2d5d80f, type: 2}
+  mesh: {fileID: -2360042502595401169, guid: 73d017596d90716449488a7d74c0b954, type: 3}
+  material: {fileID: 2100000, guid: d58bf68b17f9a4240aaeb5c200c9a12c, type: 2}

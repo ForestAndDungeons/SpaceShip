@@ -12,6 +12,7 @@ public class Shop : MonoBehaviour
     [SerializeField] ShopItem[] _itemListSkin = new ShopItem[0];
     [SerializeField] ShopItem[] _itemListPowerUp = new ShopItem[0];
     [SerializeField] List<ItemButton> _itemListSK = new List<ItemButton>();
+    [SerializeField] List<ItemButton> _itemListPW = new List<ItemButton>();
     [SerializeField] TextMeshProUGUI _currentCredit;
 
     private void Start()
@@ -28,8 +29,14 @@ public class Shop : MonoBehaviour
         {
             var newItem = Instantiate(_itemPrefab, _gridGroupPU);
             newItem.SetItem(_itemListPowerUp[i],this);
+            _itemListPW.Add(newItem);
         }
-        CheckForCheckeables();
+        
+    }
+
+    private void Update()
+    {
+        CheckForCheckeables(_itemListSK,_itemListPW);
     }
 
     public void UpdateCurrentCredits()
@@ -37,22 +44,49 @@ public class Shop : MonoBehaviour
         _currentCredit.text = GameManager.Instance.GetCredits().ToString();
     }
 
-    public void CheckForCheckeables()
+    public void CheckForCheckeables(List<ItemButton> skinList,List<ItemButton> powerUpList )
     {
-        int checkeds = 0;
-        foreach (var itemSK in _itemListSK)
+        foreach (var item in skinList)
         {
-            Debug.Log(itemSK.name + " " + itemSK._select);
-            if (itemSK._select)
+            if (GameManager.Instance.skinCheckID == item.id)
             {
-                checkeds++;
-                if (checkeds > 1)
-                {
-                    itemSK.CheckDiseable();
-                }
-                Debug.Log(itemSK.name + "Esta seleccionado");
+                item.CheckActive(true);
+                GameManager.Instance.playerMesh = item.skinMesh;
+                GameManager.Instance.playerMaterial = item.skinMaterial;
+            }
+            else
+            {
+                item.CheckActive(false);
             }
         }
-        
-    }
+        foreach (var item in powerUpList)
+        {
+            if (GameManager.Instance.powerUpCheckID == item.id)
+            {
+                item.CheckActive(true);
+                if (item.isSinuous == true)
+                {
+                    GameManager.Instance.defaultBull = false;
+                    GameManager.Instance.isRandomBull = false;
+                    GameManager.Instance.isSinuousBull = true;
+                }
+                else if (item.isRandom == true)
+                {
+                    GameManager.Instance.defaultBull = false;
+                    GameManager.Instance.isSinuousBull = false;
+                    GameManager.Instance.isRandomBull = true;
+                }
+                else
+                {
+                    GameManager.Instance.isSinuousBull = false;
+                    GameManager.Instance.isRandomBull = false;
+                    GameManager.Instance.defaultBull = true;
+                }
+            }
+            else
+            {
+                item.CheckActive(false);
+            }
+        }
+    } 
 }

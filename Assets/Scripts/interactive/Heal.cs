@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shield : Interactive 
+public class Heal : Interactive 
 {
     void Update()
     {
@@ -11,7 +11,7 @@ public class Shield : Interactive
 
     public override void Interact(CharacterBase entity)
     {
-        entity.SetShieldUp(true);
+        entity.AddCurrentLife(2);
         OnInteraction();
     }
 
@@ -26,19 +26,19 @@ public class Shield : Interactive
         _currentDistance = 0;
     }
 
-    public static void TurnOn(Shield s)
+    public static void TurnOn(Heal h)
     {
-        s.gameObject.SetActive(true);
+        h.gameObject.SetActive(true);
     }
 
-    public static void TurnOff(Shield s)
+    public static void TurnOff(Heal h)
     {
-        s.gameObject.SetActive(false);
+        h.gameObject.SetActive(false);
     }
 
     public override void ReturnToPool()
     {
-        GameManager.Instance.shieldFactory.ReturnShield(this);
+        GameManager.Instance.healFactory.ReturnHeal(this);
     }
 
     public override IEnumerator WaitReturn()

@@ -14,6 +14,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] int _credits;
     public Player playerReference { get { return _player; } }
     public Player _player;
+    [SerializeField] Mesh _defaultMesh;
+    [SerializeField] Material _defaultMaterial;
+    public Mesh playerMesh;
+    public Material playerMaterial;
+
+    [Header("Shop")]
+    public int skinCheckID;
+    public int powerUpCheckID;
+    public List<int> boughtItemsID = new List<int>();
+    public bool defaultBull;
+    public bool isRandomBull;
+    public bool isSinuousBull;
+    
 
     [Header("Managers")]
     SaveJSON _jsonManager;
@@ -56,6 +69,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public FireRateFactory fireRateFactory;
     [HideInInspector] public FireTimeFactory fireTimeFactory;
     [HideInInspector] public ShieldFactory shieldFactory;
+    [HideInInspector] public HealFactory healFactory;
     [HideInInspector] public SinuousBulletFactory sinuousBulletFactory;
     [HideInInspector] public RandomBulletFactory randomBulletFactory;
     [HideInInspector] public AsteroidBigFactory asteroidBigFactory;
@@ -98,6 +112,16 @@ public class GameManager : MonoBehaviour
             _optionsManager.Load();
 
         AudioListener.pause = _optionsManager._onMuted;
+
+        if (playerMesh==null && playerMaterial==null)
+        {
+            playerMesh = _defaultMesh;
+            playerMaterial = _defaultMaterial;
+        }
+        if (isRandomBull == false && isSinuousBull == false)
+        {
+            defaultBull = true;
+        }
     }
 
     void Update()
@@ -139,9 +163,18 @@ public class GameManager : MonoBehaviour
     
 
     public void SaveGame() { _jsonManager.SaveGame(); }
-    public void LoadGame() { _jsonManager.LoadGame(); }
-    
-    
+    public void LoadGame() { 
+        _jsonManager.LoadGame();
+        foreach (var item in _jsonManager._data.boughtItemsID)
+        {
+            if (!boughtItemsID.Contains(item))
+            {
+                boughtItemsID.Add(item);
+            }
+        }
+    }
+
+
     public void SetCredits(int value) { _credits = value; }
     public void AddCredits(int value) { _credits += value; _jsonManager._data.credits = _credits; ; EventManager.TriggerEvent(Contants.EVENT_ADDCREDITUI, _credits); }
     public int GetCredits() { return _credits; }
