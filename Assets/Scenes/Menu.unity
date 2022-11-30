@@ -4125,7 +4125,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Watch ADs
+  m_text: Watch AD
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6627c2090da5ab14eb09f2713c143b8a, type: 2}
   m_sharedMaterial: {fileID: 2733937354259167917, guid: 6627c2090da5ab14eb09f2713c143b8a, type: 2}
