@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -273,6 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b706ad81b4c9d40867f0914e74e906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _staminaSystem: {fileID: 1351054369}
 --- !u!114 &105347442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1307,7 +1308,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5473016080943396156}
         m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
-        m_MethodName: ChangeScene
+        m_MethodName: ChangeSceneToLeve
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1319,24 +1320,12 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 5473016080943396156}
         m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
-        m_MethodName: ChangeMusic
+        m_MethodName: ChangeMusicToLevel
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 8300000, guid: 80848685bc489c749a9d3aeaa2ccc04b, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1351054369}
-        m_TargetAssemblyTypeName: StaminaSystem, Assembly-CSharp
-        m_MethodName: UseStamina
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1426,7 +1415,7 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 5473016080943396156}
           m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
-          m_MethodName: ChangeScene
+          m_MethodName: ChangeSceneToLeve
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1438,12 +1427,24 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 5473016080943396156}
           m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
-          m_MethodName: ChangeMusic
+          m_MethodName: ChangeMusicToLevel
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 8300000, guid: 80848685bc489c749a9d3aeaa2ccc04b, type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
             m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1351054369}
+          m_TargetAssemblyTypeName: StaminaSystem, Assembly-CSharp
+          m_MethodName: UseStamina
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -3425,6 +3426,7 @@ MonoBehaviour:
   _upSprite: {fileID: 21300000, guid: 8a6f536f4b2392f40afb62df609f6e40, type: 3}
   _soundOnIcon: {fileID: 0}
   _soundOffIcon: {fileID: 0}
+  _staminaSystem: {fileID: 0}
 --- !u!82 &690041982
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5016,6 +5018,7 @@ MonoBehaviour:
   _upSprite: {fileID: 21300000, guid: 8a6f536f4b2392f40afb62df609f6e40, type: 3}
   _soundOnIcon: {fileID: 2119624309}
   _soundOffIcon: {fileID: 1262052580}
+  _staminaSystem: {fileID: 0}
 --- !u!82 &1290209333
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5432,6 +5435,8 @@ MonoBehaviour:
   timeToRecharge: 60
   staminaText: {fileID: 156737268}
   timerText: {fileID: 242294020}
+  _playButton: {fileID: 0}
+  currentStamina: 0
 --- !u!1 &1463920724
 GameObject:
   m_ObjectHideFlags: 0
@@ -6401,6 +6406,7 @@ MonoBehaviour:
   _upSprite: {fileID: 21300000, guid: 8a6f536f4b2392f40afb62df609f6e40, type: 3}
   _soundOnIcon: {fileID: 0}
   _soundOffIcon: {fileID: 0}
+  _staminaSystem: {fileID: 0}
 --- !u!82 &1747046573
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7708,6 +7714,7 @@ MonoBehaviour:
   _upSprite: {fileID: 21300000, guid: 8a6f536f4b2392f40afb62df609f6e40, type: 3}
   _soundOnIcon: {fileID: 2119624309}
   _soundOffIcon: {fileID: 1262052580}
+  _staminaSystem: {fileID: 1351054369}
 --- !u!82 &5473016080943396157
 AudioSource:
   m_ObjectHideFlags: 0

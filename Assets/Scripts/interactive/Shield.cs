@@ -6,7 +6,7 @@ public class Shield : Interactive
 {
     void Update()
     {
-        Movement();
+        MovementRight();
     }
 
     public override void Interact(CharacterBase entity)

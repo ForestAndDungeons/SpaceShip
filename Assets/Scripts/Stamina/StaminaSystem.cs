@@ -16,8 +16,9 @@ public class StaminaSystem : MonoBehaviour
     DateTime nextStaminaTime;
     DateTime lastStaminaTime;
 
-    int currentStamina;
+    [SerializeField] int currentStamina;
     bool rechargin;
+
     public bool HasEnoughStamina(int stamina) => currentStamina - stamina >= 0;
 
     private void Start()
@@ -145,4 +146,8 @@ public class StaminaSystem : MonoBehaviour
             return DateTime.Parse(date);
         }
     }
+
+    public int GetCurrentStamina() { return currentStamina; }
+    public void AddCurrentStamina(int value) { if(currentStamina < maxStamina) currentStamina += value; }
+
 }
