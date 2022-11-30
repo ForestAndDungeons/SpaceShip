@@ -7,6 +7,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
 {
     string gameId = "5042885";
     string adID = "Rewarded_Android";
+    [SerializeField] StaminaSystem _staminaSystem;
 
     void Start()
     {
@@ -43,6 +44,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
         {
             if (showResult == ShowResult.Finished)
             {
+                _staminaSystem.AddCurrentStamina(5);
                 Debug.Log("Da la recompenza");
             }
             else

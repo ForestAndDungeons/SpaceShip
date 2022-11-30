@@ -49,6 +49,17 @@ public abstract class Interactive  : MonoBehaviour
             ReturnToPool();
         }
     }
+    public virtual void MovementRight()
+    {
+        transform.position += transform.right * _speed * Time.deltaTime;
+
+        _currentDistance += _speed * Time.deltaTime;
+
+        if (_currentDistance > _maxDistance)
+        {
+            ReturnToPool();
+        }
+    }
 
     public abstract void ReturnToPool();
     public abstract IEnumerator WaitReturn();
