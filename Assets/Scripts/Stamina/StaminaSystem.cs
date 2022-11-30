@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TMPro;
+using UnityEngine.UI;
 
 public class StaminaSystem : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class StaminaSystem : MonoBehaviour
     [SerializeField] float timeToRecharge = 10f;
     [SerializeField] TextMeshProUGUI staminaText = null;
     [SerializeField] TextMeshProUGUI timerText = null;
+    [SerializeField] Button _playButton;
 
     DateTime nextStaminaTime;
     DateTime lastStaminaTime;
