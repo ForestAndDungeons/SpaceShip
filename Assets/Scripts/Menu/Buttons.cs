@@ -12,6 +12,8 @@ public class Buttons : MonoBehaviour
     [SerializeField] Image _soundOnIcon;
     [SerializeField] Image _soundOffIcon;
 
+    [SerializeField] StaminaSystem _staminaSystem;
+
     AudioSource _myAudioSource;
 
     void Awake()
@@ -31,8 +33,19 @@ public class Buttons : MonoBehaviour
     }
 
     public void ChangeScene(string sceneToLoad) { GameManager.Instance.ChangeScene(sceneToLoad); }
-    public void ChangeSceneToLevel(string sceneToLoad) { GameManager.Instance.ChangeScene(sceneToLoad); }
+    public void ChangeSceneToLeve(string sceneToLoad)
+    {
+        if(_staminaSystem.GetCurrentStamina() > 0)
+            GameManager.Instance.ChangeScene(sceneToLoad); 
+    }
+
     public void ChangeMusic(AudioClip clip) { GameManager.Instance.ChangeMusic(clip); }
+    public void ChangeMusicToLevel(AudioClip clip)
+    {
+        if (_staminaSystem.GetCurrentStamina() > 0)
+            GameManager.Instance.ChangeMusic(clip);
+    }
+
     public void Pause() { GameManager.Instance.Pause(); }
     public void UnPause() { GameManager.Instance.UnPause(); }
     public void QuitGame() { GameManager.Instance.QuitGame(); }
