@@ -6,6 +6,8 @@ public abstract class PlayerBase : CharacterBase
     [SerializeField] protected PlayerBaseSO _data;
     [SerializeField] protected Controller _controller;
     [SerializeField] float _startTimeResetBulletAdvance;
+    [SerializeField] protected Mesh _playerMesh;
+    [SerializeField] protected Material _playerMaterial;
     float _timeResetBulletAdvance;
 
     public void Movement(Transform player)

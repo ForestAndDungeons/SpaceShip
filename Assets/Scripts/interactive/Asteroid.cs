@@ -18,21 +18,28 @@ public class Asteroid : Interactive
         if(entity != null)
             entity.OnDamage(_damage);
 
-        _chance = Random.Range(0, 11);
+        _chance = Random.Range(0, 10);
 
-        if (_chance <= 2)
+        if (_chance <= 1)
         {
-            RandomBulletPU r = GameManager.Instance.randomBulletFactory.GetRandomBullet();
-
-            r.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-            r.transform.forward = Vector3.forward;
-        }
-        else if (_chance >= 8)
-        {
-            SinuousBulletPU s = GameManager.Instance.sinuousBulletFactory.GetSinuous();
+            Shield s = GameManager.Instance.shieldFactory.GetShield();
 
             s.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             s.transform.forward = Vector3.forward;
+        }
+        else if (_chance > 1&&_chance <= 3)
+        {
+            Credits c = GameManager.Instance.creditsFactory.GetCredits();
+
+            c.transform.position = new Vector3(transform.position.x, 1, transform.position.z);
+            c.transform.forward = Vector3.forward;
+        }
+        else if (_chance >= 9)
+        {
+            Heal h = GameManager.Instance.healFactory.GetHeal();
+
+            h.transform.position = new Vector3(transform.position.x, 1, transform.position.z);
+            h.transform.forward = Vector3.forward;
         }
 
         OnInteraction();

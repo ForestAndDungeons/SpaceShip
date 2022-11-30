@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: PowerUp1
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 2248018815511771780, guid: e470ae051baf8994b8f09a68aff6ef2b, type: 3}
+  id: 10
   itemName: Ramdom Shoot
-  cost: 50
-  bought: 0
-  select: 0
+  cost: 15
+  isPowerUP: 1
+  isBought: 0
+  mesh: {fileID: 0}
+  material: {fileID: 0}
+  isSinuous: 0
+  isRandom: 1

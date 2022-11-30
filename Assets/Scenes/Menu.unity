@@ -2415,7 +2415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &433583555
 Transform:
   m_ObjectHideFlags: 0
@@ -4125,7 +4125,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Watch ADs
+  m_text: Watch AD
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6627c2090da5ab14eb09f2713c143b8a, type: 2}
   m_sharedMaterial: {fileID: 2733937354259167917, guid: 6627c2090da5ab14eb09f2713c143b8a, type: 2}
@@ -4588,10 +4588,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c3ff8549e78562a40a44691722617886, type: 2}
   - {fileID: 11400000, guid: 0b446cce5531a7644b2df48e12060d5e, type: 2}
   - {fileID: 11400000, guid: aa1401e05b100bc42802fbe9c43781b3, type: 2}
+  - {fileID: 11400000, guid: eb1f5a6c85fbc294eb728e7bd9fa5fc3, type: 2}
   _itemListPowerUp:
   - {fileID: 11400000, guid: 7e0339aa1a0f23447b66fe998fb1c8da, type: 2}
   - {fileID: 11400000, guid: 4dbc3b165a6dc924eafdb403ce4dc9af, type: 2}
   _itemListSK: []
+  _itemListPW: []
   _currentCredit: {fileID: 575765717}
 --- !u!1 &1262052578
 GameObject:
@@ -4668,6 +4670,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262052578}
   m_CullTransparentMesh: 1
+--- !u!114 &1267968911 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1003183416795780584, guid: 97ad900c6cc5a2549a7ca551dfcfbf6f, type: 3}
+  m_PrefabInstance: {fileID: 1003183417943985484}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d599e76662001fb4fb0ef7d9b3827545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1290209330
 GameObject:
   m_ObjectHideFlags: 0
@@ -6440,6 +6453,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1267968911}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: SaveGame
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &2003171972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7032,7 +7057,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1003183416795780584, guid: 97ad900c6cc5a2549a7ca551dfcfbf6f, type: 3}
       propertyPath: _credits
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1003183416795780584, guid: 97ad900c6cc5a2549a7ca551dfcfbf6f, type: 3}
       propertyPath: _maxEnemies
@@ -7043,6 +7068,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 276708550406209200, guid: c1c80ee9b2894714384c1cf6e83f444d, type: 3}
     - target: {fileID: 1003183416795780584, guid: 97ad900c6cc5a2549a7ca551dfcfbf6f, type: 3}
+      propertyPath: _defaultMesh
+      value: 
+      objectReference: {fileID: -4440479937110939489, guid: 0c96b086dbd8f5647806bfb7ee9b928a, type: 3}
+    - target: {fileID: 1003183416795780584, guid: 97ad900c6cc5a2549a7ca551dfcfbf6f, type: 3}
       propertyPath: _soundOnIcon
       value: 
       objectReference: {fileID: 2119624309}
@@ -7050,6 +7079,18 @@ PrefabInstance:
       propertyPath: _soundOffIcon
       value: 
       objectReference: {fileID: 1262052580}
+    - target: {fileID: 1003183416795780584, guid: 97ad900c6cc5a2549a7ca551dfcfbf6f, type: 3}
+      propertyPath: _defaultMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: ec39a84ad2f7de748af283edd7ffa3c1, type: 2}
+    - target: {fileID: 1003183416795780584, guid: 97ad900c6cc5a2549a7ca551dfcfbf6f, type: 3}
+      propertyPath: playerDefaultMesh
+      value: 
+      objectReference: {fileID: -4440479937110939489, guid: 0c96b086dbd8f5647806bfb7ee9b928a, type: 3}
+    - target: {fileID: 1003183416795780584, guid: 97ad900c6cc5a2549a7ca551dfcfbf6f, type: 3}
+      propertyPath: playerDefaultMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: ec39a84ad2f7de748af283edd7ffa3c1, type: 2}
     - target: {fileID: 1003183416795780586, guid: 97ad900c6cc5a2549a7ca551dfcfbf6f, type: 3}
       propertyPath: m_RootOrder
       value: 3
