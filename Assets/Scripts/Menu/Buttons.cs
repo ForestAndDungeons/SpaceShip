@@ -31,6 +31,7 @@ public class Buttons : MonoBehaviour
     }
 
     public void ChangeScene(string sceneToLoad) { GameManager.Instance.ChangeScene(sceneToLoad); }
+    public void ChangeSceneToLevel(string sceneToLoad) { GameManager.Instance.ChangeScene(sceneToLoad); }
     public void ChangeMusic(AudioClip clip) { GameManager.Instance.ChangeMusic(clip); }
     public void Pause() { GameManager.Instance.Pause(); }
     public void UnPause() { GameManager.Instance.UnPause(); }
@@ -39,4 +40,6 @@ public class Buttons : MonoBehaviour
     public void LoadGame() { GameManager.Instance.LoadGame(); GameManager.Instance.SetCredits(GameManager.Instance.GetJSONManager()._data.credits); }
     public void Mute() { GameManager.Instance.Mute(_soundOnIcon, _soundOffIcon); }
     public void UpdateButtonIcon() { GameManager.Instance.UpdateButtonIcon(_soundOnIcon, _soundOffIcon); }
+
+
 }
