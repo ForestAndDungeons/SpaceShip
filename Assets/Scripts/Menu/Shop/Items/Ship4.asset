@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Ship4
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 2079920311513257197, guid: 37c2cffcc771e8842a79956089b9357e, type: 3}
+  id: 4
   itemName: Ship 4
-  cost: 400
-  bought: 0
-  select: 0
+  cost: 10
+  isPowerUP: 0
+  isBought: 0
+  mesh: {fileID: -4948130667794465799, guid: 4ac596a5da39c934992511e9527a6984, type: 3}
+  material: {fileID: 2100000, guid: 020568ce6bb9b3245a24630d5282ca24, type: 2}

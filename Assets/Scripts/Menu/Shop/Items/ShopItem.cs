@@ -6,16 +6,13 @@ using UnityEngine;
 public class ShopItem : ScriptableObject
 {
     public GameObject itemPrefab;
+    public int id;
     public string itemName;
     public int cost;
-    public bool bought;
-    public bool select;
-
-
-    public void UpdateValues(int newCost, bool newBought, bool newSelect)
-    {
-        cost = newCost;
-        bought = newBought;
-        select = newSelect;
-    }
+    public bool isPowerUP;
+    public bool isBought;
+    public Mesh mesh;
+    public Material material;
+    public bool isSinuous;
+    public bool isRandom;
 }

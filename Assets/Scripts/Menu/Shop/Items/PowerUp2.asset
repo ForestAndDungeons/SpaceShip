@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: PowerUp2
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 5309273274740537656, guid: 05395911f330bce4585005f3326d10ef, type: 3}
+  id: 11
   itemName: Sinuous Shoot
-  cost: 150
-  bought: 0
-  select: 0
+  cost: 5
+  isPowerUP: 1
+  isBought: 0
+  mesh: {fileID: 0}
+  material: {fileID: 0}
+  isSinuous: 1
+  isRandom: 0

@@ -85,8 +85,16 @@ public abstract class CharacterBase : MonoBehaviour , IObservable
     public void SetSpeed(float value) { _maxSpeed = value; }
     public void AddFireRate(int value) { _rateOfFire += value; }
     public void AddFireBurst(int value) { _burstSize += value; }
+    public void AddCurrentLife(int value) 
+    {
+        if (_currentHealth < _maxHealth)
+        {
+            _currentHealth += value;
+            EventManager.TriggerEvent(Contants.EVENT_PLAYERONDAMAGE, _currentHealth);
+        }
+    }
     public void ReduceShootTime(float value) { _shootTime -= value; }
-    public void SetShieldUps(bool value) { _isShieldUp = value; _shield.SetActive(value); }
+    
     public void SetIsRandomBullet(bool value) { _isRandomBullet = value;}
     public void SetIsSinuousBullet(bool value) { _isSinuousBullet = value;}
 }

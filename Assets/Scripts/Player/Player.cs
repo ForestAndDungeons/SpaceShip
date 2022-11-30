@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Player : PlayerBase
 {
+    
     void Awake()
     {
+        GetComponentInChildren<MeshFilter>().mesh = GameManager.Instance.playerMesh;
+        GetComponentInChildren<MeshRenderer>().material = GameManager.Instance.playerMaterial;
         _maxHealth = _data.maxHealth;
         _currentHealth = _data.maxHealth;
         _maxSpeed = _data.maxSpeed;
@@ -16,6 +19,8 @@ public class Player : PlayerBase
         //_shootTimer = _shootTime;
         _canFire = true;
         _shooting = false;
+        _isRandomBullet = GameManager.Instance.isRandomBull;
+        _isSinuousBullet = GameManager.Instance.isSinuousBull;
     }
 
     private void Start()
