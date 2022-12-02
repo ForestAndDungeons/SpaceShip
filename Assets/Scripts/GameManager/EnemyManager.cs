@@ -18,7 +18,7 @@ public class EnemyManager
         _boundWidth = boundWidth;
         _boundHeight = boundHeight;
         _boundOffset = boundOffset;
-        _count = 1;
+        _count = 0;
     }
 
     public void ArtificialUpdate()

@@ -44,7 +44,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
         {
             if (showResult == ShowResult.Finished)
             {
-                _staminaSystem.AddCurrentStamina(5);
+                _staminaSystem.AddCurrentStamina(2);
                 Debug.Log("Da la recompenza");
             }
             else

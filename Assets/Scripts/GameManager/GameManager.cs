@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public Mesh playerMesh;
     public Material playerMaterial;
 
+    [SerializeField] float _notificationTime;
+
     [Header("Shop")]
     public int skinCheckID;
     public int powerUpCheckID;
@@ -101,7 +103,7 @@ public class GameManager : MonoBehaviour
         _enemyManager = new EnemyManager(_spawnTimeEnemy, _boundWidth, _boundHeight, _boundOffset);
         _optionsManager = new OptionsManager();
         _audioManager = new AudioManager(_myAudioSource, _audioClips);
-        _notificationManager = new NotificationManager();
+        _notificationManager = new NotificationManager(_notificationTime);
 
         EventManager.SubscribeToEvent(Contants.EVENT_LOSEGAME,DefeatScene);
 
@@ -132,18 +134,8 @@ public class GameManager : MonoBehaviour
         {
             _asteroidManager.ArtificialUpdate();
 
-            if(_enemyManager.GetCounter() <= _maxEnemies)
+            if(_enemyManager.GetCounter() < _maxEnemies)
                 _enemyManager.ArtificialUpdate();
-            /*else if (_countDeadEnemies >= _enemyManager.GetCounter())
-                ChangeScene("Victory");*/
-
-            if (flag == false && _countDeadEnemies == _maxEnemies)
-            {
-                flag = true;
-                Instantiate(_prefabBoss, new Vector3(50, 3, 30), Quaternion.identity);
-            }
-            else if (_countDeadEnemies > _maxEnemies)
-                GameManager.Instance.ChangeScene("Victory");
         }
     }
 
@@ -153,7 +145,7 @@ public class GameManager : MonoBehaviour
     public void ChangeScene(string sceneToLoad) { _levelManager.ChangeScene(sceneToLoad); ResetEnemyCounters();}
     public void QuitGame() { _levelManager.QuitGame(); }
 
-    public void ResetEnemyCounters() { _countDeadEnemies = 0; _enemyManager.SetCounter(1); }
+    public void ResetEnemyCounters() { _countDeadEnemies = 0; _enemyManager.SetCounter(0); }
 
     public void ChangeMusic(AudioClip clip) { _audioManager.ChangeMusic(clip); }
 

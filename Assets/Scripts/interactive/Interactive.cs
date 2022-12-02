@@ -39,10 +39,10 @@ public abstract class Interactive  : MonoBehaviour
 
     public virtual void Movement()
     {
-        transform.forward = Vector3.forward * -1;
-        transform.position += transform.forward * _speed * Time.deltaTime;
+        transform.forward = FlyweightPointer.InteractiveForward.dir * -1;
+        transform.position += transform.forward * FlyweightPointer.InteractiveForward.speed * Time.deltaTime;
 
-        _currentDistance += _speed * Time.deltaTime;
+        _currentDistance += FlyweightPointer.InteractiveForward.speed * Time.deltaTime;
 
         if (_currentDistance > _maxDistance)
         {
@@ -51,9 +51,9 @@ public abstract class Interactive  : MonoBehaviour
     }
     public virtual void MovementRight()
     {
-        transform.position += transform.right * _speed * Time.deltaTime;
+        transform.position += transform.right * FlyweightPointer.InteractiveRight.speed * Time.deltaTime;
 
-        _currentDistance += _speed * Time.deltaTime;
+        _currentDistance += FlyweightPointer.InteractiveRight.speed * Time.deltaTime;
 
         if (_currentDistance > _maxDistance)
         {

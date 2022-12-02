@@ -4,24 +4,15 @@ using UnityEngine;
 
 public class FlyweightPointer : MonoBehaviour
 {
-    public static readonly Flyweight Bigasteroidred = new Flyweight
-    {
-        speed = 15,
-        damage = 2,
-        dir = Vector3.down
-    };
-
-    public static readonly Flyweight Smallasteroidred = new Flyweight
+    public static readonly Flyweight InteractiveForward = new Flyweight
     {
         speed = 30,
-        damage = 1,
-        dir = Vector3.down
+        dir = Vector3.forward
     };
 
-    public static readonly Flyweight Enemyship = new Flyweight
+    public static readonly Flyweight InteractiveRight = new Flyweight
     {
-        speed = 20,
-      
+        speed = 25,
+        dir = Vector3.right
     };
-
 }
