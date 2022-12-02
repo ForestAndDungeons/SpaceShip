@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Notifications.Android;
 using System;
-public class NotificationsManager : MonoBehaviour
+public class NotificationManager : MonoBehaviour
 {
-    private void Start()
+    public NotificationManager()
     {
         AndroidNotificationCenter.CancelAllDisplayedNotifications();
         AndroidNotificationCenter.CancelAllScheduledNotifications();
@@ -16,8 +16,6 @@ public class NotificationsManager : MonoBehaviour
             Name = "Reminder Notification",
             Description = "Disturb the user",
             Importance = Importance.High
-
-
         };
 
         AndroidNotificationCenter.RegisterNotificationChannel(notifChannel);
@@ -29,6 +27,5 @@ public class NotificationsManager : MonoBehaviour
         notification.SmallIcon = "icon_reminders";
 
         AndroidNotificationCenter.SendNotification(notification, "reminder_notif_ch");
-
     }
 }

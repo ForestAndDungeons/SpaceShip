@@ -1298,7 +1298,7 @@ Transform:
   - {fileID: 336322744}
   - {fileID: 885150595}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &743145971
 GameObject:
@@ -1920,7 +1920,7 @@ PrefabInstance:
       objectReference: {fileID: 24100000, guid: 1d5d03c212beacd448d4ca10bf8ad656, type: 2}
     - target: {fileID: 1003183416795780584, guid: 97ad900c6cc5a2549a7ca551dfcfbf6f, type: 3}
       propertyPath: _maxEnemies
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1003183416795780584, guid: 97ad900c6cc5a2549a7ca551dfcfbf6f, type: 3}
       propertyPath: _prefabBoss
@@ -4920,7 +4920,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866240071633003387, guid: eaae3fdc1d141364580f493e3a7c5a57, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5866240071633003387, guid: eaae3fdc1d141364580f493e3a7c5a57, type: 3}
       propertyPath: m_LocalPosition.x

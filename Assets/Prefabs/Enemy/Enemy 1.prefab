@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &12337088946121188
 Transform:
   m_ObjectHideFlags: 0
@@ -283,7 +283,6 @@ MonoBehaviour:
   _audioClips: []
   isRandomAdvance: 0
   isSinuousAdvance: 0
-  _boss: {fileID: 0}
 --- !u!199 &3159049011242473577
 ParticleSystemRenderer:
   serializedVersion: 6

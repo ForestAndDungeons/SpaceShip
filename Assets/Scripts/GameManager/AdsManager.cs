@@ -5,11 +5,11 @@ using UnityEngine.Advertisements;
 
 public class AdsManager : MonoBehaviour, IUnityAdsListener
 {
-    string gameId = "5042885";
-    string adID = "Rewarded_Android";
+    string gameId = "5057479";
+    string adID;
     [SerializeField] StaminaSystem _staminaSystem;
 
-    void Start()
+    public void Start()
     {
         Advertisement.AddListener(this);
         Advertisement.Initialize(gameId);
