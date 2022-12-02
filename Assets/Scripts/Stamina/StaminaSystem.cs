@@ -11,7 +11,6 @@ public class StaminaSystem : MonoBehaviour
     [SerializeField] float timeToRecharge = 10f;
     [SerializeField] TextMeshProUGUI staminaText = null;
     [SerializeField] TextMeshProUGUI timerText = null;
-    [SerializeField] Button _playButton;
 
     DateTime nextStaminaTime;
     DateTime lastStaminaTime;

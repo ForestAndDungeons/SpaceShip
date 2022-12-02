@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     EnemyManager _enemyManager;
     OptionsManager _optionsManager;
     AudioManager _audioManager;
+    NotificationManager _notificationManager;
 
     [Header("Audio")]
     public AudioClip[] _audioClips;
@@ -100,6 +101,7 @@ public class GameManager : MonoBehaviour
         _enemyManager = new EnemyManager(_spawnTimeEnemy, _boundWidth, _boundHeight, _boundOffset);
         _optionsManager = new OptionsManager();
         _audioManager = new AudioManager(_myAudioSource, _audioClips);
+        _notificationManager = new NotificationManager();
 
         EventManager.SubscribeToEvent(Contants.EVENT_LOSEGAME,DefeatScene);
 

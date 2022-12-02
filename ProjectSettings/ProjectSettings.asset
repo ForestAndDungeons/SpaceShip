@@ -771,7 +771,7 @@ PlayerSettings:
     Purchasing: 0
     UDP: 0
     UNet: 1
-    Unity Ads: 0
+    Unity Ads: 1
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -785,10 +785,10 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 053821e8-80e2-4966-987b-fcc218fccc31
+  cloudProjectId: 538b9a98-6db3-4611-8a74-395894cd3e34
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: SpaceShip (2)
+  projectName: Spaceship
   organizationId: 91e3a5d-157c-4372-b42c-57ab5c0374f8
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
