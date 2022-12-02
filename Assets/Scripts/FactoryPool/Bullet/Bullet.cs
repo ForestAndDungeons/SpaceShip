@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : Interactive, IObserver
 {
-    [SerializeField] float _damage;
+    [SerializeField] protected float _damage;
 
     [Header("SINUOUS BULLET")]
     [SerializeField] float _amplitud;
@@ -28,6 +28,7 @@ public class Bullet : Interactive, IObserver
         _player = GameManager.Instance.playerReference;
         _player.Subscribe(this);
     }
+
     void Update()
     {
         Movement();
@@ -47,7 +48,6 @@ public class Bullet : Interactive, IObserver
         if (_currentAdvance != null) _currentAdvance.Advance();
         _currentDistance += _speed * Time.deltaTime;
         if (_currentDistance > _maxDistance) ReturnToPool();
-
     }
 
     void OnEnable()
@@ -107,6 +107,4 @@ public class Bullet : Interactive, IObserver
         _randomAdvance = new SinuousAdvance(transform, Random.Range(50, 61), Random.Range(10, 71), Random.Range(0, 9), Random.Range(0, 11), Random.Range(0, 11));
         _currentAdvance = _randomAdvance;
     }
-
-
 }

@@ -168,7 +168,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     public void SetCredits(int value) { _credits = value; }
     public void AddCredits(int value) { _credits += value; _jsonManager._data.credits = _credits; ; EventManager.TriggerEvent(Contants.EVENT_ADDCREDITUI, _credits); }
     public int GetCredits() { return _credits; }
