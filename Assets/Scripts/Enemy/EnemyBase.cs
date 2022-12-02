@@ -89,12 +89,14 @@ public class EnemyBase : CharacterBase
         }
 
         GameManager.Instance.SetCountDeadEnemies(1);
+        Debug.Log(GameManager.Instance.GetEnemyManager().GetCounter());
+        Debug.Log(GameManager.Instance.GetCountDeadEnemies());
 
-        if (GameManager.Instance.GetCountDeadEnemies() == GameManager.Instance.GetEnemyManager().GetCounter())
+        if (GameManager.Instance.GetCountDeadEnemies() == GameManager.Instance.GetEnemyManager().GetCounter() && !CompareTag("Boss"))
             Instantiate(GameManager.Instance.GetPrefabBoss(), new Vector3(50, 3, 30), Quaternion.identity);
         else if (GameManager.Instance.GetCountDeadEnemies() > GameManager.Instance.GetEnemyManager().GetCounter())
             GameManager.Instance.ChangeScene("Victory");
 
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject, 0.01f);
     }
 }

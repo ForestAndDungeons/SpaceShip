@@ -23,14 +23,6 @@ public class Enemy : EnemyBase
         Movement();
         if(_canFire)
             Shoot();
-
-        if (!flag && GameManager.Instance.GetCountDeadEnemies() == GameManager.Instance.GetEnemyManager().GetCounter())
-        {
-            flag = true;
-            Instantiate(GameManager.Instance.GetPrefabBoss(), new Vector3(50, 3, 30), Quaternion.identity);
-        }
-        if (GameManager.Instance.GetCountDeadEnemies() > GameManager.Instance.GetEnemyManager().GetCounter())
-            GameManager.Instance.ChangeScene("Victory");
     }
 
     public void OnTriggerEnter(Collider other)

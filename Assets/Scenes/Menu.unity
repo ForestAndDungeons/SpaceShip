@@ -4516,7 +4516,7 @@ RectTransform:
   m_Father: {fileID: 464729644}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.08374979}
+  m_AnchorMin: {x: 0, y: 0.08374982}
   m_AnchorMax: {x: 1, y: 0.9999998}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -5432,7 +5432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxStamina: 10
-  timeToRecharge: 60
+  timeToRecharge: 300
   staminaText: {fileID: 156737268}
   timerText: {fileID: 242294020}
   currentStamina: 0
@@ -5518,8 +5518,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1090649525}
   m_HandleRect: {fileID: 1090649524}
   m_Direction: 2
-  m_Value: 0.9999995
-  m_Size: 0.91625017
+  m_Value: 0.99999774
+  m_Size: 0.91625
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6704,9 +6704,9 @@ RectTransform:
   m_Father: {fileID: 690041980}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -370}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 484, y: -370}
   m_SizeDelta: {x: 380, y: 112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2003171970
@@ -7394,7 +7394,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1003183416795780584, guid: 97ad900c6cc5a2549a7ca551dfcfbf6f, type: 3}
       propertyPath: _credits
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1003183416795780584, guid: 97ad900c6cc5a2549a7ca551dfcfbf6f, type: 3}
       propertyPath: _maxEnemies
@@ -7420,6 +7420,10 @@ PrefabInstance:
       propertyPath: _defaultMaterial
       value: 
       objectReference: {fileID: 2100000, guid: ec39a84ad2f7de748af283edd7ffa3c1, type: 2}
+    - target: {fileID: 1003183416795780584, guid: 97ad900c6cc5a2549a7ca551dfcfbf6f, type: 3}
+      propertyPath: _notificationTime
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 1003183416795780584, guid: 97ad900c6cc5a2549a7ca551dfcfbf6f, type: 3}
       propertyPath: playerDefaultMesh
       value: 
