@@ -64,21 +64,21 @@ public class EnemyBase : CharacterBase
             Shield s = GameManager.Instance.shieldFactory.GetShield();
 
             s.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-            s.transform.forward = Vector3.forward;
+            //s.transform.forward = Vector3.forward;
         }
         else if (_chance == 4)
         {
             FireRate r = GameManager.Instance.fireRateFactory.GetFireRate();
 
             r.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-            r.transform.forward = Vector3.forward;
+            //r.transform.forward = Vector3.forward;
         }
         else if (_chance == 5)
         {
             FireBurst b = GameManager.Instance.fireBurstFactory.GetFireBurst();
 
             b.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-            b.transform.forward = Vector3.forward;
+            //b.transform.forward = Vector3.forward;
         }
         else if (_chance >= 7)
         {
