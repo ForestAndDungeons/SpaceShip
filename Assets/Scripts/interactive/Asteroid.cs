@@ -24,7 +24,7 @@ public class Asteroid : Interactive
             Shield s = GameManager.Instance.shieldFactory.GetShield();
 
             s.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-            s.transform.forward = Vector3.forward;
+            //s.transform.forward = Vector3.forward;
         }
         else if (_chance > 1&&_chance <= 3)
         {
@@ -38,7 +38,7 @@ public class Asteroid : Interactive
             Heal h = GameManager.Instance.healFactory.GetHeal();
 
             h.transform.position = new Vector3(transform.position.x, 1, transform.position.z);
-            h.transform.forward = Vector3.forward;
+            //h.transform.forward = Vector3.forward;
         }
 
         OnInteraction();
