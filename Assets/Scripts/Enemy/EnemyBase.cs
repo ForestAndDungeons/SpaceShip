@@ -57,7 +57,7 @@ public class EnemyBase : CharacterBase
 
     public override void OnDeath()
     {
-        _chance = Random.Range(0, 11);
+        _chance = Random.Range(0, 10);
 
         if (_chance <= 3)
         {
@@ -80,12 +80,19 @@ public class EnemyBase : CharacterBase
             b.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             //b.transform.forward = Vector3.forward;
         }
-        else if (_chance >= 7)
+        else if (_chance >= 6 && _chance <= 8)
         {
             Credits c = GameManager.Instance.creditsFactory.GetCredits();
 
             c.transform.position = new Vector3(transform.position.x, 1, transform.position.z);
             c.transform.forward = Vector3.forward;
+        }
+        else if (_chance >= 9)
+        {
+            LevelUpBullet b = GameManager.Instance.levelUpBulletFactory.GetLevelUpBullet();
+
+            b.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+            //b.transform.forward = Vector3.forward;
         }
 
         GameManager.Instance.SetCountDeadEnemies(1);

@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public SinuousBulletFactory sinuousBulletFactory;
     [HideInInspector] public RandomBulletFactory randomBulletFactory;
     [HideInInspector] public AsteroidBigFactory asteroidBigFactory;
+    [HideInInspector] public LevelUpBulletFactory levelUpBulletFactory;
 
     bool flag = false;
     void Awake()

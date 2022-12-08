@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : PlayerBase
 {
-    
     void Awake()
     {
         GetComponentInChildren<MeshFilter>().mesh = GameManager.Instance.playerMesh;
