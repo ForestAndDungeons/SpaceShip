@@ -40,7 +40,7 @@ public class ImproveBullet : Interactive
 
     public override void ReturnToPool()
     {
-        GameManager.Instance.fireRateFactory.ReturnFireRate(this);
+        //GameManager.Instance.fireRateFactory.ReturnFireRate(this);
     }
 
     public override IEnumerator WaitReturn()
