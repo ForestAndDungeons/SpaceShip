@@ -28,7 +28,10 @@ public class GameManager : MonoBehaviour
     public bool defaultBull;
     public bool isRandomBull;
     public bool isSinuousBull;
-    
+
+    [Header("Screen Manager")]
+    public Transform mainCanvas;
+    [SerializeField] Transform mainTransf;
 
     [Header("Managers")]
     SaveJSON _jsonManager;
@@ -40,6 +43,7 @@ public class GameManager : MonoBehaviour
     OptionsManager _optionsManager;
     AudioManager _audioManager;
     NotificationManager _notificationManager;
+    ScreenManager _screenManager;
 
     [Header("Audio")]
     public AudioClip[] _audioClips;
@@ -104,6 +108,7 @@ public class GameManager : MonoBehaviour
         _optionsManager = new OptionsManager();
         _audioManager = new AudioManager(_myAudioSource, _audioClips);
         _notificationManager = new NotificationManager(_notificationTime);
+        _screenManager = new ScreenManager();
 
         EventManager.SubscribeToEvent(Contants.EVENT_LOSEGAME,DefeatScene);
 
@@ -128,6 +133,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /*private void Start()
+    {
+        var screenMenu = Instantiate(Resources.Load<ScreenMenuPanel>("MenuPanel"), mainCanvas);
+        _screenManager.PushScreen(screenMenu);
+    }*/
     void Update()
     {
         if(_player)
@@ -137,6 +147,7 @@ public class GameManager : MonoBehaviour
             if(_enemyManager.GetCounter() < _maxEnemies)
                 _enemyManager.ArtificialUpdate();
         }
+
     }
 
     public Vector3 ApplyBounds(Vector3 objectPosition) { return _boundManager.ApplyBounds(objectPosition); }
@@ -175,7 +186,7 @@ public class GameManager : MonoBehaviour
     public int GetCountDeadEnemies() { return _countDeadEnemies; }
     public int GetMaxEnemies() { return _maxEnemies; }
     public Enemy GetPrefabBoss() { return _prefabBoss; }
-
+    public ScreenManager GetScreenManager() { return _screenManager; }
     public BoundManager GetBoundManager() { return _boundManager; }
     public EnemyManager GetEnemyManager() { return _enemyManager; }
     public AsteroidManager GetAsteroidManager() { return _asteroidManager; }
@@ -187,7 +198,6 @@ public class GameManager : MonoBehaviour
         string _levelToChange = (string)param[0];
         _levelManager.ChangeScene(_levelToChange);
     }
-
     void OnLevelWasLoaded()
     {
         FindPlayer();
