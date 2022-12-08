@@ -26,6 +26,8 @@ public abstract class CharacterBase : MonoBehaviour , IObservable
     protected ParticleSystem _myParticleSystem;
     protected Animator _myAnimator;
 
+    protected Bullet _bulletStats = new Bullet();
+
     public void OnDamage(float damage)
     {
         if (_currentHealth > 0)
@@ -92,6 +94,10 @@ public abstract class CharacterBase : MonoBehaviour , IObservable
             _currentHealth += value;
             EventManager.TriggerEvent(Contants.EVENT_PLAYERONDAMAGE, _currentHealth);
         }
+    }
+    public void LevelUpBullet()
+    {
+        _bulletStats = new ImprovedBullet(_bulletStats);
     }
     public void ReduceShootTime(float value) { _shootTime -= value; }
     

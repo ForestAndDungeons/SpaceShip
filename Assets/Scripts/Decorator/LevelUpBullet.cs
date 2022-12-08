@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ImproveBullet : Interactive 
+public class LevelUpBullet : Interactive
 {
-    [SerializeField] int _value;
+    //[SerializeField] int _value;
 
     void Update()
     {
@@ -13,7 +13,7 @@ public class ImproveBullet : Interactive
 
     public override void Interact(CharacterBase entity)
     {
-        entity.AddFireRate(_value);
+        entity.LevelUpBullet();
         OnInteraction();
     }
 
@@ -28,19 +28,19 @@ public class ImproveBullet : Interactive
         _currentDistance = 0;
     }
 
-    public static void TurnOn(FireRate s)
+    public static void TurnOn(LevelUpBullet b)
     {
-        s.gameObject.SetActive(true);
+        b.gameObject.SetActive(true);
     }
 
-    public static void TurnOff(FireRate s)
+    public static void TurnOff(LevelUpBullet b)
     {
-        s.gameObject.SetActive(false);
+        b.gameObject.SetActive(false);
     }
 
     public override void ReturnToPool()
     {
-        //GameManager.Instance.fireRateFactory.ReturnFireRate(this);
+        GameManager.Instance.levelUpBulletFactory.ReturnLevelUpBullet(this);
     }
 
     public override IEnumerator WaitReturn()

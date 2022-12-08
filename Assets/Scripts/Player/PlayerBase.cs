@@ -54,6 +54,8 @@ public abstract class PlayerBase : CharacterBase
         {
             Bullet b = GameManager.Instance.bulletFactory.GetBullet();
 
+            b.SetDamage(_bulletStats);
+
             //Temporal//
             if (_isSinuousBullet)
             {
@@ -84,5 +86,4 @@ public abstract class PlayerBase : CharacterBase
         EventManager.TriggerEvent(Contants.EVENT_LOSEGAME, "Defeat");
         yield return new WaitForSeconds(2f);
     }
-
 }

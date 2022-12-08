@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : Interactive, IObserver
 {
-    [SerializeField] protected float _damage;
+    [SerializeField] protected float _damage = 1;
 
     [Header("SINUOUS BULLET")]
     [SerializeField] float _amplitud;
@@ -106,5 +106,17 @@ public class Bullet : Interactive, IObserver
     {
         _randomAdvance = new SinuousAdvance(transform, Random.Range(50, 61), Random.Range(10, 71), Random.Range(0, 9), Random.Range(0, 11), Random.Range(0, 11));
         _currentAdvance = _randomAdvance;
+    }
+
+    public float GetDamage() { return _damage; }
+    public void SetDamage(Bullet bullet)
+    {
+        Debug.Log(_damage);
+        Debug.Log(bullet._damage);
+        _damage = bullet._damage;
+    }
+    public void AddDamage()
+    {
+        _damage++;
     }
 }
