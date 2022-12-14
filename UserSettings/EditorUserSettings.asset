@@ -6,34 +6,34 @@ EditorUserSettings:
   serializedVersion: 4
   m_ConfigSettings:
     RecentlyUsedScenePath-0:
-      value: 22424703114646680e1c05320430103617140c253e31163f22255200e1e53a3df1a805e8ea2a33390a01ea3201701431fb1e10
-      flags: 0
-    RecentlyUsedScenePath-1:
-      value: 224247031146467a1f1a431104224d2306160a38233f69032e2c1336f1af1637ecf225cae8342b393716a1290a371526
-      flags: 0
-    RecentlyUsedScenePath-2:
-      value: 224247031146467a1f1a431104224d2306160a38233f69032e2c1336f1af072ce3f505f9e6282d332e4cfa320d2a18
-      flags: 0
-    RecentlyUsedScenePath-3:
-      value: 22424703114646680507092e146c6c181f12142e623d28393930
-      flags: 0
-    RecentlyUsedScenePath-4:
-      value: 22424703114646680e0b0227036c731f0512563f22213229
-      flags: 0
-    RecentlyUsedScenePath-5:
-      value: 22424703114646680e0b0227036c711501572b292926237e38271427fb
-      flags: 0
-    RecentlyUsedScenePath-6:
       value: 22424703114646680e0b0227036c7b151012193e623d28393930
       flags: 0
-    RecentlyUsedScenePath-7:
+    RecentlyUsedScenePath-1:
+      value: 22424703114646680e0b0227036c73150012146439262f2434
+      flags: 0
+    RecentlyUsedScenePath-2:
+      value: 22424703114646680e0b0227036c73150012146a7f66333e243d04
+      flags: 0
+    RecentlyUsedScenePath-3:
+      value: 22424703114646680e0b0227036c73150012146a7e66333e243d04
+      flags: 0
+    RecentlyUsedScenePath-4:
+      value: 22424703114646680e0b0227036c73150012146a7d66333e243d04
+      flags: 0
+    RecentlyUsedScenePath-5:
       value: 22424703114646680e0b0227036c6919150317383566333e243d04
       flags: 0
+    RecentlyUsedScenePath-6:
+      value: 22424703114646680e0b0227036c731500121478623d28393930
+      flags: 0
+    RecentlyUsedScenePath-7:
+      value: 22424703114646680e0b0227036c731500121479623d28393930
+      flags: 0
     RecentlyUsedScenePath-8:
-      value: 22424703114646680e0b0227036c72151802563f22213229
+      value: 22424703114646680e0b0227036c73150012147b623d28393930
       flags: 0
     RecentlyUsedScenePath-9:
-      value: 22424703114646680e0b0227036c73150012146439262f2434
+      value: 22424703114646680e0b0227036c72151802563f22213229
       flags: 0
     UnityRemoteDevice:
       value: 225f4d46245b0d4902070862342649191512

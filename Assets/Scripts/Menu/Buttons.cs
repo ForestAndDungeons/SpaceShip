@@ -33,10 +33,10 @@ public class Buttons : MonoBehaviour
     }
 
     public void ChangeScene(string sceneToLoad) { GameManager.Instance.ChangeScene(sceneToLoad); }
-    public void ChangeSceneToLeve(string sceneToLoad)
+    public void ChangeSceneToLevel(string sceneToLoad)
     {
         if(_staminaSystem.GetCurrentStamina() > 0)
-            GameManager.Instance.ChangeScene(sceneToLoad); 
+            GameManager.Instance.ChangeScene(sceneToLoad);
     }
 
     public void ChangeMusic(AudioClip clip) { GameManager.Instance.ChangeMusic(clip); }
@@ -51,6 +51,7 @@ public class Buttons : MonoBehaviour
     public void QuitGame() { GameManager.Instance.QuitGame(); }
     public void SaveGame() { GameManager.Instance.SaveGame(); }
     public void LoadGame() { GameManager.Instance.LoadGame(); GameManager.Instance.SetCredits(GameManager.Instance.GetJSONManager()._data.credits); }
+    public void DeleteSave() { GameManager.Instance.DeleteSave(); }
     public void Mute() { GameManager.Instance.Mute(_soundOnIcon, _soundOffIcon); }
     public void UpdateButtonIcon() { GameManager.Instance.UpdateButtonIcon(_soundOnIcon, _soundOffIcon); }
 

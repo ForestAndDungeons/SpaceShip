@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : PlayerBase
 {
@@ -34,7 +35,7 @@ public class Player : PlayerBase
         UpdateAnimatorVariables();
         Movement(transform);
 
-        if(_shooting)
+        if (_shooting)
             Shoot();
     }
 
@@ -42,4 +43,6 @@ public class Player : PlayerBase
     {
         Interact(other);
     }
+
+    public void ChangeScene(string sceneToLoad) { GameManager.Instance.ChangeScene(sceneToLoad); }   
 }

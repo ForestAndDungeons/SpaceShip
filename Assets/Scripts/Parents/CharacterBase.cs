@@ -25,6 +25,7 @@ public abstract class CharacterBase : MonoBehaviour , IObservable
     protected AudioSource _myAudioSource;
     protected ParticleSystem _myParticleSystem;
     protected Animator _myAnimator;
+    protected Collider _myCollider;
 
     protected Bullet _bulletStats = new Bullet();
 

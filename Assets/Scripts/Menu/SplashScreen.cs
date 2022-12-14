@@ -16,6 +16,7 @@ public class SplashScreen : MonoBehaviour
 
     public void OnTouch()
     {
+        GameManager.Instance.LoadGame();
         _myAnimator.SetBool("onTouch", true);
     }
 
