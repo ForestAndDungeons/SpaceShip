@@ -88,5 +88,5 @@ public class Shop : MonoBehaviour
                 item.CheckActive(false);
             }
         }
-    }
+    } 
 }

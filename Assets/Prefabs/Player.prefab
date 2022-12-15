@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2045103233670756861}
   - component: {fileID: 4288937332941409591}
   - component: {fileID: 2334496544533409515}
-  - component: {fileID: 5866240071500425046}
   m_Layer: 6
   m_Name: StarSparrow19
   m_TagString: Untagged
@@ -104,18 +103,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5866240071500425046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2343456992347942114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 440f32fa88f82954493404edf31021bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3006885795863702930
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,9 +260,9 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!82 &5866240071633003364
 AudioSource:
@@ -390,19 +377,15 @@ MonoBehaviour:
   _currentHealth: 0
   _shield: {fileID: 3006885795863702930}
   _isShieldUp: 0
-  _rateOfFire: 360
+  _rateOfFire: 1
   _burstSize: 4
   _canFire: 1
-  _shootTime: 1
-  _isRandomBullet: 0
-  _isSinuousBullet: 0
-  _audioClips:
-  - {fileID: 8300000, guid: 0d77198c1f091ef4bbc75cb08634c107, type: 3}
   _data: {fileID: 11400000, guid: a32c1a877d1450d44895a60345619e50, type: 2}
   _controller: {fileID: 0}
-  _startTimeResetBulletAdvance: 0
-  _playerMesh: {fileID: 0}
-  _playerMaterial: {fileID: 0}
+  _credits: 0
+  _startTimeResetBulletAdvance: 10
+  isRandomBullet: 0
+  isSinuousBullet: 0
 --- !u!198 &-3416333491825955796
 ParticleSystem:
   m_ObjectHideFlags: 0
