@@ -25,4 +25,12 @@ public class SaveJSON
         string json = File.ReadAllText(_path);
         JsonUtility.FromJsonOverwrite(json, _data);
     }
+
+    public void DeleteSave()
+    {
+        GameManager.Instance.SetCredits(0);
+        GameManager.Instance.ResetBoughtItems();
+        _data.credits = 0;
+        _data.boughtItemsID = null;
+    }
 }

@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance; } }
     static GameManager _instance;
 
+    [SerializeField] int _levelAmount;
+    [SerializeField] float _transitionTime;
+
     [Header("Player")]
     [SerializeField] int _credits;
     public Player playerReference { get { return _player; } }
@@ -64,7 +67,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float _spawnTimeEnemy;
     [SerializeField] int _maxEnemies;
     [SerializeField] int _countDeadEnemies;
-    [SerializeField] Enemy _prefabBoss;
+    [SerializeField] Enemy[] _prefabBoss;
 
     [Header("Factories")]
     [HideInInspector] public BulletFactory bulletFactory;
@@ -83,6 +86,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public LevelUpBulletFactory levelUpBulletFactory;
 
     bool flag = false;
+
     void Awake()
     {
         Time.timeScale = 1f;
@@ -139,6 +143,7 @@ public class GameManager : MonoBehaviour
         var screenMenu = Instantiate(Resources.Load<ScreenMenuPanel>("MenuPanel"), mainCanvas);
         _screenManager.PushScreen(screenMenu);
     }*/
+
     void Update()
     {
         if(_player)
@@ -148,13 +153,31 @@ public class GameManager : MonoBehaviour
             if(_enemyManager.GetCounter() < _maxEnemies)
                 _enemyManager.ArtificialUpdate();
         }
-
     }
 
     public Vector3 ApplyBounds(Vector3 objectPosition) { return _boundManager.ApplyBounds(objectPosition); }
     void FindPlayer() { _player = FindObjectOfType<Player>(); }
-    
-    public void ChangeScene(string sceneToLoad) { _levelManager.ChangeScene(sceneToLoad); ResetEnemyCounters();}
+    public void TransitionLevel() { _player.GetComponentInChildren<Animator>().SetTrigger("nextLevel"); }
+    public void ChangeScene(string sceneToLoad) { _levelManager.ChangeScene(sceneToLoad); ResetEnemyCounters(); }
+
+    public void NextLevel()
+    {
+        for (int i = 1; i < _levelAmount; i++)
+        {
+            if(SceneManager.GetActiveScene().name.EndsWith(_levelAmount.ToString()))
+            {
+                _levelManager.ChangeScene("Victory");
+            }
+            else if (SceneManager.GetActiveScene().name.EndsWith(i.ToString()))
+            {
+                SaveCredits();
+                SaveGame();
+                ResetEnemyCounters();
+                _levelManager.ChangeScene($"Level{i+1}");
+            }
+        }
+    }
+
     public void QuitGame() { _levelManager.QuitGame(); }
 
     public void ResetEnemyCounters() { _countDeadEnemies = 0; _enemyManager.SetCounter(0); }
@@ -169,7 +192,9 @@ public class GameManager : MonoBehaviour
     
 
     public void SaveGame() { _jsonManager.SaveGame(); }
-    public void LoadGame() { 
+    public void DeleteSave() { _jsonManager.DeleteSave(); }
+    public void LoadGame()
+    {
         _jsonManager.LoadGame();
         foreach (var item in _jsonManager._data.boughtItemsID)
         {
@@ -181,18 +206,30 @@ public class GameManager : MonoBehaviour
     }
 
     public void SetCredits(int value) { _credits = value; }
-    public void AddCredits(int value) { _credits += value; _jsonManager._data.credits = _credits; ; EventManager.TriggerEvent(Contants.EVENT_ADDCREDITUI, _credits); }
     public int GetCredits() { return _credits; }
+    public void AddCredits(int value) { _credits += value; EventManager.TriggerEvent(Contants.EVENT_ADDCREDITUI, _credits); }
+    public void SaveCredits() { _jsonManager._data.credits = _credits; }
 
     public int GetCountDeadEnemies() { return _countDeadEnemies; }
     public int GetMaxEnemies() { return _maxEnemies; }
-    public Enemy GetPrefabBoss() { return _prefabBoss; }
+    public Enemy GetPrefabBoss()
+    {
+        for (int i = 1; i <= _levelAmount; i++)
+        {
+            if (SceneManager.GetActiveScene().name.EndsWith(i.ToString()))
+            {
+                return _prefabBoss[i-1];
+            }
+        }
+        return null;
+    }
     public ScreenManager GetScreenManager() { return _screenManager; }
     public BoundManager GetBoundManager() { return _boundManager; }
     public EnemyManager GetEnemyManager() { return _enemyManager; }
     public AsteroidManager GetAsteroidManager() { return _asteroidManager; }
     public SaveJSON GetJSONManager() { return _jsonManager; }
     public void SetCountDeadEnemies(int value) { _countDeadEnemies += value; }
+    public void ResetBoughtItems() { boughtItemsID = new List<int>(); }
 
     public void DefeatScene(params object[] param)
     {

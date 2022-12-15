@@ -51,7 +51,7 @@ public abstract class Interactive  : MonoBehaviour
     }
     public virtual void MovementRight()
     {
-        transform.position += transform.right * FlyweightPointer.InteractiveRight.speed * Time.deltaTime;
+        transform.position += transform.up * -1 * FlyweightPointer.InteractiveRight.speed * Time.deltaTime;
 
         _currentDistance += FlyweightPointer.InteractiveRight.speed * Time.deltaTime;
 
