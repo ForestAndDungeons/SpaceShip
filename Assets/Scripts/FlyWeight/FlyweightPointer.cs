@@ -13,6 +13,6 @@ public class FlyweightPointer : MonoBehaviour
     public static readonly Flyweight InteractiveRight = new Flyweight
     {
         speed = 25,
-        dir = Vector3.right
+        dir = Vector3.forward
     };
 }

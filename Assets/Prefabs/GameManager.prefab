@@ -140,8 +140,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d599e76662001fb4fb0ef7d9b3827545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _credits: 0
+  _levelAmount: 3
+  _transitionTime: 2.5
+  _credits: 100
   _player: {fileID: 0}
+  _defaultMesh: {fileID: -4440479937110939489, guid: 0c96b086dbd8f5647806bfb7ee9b928a, type: 3}
+  _defaultMaterial: {fileID: 2100000, guid: ec39a84ad2f7de748af283edd7ffa3c1, type: 2}
+  playerMesh: {fileID: 0}
+  playerMaterial: {fileID: 0}
+  _notificationTime: 60
+  skinCheckID: 0
+  powerUpCheckID: 0
+  boughtItemsID: 
+  defaultBull: 0
+  isRandomBull: 0
+  isSinuousBull: 0
+  mainCanvas: {fileID: 0}
+  mainTransf: {fileID: 0}
   _audioClips:
   - {fileID: 8300000, guid: 9d2a47f6db5b59945aa1b85ae34f8af9, type: 3}
   - {fileID: 8300000, guid: 80848685bc489c749a9d3aeaa2ccc04b, type: 3}
@@ -153,10 +168,12 @@ MonoBehaviour:
   _colorSpawner: {r: 1, g: 0, b: 0, a: 1}
   _spawnTimeAsteroid: 2
   _spawnTimeEnemy: 5
-  _maxEnemies: 10
+  _maxEnemies: 1
   _countDeadEnemies: 0
-  _soundOnIcon: {fileID: 0}
-  _soundOffIcon: {fileID: 0}
+  _prefabBoss:
+  - {fileID: 276708550406209200, guid: c1c80ee9b2894714384c1cf6e83f444d, type: 3}
+  - {fileID: 9043776681472774125, guid: 3875257ff60fd294f980e424360d11df, type: 3}
+  - {fileID: 9043776681472774125, guid: 39fa902eb83728c42a664353dd1eaba1, type: 3}
   bulletFactory: {fileID: 0}
   asteroidFactory: {fileID: 0}
   creditsFactory: {fileID: 0}
@@ -164,7 +181,10 @@ MonoBehaviour:
   enemyFactory: {fileID: 0}
   fireBurstFactory: {fileID: 0}
   fireRateFactory: {fileID: 0}
+  fireTimeFactory: {fileID: 0}
   shieldFactory: {fileID: 0}
+  healFactory: {fileID: 0}
   sinuousBulletFactory: {fileID: 0}
   randomBulletFactory: {fileID: 0}
   asteroidBigFactory: {fileID: 0}
+  levelUpBulletFactory: {fileID: 0}
