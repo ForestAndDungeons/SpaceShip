@@ -2596,6 +2596,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 405341233}
     - target: {fileID: 1003183416795780584, guid: 97ad900c6cc5a2549a7ca551dfcfbf6f, type: 3}
+      propertyPath: _loadObj
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003183416795780584, guid: 97ad900c6cc5a2549a7ca551dfcfbf6f, type: 3}
       propertyPath: _audioMixer
       value: 
       objectReference: {fileID: 24100000, guid: 1d5d03c212beacd448d4ca10bf8ad656, type: 2}
@@ -5771,6 +5775,10 @@ PrefabInstance:
       propertyPath: _controller
       value: 
       objectReference: {fileID: 1416099402}
+    - target: {fileID: 5866240071633003365, guid: eaae3fdc1d141364580f493e3a7c5a57, type: 3}
+      propertyPath: _joystickBase
+      value: 
+      objectReference: {fileID: 1475375851}
     - target: {fileID: 5866240071633003386, guid: eaae3fdc1d141364580f493e3a7c5a57, type: 3}
       propertyPath: m_Name
       value: Player

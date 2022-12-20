@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Player")]
     [SerializeField] int _credits;
+    [SerializeField] bool _isGyro  = false;
+    [SerializeField] bool _supportGyro;
     public Player playerReference { get { return _player; } }
     public Player _player;
     [SerializeField] Mesh _defaultMesh;
@@ -35,6 +37,9 @@ public class GameManager : MonoBehaviour
     [Header("Screen Manager")]
     public Transform mainCanvas;
     [SerializeField] Transform mainTransf;
+    [SerializeField] Slider _sliderLoad;
+    [SerializeField] GameObject _loadObj;
+    LoadSceneManager _loadScreenManager;
 
     [Header("Managers")]
     SaveJSON _jsonManager;
@@ -100,7 +105,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
+        StartCoroutine(GetLoadSlider());
         _myAudioSource = GetComponent<AudioSource>();
 
         //Managers
@@ -136,13 +141,10 @@ public class GameManager : MonoBehaviour
         {
             defaultBull = true;
         }
-    }
 
-    /*private void Start()
-    {
-        var screenMenu = Instantiate(Resources.Load<ScreenMenuPanel>("MenuPanel"), mainCanvas);
-        _screenManager.PushScreen(screenMenu);
-    }*/
+        if (!SystemInfo.supportsGyroscope && !Application.isEditor){ _supportGyro = false; }
+        else { _supportGyro = true; }
+    }
 
     void Update()
     {
@@ -158,8 +160,18 @@ public class GameManager : MonoBehaviour
     public Vector3 ApplyBounds(Vector3 objectPosition) { return _boundManager.ApplyBounds(objectPosition); }
     void FindPlayer() { _player = FindObjectOfType<Player>(); }
     public void TransitionLevel() { _player.GetComponentInChildren<Animator>().SetTrigger("nextLevel"); }
-    public void ChangeScene(string sceneToLoad) { _levelManager.ChangeScene(sceneToLoad); ResetEnemyCounters(); }
-
+    public IEnumerator GetLoadSlider() {
+        yield return new WaitForSeconds(0.5f);
+        _loadScreenManager = FindObjectOfType<LoadSceneManager>();
+        if (_loadScreenManager!=null)
+        {
+            _loadObj = _loadScreenManager.loadObj;
+            _sliderLoad = _loadScreenManager.sliderLoad;
+            _loadObj.SetActive(false);
+        }
+    }
+    public void ChangeScene(string sceneToLoad) { _levelManager.ChangeScene(sceneToLoad); ResetEnemyCounters(); StartCoroutine(GetLoadSlider()); }
+    public void ChangeSceneAsync(string sceneToLoad) {_loadObj.SetActive(true); StartCoroutine(_levelManager.LoadAsyncScreen(sceneToLoad, _sliderLoad)); ResetEnemyCounters(); }
     public void NextLevel()
     {
         for (int i = 1; i < _levelAmount; i++)
@@ -173,7 +185,7 @@ public class GameManager : MonoBehaviour
                 SaveCredits();
                 SaveGame();
                 ResetEnemyCounters();
-                _levelManager.ChangeScene($"Level{i+1}");
+                ChangeScene($"Level{i+1}");
             }
         }
     }
@@ -204,7 +216,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
     public void SetCredits(int value) { _credits = value; }
     public int GetCredits() { return _credits; }
     public void AddCredits(int value) { _credits += value; EventManager.TriggerEvent(Contants.EVENT_ADDCREDITUI, _credits); }
@@ -228,6 +239,9 @@ public class GameManager : MonoBehaviour
     public EnemyManager GetEnemyManager() { return _enemyManager; }
     public AsteroidManager GetAsteroidManager() { return _asteroidManager; }
     public SaveJSON GetJSONManager() { return _jsonManager; }
+    public bool GetIsGyro() { return _isGyro; }
+    public void InvertIsGyro() { _isGyro = !_isGyro; }
+    public bool GetSupportGyro() { return _supportGyro; }
     public void SetCountDeadEnemies(int value) { _countDeadEnemies += value; }
     public void ResetBoughtItems() { boughtItemsID = new List<int>(); }
 
