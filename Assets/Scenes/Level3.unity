@@ -5046,6 +5046,10 @@ PrefabInstance:
       propertyPath: _controller
       value: 
       objectReference: {fileID: 1416099402}
+    - target: {fileID: 5866240071633003365, guid: eaae3fdc1d141364580f493e3a7c5a57, type: 3}
+      propertyPath: _joystickBase
+      value: 
+      objectReference: {fileID: 1475375851}
     - target: {fileID: 5866240071633003386, guid: eaae3fdc1d141364580f493e3a7c5a57, type: 3}
       propertyPath: m_Name
       value: Player

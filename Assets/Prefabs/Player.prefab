@@ -403,6 +403,8 @@ MonoBehaviour:
   _startTimeResetBulletAdvance: 0
   _playerMesh: {fileID: 0}
   _playerMaterial: {fileID: 0}
+  _speedGyroX: 3
+  _speedGyroZ: 2
 --- !u!198 &-3416333491825955796
 ParticleSystem:
   m_ObjectHideFlags: 0

@@ -27,13 +27,35 @@ public class Player : PlayerBase
     {
         EventManager.TriggerEvent(Contants.EVENT_INICIATEHEALTHBAR, _data.maxHealth, _currentHealth);
         EventManager.TriggerEvent(Contants.EVENT_INICIATECREDITS, GameManager.Instance.GetCredits());
+
+        if (GameManager.Instance.GetIsGyro())
+        {
+            _controller.gameObject.SetActive(false);
+            _joystickBase.gameObject.SetActive(false);
+            _gyro = Input.gyro;
+            _gyro.enabled = true;
+        }
+        else if(!GameManager.Instance.GetIsGyro() && GameManager.Instance.GetSupportGyro()) {
+            _controller.gameObject.SetActive(true);
+            _joystickBase.gameObject.SetActive(true);
+            _gyro = Input.gyro;
+            _gyro.enabled = false; 
+        }
+       
     }
 
     void Update()
     {
         GameManager.Instance.GetBoundManager().CheckBounds(this);
         UpdateAnimatorVariables();
-        Movement(transform);
+        if (!GameManager.Instance.GetIsGyro())
+        {
+            Movement(transform);
+        }
+        else
+        {
+            GyroMovement(transform);
+        }
 
         if (_shooting)
             Shoot();

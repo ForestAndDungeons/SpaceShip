@@ -33,10 +33,9 @@ public class Buttons : MonoBehaviour
     }
 
     public void ChangeScene(string sceneToLoad) { GameManager.Instance.ChangeScene(sceneToLoad); }
-    public void ChangeSceneToLevel(string sceneToLoad)
-    {
-        if(_staminaSystem.GetCurrentStamina() > 0)
-            GameManager.Instance.ChangeScene(sceneToLoad);
+    public void ChangeSceneAsync(string sceneToLoad) {
+        if (_staminaSystem.GetCurrentStamina() > 0)
+            GameManager.Instance.ChangeSceneAsync(sceneToLoad);
     }
 
     public void ChangeMusic(AudioClip clip) { GameManager.Instance.ChangeMusic(clip); }
@@ -44,6 +43,14 @@ public class Buttons : MonoBehaviour
     {
         if (_staminaSystem.GetCurrentStamina() > 0)
             GameManager.Instance.ChangeMusic(clip);
+    }
+    public void GyroOption() { GameManager.Instance.InvertIsGyro(); }
+    public void InvertObj(GameObject obj)
+    {
+        if (obj.activeSelf)
+            obj.SetActive(false);
+        else
+            obj.SetActive(true); 
     }
 
     public void Pause() { GameManager.Instance.Pause(); }

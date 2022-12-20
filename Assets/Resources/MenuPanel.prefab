@@ -1564,7 +1564,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3523723497120130988}
         m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
-        m_MethodName: ChangeSceneToLevel
+        m_MethodName: ChangeSceneAsync
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1633,7 +1633,7 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 3523723497120130988}
           m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
-          m_MethodName: ChangeSceneToLevel
+          m_MethodName: ChangeSceneAsync
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

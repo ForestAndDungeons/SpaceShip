@@ -5,14 +5,23 @@ public abstract class PlayerBase : CharacterBase
 {
     [SerializeField] protected PlayerBaseSO _data;
     [SerializeField] protected Controller _controller;
+    [SerializeField] protected GameObject _joystickBase;
     [SerializeField] float _startTimeResetBulletAdvance;
     [SerializeField] protected Mesh _playerMesh;
     [SerializeField] protected Material _playerMaterial;
+    [SerializeField] protected float _speedGyroX;
+    [SerializeField] protected float _speedGyroZ;
+    protected Gyroscope _gyro;
     float _timeResetBulletAdvance;
 
     public void Movement(Transform player)
     {
         player.transform.position += _controller.GetMovementInput() * _maxSpeed * Time.deltaTime;
+    }
+
+    public void GyroMovement(Transform player)
+    {
+        player.transform.position += new Vector3(_gyro.gravity.x* _speedGyroX  ,0f,-_gyro.gravity.z* _speedGyroZ) * _maxSpeed * Time.deltaTime;
     }
 
     public override void OnDeath()
