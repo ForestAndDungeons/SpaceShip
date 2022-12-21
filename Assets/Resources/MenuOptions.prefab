@@ -92,7 +92,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2503199342291359362
 RectTransform:
   m_ObjectHideFlags: 0
@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 4825701777524433340}
   - component: {fileID: 543311191878578506}
   - component: {fileID: 154018437600518730}
+  - component: {fileID: 2251376853072208899}
   m_Layer: 5
   m_Name: Gyroscope
   m_TagString: Untagged
@@ -426,6 +427,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd1c06862d0bd7347b97c0d9453d1478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2251376853072208899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038208763947022039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c87af44cf9ca0e4db5f0a34479deaeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gyroOff: {fileID: 824185042269959720}
+  _gyroOn: {fileID: 2306803052368395404}
 --- !u!1 &1094865446355019324
 GameObject:
   m_ObjectHideFlags: 0

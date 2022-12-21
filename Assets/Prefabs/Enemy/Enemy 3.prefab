@@ -274,8 +274,8 @@ MonoBehaviour:
   _currentHealth: 0
   _shield: {fileID: 12337088946121189}
   _isShieldUp: 1
-  _rateOfFire: 90
-  _burstSize: 2
+  _rateOfFire: 120
+  _burstSize: 4
   _canFire: 0
   _shootTime: 0
   _isRandomBullet: 0
