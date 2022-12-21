@@ -175,12 +175,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSpeed: 25
-  _maxHealth: 8
+  _maxHealth: 14
   _currentHealth: 0
   _shield: {fileID: 7369048365062169296}
   _isShieldUp: 1
-  _rateOfFire: 80
-  _burstSize: 2
+  _rateOfFire: 120
+  _burstSize: 3
   _canFire: 0
   _shootTime: 0
   _isRandomBullet: 0
