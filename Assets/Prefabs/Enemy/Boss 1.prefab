@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSpeed: 20
-  _maxHealth: 14
+  _maxHealth: 12
   _currentHealth: 0
   _shield: {fileID: 1734726424022422413}
   _isShieldUp: 1
